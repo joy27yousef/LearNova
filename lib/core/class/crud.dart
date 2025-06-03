@@ -6,7 +6,7 @@ import 'package:learn_nova/core/function/ckeckInternet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {
-  Future<Either<Statusrequest, Map>> postRequest(
+  Future<Either<Statusrequest, Map>> getRequest(
       String LinkUrl, Map data) async {
     try {
       if (await checkInternet()) {

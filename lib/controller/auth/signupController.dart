@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/handilingData.dart';
-import 'package:learn_nova/data/source/remote/auth/signupData.dart';
 import 'package:learn_nova/data/source/remote/auth/signupData.dart';
 
 abstract class SignupController extends GetxController {

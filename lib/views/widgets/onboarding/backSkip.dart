@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_nova/controller/onboardingController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
-import 'package:learn_nova/core/constant/AppRoutes.dart';
+
 
 class Backskip extends GetView<OnboardingcontrollerIMP> {
   const Backskip({super.key});

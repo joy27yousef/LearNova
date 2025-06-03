@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
-import 'package:learn_nova/views/screens/Auth/Signup.dart';
+
 
 class Footertext extends StatelessWidget {
   final String text1;

@@ -29,7 +29,7 @@ class ForgotpassControllerIMP extends Forgotpasscontroller {
   verification() {
     if (formstate.currentState!.validate()) {
       print('valid');
-      Get.offAllNamed(AppRoutes.Resetpassword);
+      Get.offAllNamed(AppRoutes.resetpassword);
     } else {
       print('not valid');
     }
