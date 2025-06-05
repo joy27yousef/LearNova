@@ -16,6 +16,7 @@ class AllCategoryPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Appcolor.backgroundColor,
         appBar: AppBar(
+          centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_new_rounded),
             onPressed: () => Get.back(),
@@ -24,7 +25,9 @@ class AllCategoryPage extends StatelessWidget {
           title: Text(
             'Explor by Category',
             style: TextStyle(
-                fontFamily: AppFonts.Poppins, fontWeight: FontWeight.bold),
+                fontSize: 20,
+                fontFamily: AppFonts.Poppins,
+                fontWeight: FontWeight.bold),
           ),
         ),
         body: Container(

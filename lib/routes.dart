@@ -1,6 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/screens/benefitsPage.dart';
+import 'package:learn_nova/views/screens/coursePage.dart';
 import 'package:learn_nova/views/screens/mainCategory.dart';
 import 'package:learn_nova/core/middleware/AppMiddleware.dart';
 import 'package:learn_nova/test.dart';
@@ -31,4 +32,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutes.categoryPage, page: () => AllCategoryPage()),
   GetPage(name: AppRoutes.mainCategory, page: () => MainCategory()),
   GetPage(name: AppRoutes.benefits, page: () => BenefitsPage()),
+  GetPage(name: AppRoutes.coursePage, page: () => CoursePage()),
 ];

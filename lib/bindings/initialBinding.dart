@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/auth/signupController.dart';
+import 'package:learn_nova/controller/categoryController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 
 class Initialbinding extends Bindings {
@@ -7,5 +8,6 @@ class Initialbinding extends Bindings {
   void dependencies() {
     Get.put(Crud());
     Get.put(SignupControllerIMP());
+    Get.put(CategoryControllerIMP());
   }
 }

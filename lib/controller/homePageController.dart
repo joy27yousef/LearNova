@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_nova/core/class/statusRequest.dart';
-import 'package:learn_nova/core/function/handilingData.dart';
 import 'package:learn_nova/core/services/services.dart';
 
 import 'package:learn_nova/data/source/static.dart';

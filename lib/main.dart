@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: AppBarTheme(color: Appcolor.backgroundColor),
         primaryColor: Appcolor.base,
       ),
       getPages: routes,

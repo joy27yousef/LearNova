@@ -2,32 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
-import 'package:learn_nova/data/source/static.dart';
-import 'package:learn_nova/views/widgets/homePage/benefitsGen.dart';
 
-class BenefitsPage extends StatelessWidget {
-  const BenefitsPage({super.key});
+class CoursePage extends StatelessWidget {
+  const CoursePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Appcolor.backgroundColor,
       appBar: AppBar(
-        title: Text('Why Choose LearNova',
+        centerTitle: true,
+        title: Text('Name of The course',
             style: TextStyle(
                 fontSize: 20,
                 fontFamily: AppFonts.Poppins,
                 fontWeight: FontWeight.bold)),
         backgroundColor: Appcolor.backgroundColor,
-        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () => Get.back(),
         ),
-      ),
-      body: Benefitsgen(
-        x: Benefits.length,
-        y: 20,
       ),
     );
   }
