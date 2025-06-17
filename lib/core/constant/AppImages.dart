@@ -22,6 +22,7 @@ class Appimages {
   static const String myProfile = "assets/icons/my-profile.png";
   static const String chat = "assets/icons/chat.png";
   static const String home = "assets/icons/home.png";
+  static const String notification = "assets/icons/bell.png";
   // homepage
   static const String homeScrol1 = "assets/images/homeScrol1.png";
   static const String homeScrol2 = "assets/images/homeScrol2.png";

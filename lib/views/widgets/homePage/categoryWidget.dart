@@ -23,7 +23,7 @@ class Categorywidget extends StatelessWidget {
                   width: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: Colors.grey.shade200,
+                    color: Theme.of(context).colorScheme.background,
                   ),
                   child: Row(
                     children: [
@@ -39,10 +39,7 @@ class Categorywidget extends StatelessWidget {
                       ),
                       Text(
                         categoryTest[i].name!,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black45,
-                            fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],
                   ),

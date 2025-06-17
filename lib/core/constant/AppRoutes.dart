@@ -11,6 +11,10 @@ class AppRoutes {
   static const String categoryPage = "/categoryPage";
   static const String mainCategory = "/mainCategory";
   static const String benefits = "/benefits";
-  static const String settingsPage = "/settingsPage";
   static const String coursePage = "/coursePage";
+  static const String notificationPage = "/notificationPage";
+  //profile Page
+  static const String editProfile = "/editProfile";
+  static const String settingsPage = "/settingsPage";
+  static const String helpCenterPage = "/helpCenterPage";
 }

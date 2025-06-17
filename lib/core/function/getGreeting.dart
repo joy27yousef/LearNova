@@ -1,12 +1,14 @@
+import 'package:get/get.dart';
+
 String getGreeting() {
   final hour = DateTime.now().hour;
   if (hour >= 5 && hour < 12) {
-    return 'Good morning\n';
+    return '36'.tr;
   } else if (hour >= 12 && hour < 17) {
-    return 'Good afternoon\n';
+    return '37'.tr;
   } else if (hour >= 17 && hour < 21) {
-    return 'Good evening\n';
+    return '38'.tr;
   } else {
-    return 'Good night\n';
+    return '39'.tr;
   }
 }

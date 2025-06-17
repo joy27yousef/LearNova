@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
-import 'package:learn_nova/views/screens/MyCoursesPage.dart';
+import 'package:learn_nova/views/screens/home/MyCoursesPage.dart';
 import 'package:learn_nova/views/screens/chatPage.dart';
-import 'package:learn_nova/views/screens/homePage.dart';
-import 'package:learn_nova/views/screens/profilePage.dart';
+import 'package:learn_nova/views/screens/home/homePage.dart';
+import 'package:learn_nova/views/screens/profile%20Page/profilePage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainPage extends StatelessWidget {
@@ -17,12 +17,11 @@ class MainPage extends StatelessWidget {
     HomePage(),
     Mycoursespage(),
     Chatpage(),
-    Profilepage(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          backgroundColor: Appcolor.backgroundColor,
           body: pages[controller.selectedIndex.value],
           bottomNavigationBar: CurvedNavigationBar(
             height: 60,
@@ -48,7 +47,7 @@ class MainPage extends StatelessWidget {
             onTap: (index) {
               controller.changePage(index);
             },
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             color: Appcolor.base,
             buttonBackgroundColor: Appcolor.base,
             animationDuration: Duration(milliseconds: 600),

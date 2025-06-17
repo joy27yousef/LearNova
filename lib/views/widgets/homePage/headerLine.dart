@@ -21,21 +21,14 @@ class Headerline extends StatelessWidget {
         children: [
           Text(
             hint1,
-            style: TextStyle(
-                fontFamily: AppFonts.Poppins,
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           InkWell(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             onTap: onTapHeader,
             child: Text(
               hint2,
-              style: TextStyle(
-                  color: Colors.black45,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           )
         ],

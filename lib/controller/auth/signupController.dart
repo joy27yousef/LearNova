@@ -68,7 +68,7 @@ class SignupControllerIMP extends SignupController {
               titlePadding: EdgeInsets.zero,
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              backgroundColor: Appcolor.backgroundColor,
+              backgroundColor: Appcolor.backgroundLight,
               content: Text(
                 'Your Email is already exists',
                 textAlign: TextAlign.center,

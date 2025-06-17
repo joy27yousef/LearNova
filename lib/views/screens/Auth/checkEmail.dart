@@ -12,9 +12,9 @@ class Checkemail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Appcolor.backgroundColor,
+      backgroundColor: Appcolor.backgroundLight,
       appBar: AppBar(
-        backgroundColor: Appcolor.backgroundColor,
+        backgroundColor: Appcolor.backgroundLight,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

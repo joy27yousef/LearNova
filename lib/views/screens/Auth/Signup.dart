@@ -19,7 +19,7 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Appcolor.backgroundColor,
+        backgroundColor: Appcolor.backgroundLight,
         // ignore: deprecated_member_use
         body: WillPopScope(
           onWillPop: alerExitApp,

@@ -15,19 +15,19 @@ List<Onboardingmodel> onboardingList = [
 
 List<Homescrolmesmodel> homeScrol = [
   Homescrolmesmodel(
-    content: 'Set your daily goal \nand make progress\n every day',
+    content: '40'.tr,
     image: Appimages.homeScrol1,
   ),
   Homescrolmesmodel(
-    content: 'New ideas are \nwaiting for you dive \ninto a lesson!',
+    content: '41'.tr,
     image: Appimages.homeScrol2,
   ),
   Homescrolmesmodel(
-    content: 'Your brain is \na muscle exercise \nit with knowledge',
+    content: '42'.tr,
     image: Appimages.homeScrol3,
   ),
   Homescrolmesmodel(
-    content: 'Just 10 minutes a \n day can make \na big difference',
+    content: '43'.tr,
     image: Appimages.homeScrol4,
   ),
 ];
@@ -48,27 +48,27 @@ List<Categorytest> categoryTest = [
 List<Benefitsmodel> Benefits = [
   Benefitsmodel(
       'Flexible Learning',
-      "Learn at your own pace with 24/7 access to courses. Set your own schedule and learn when it's most convenient for you",
+      """Learn at your own pace with 24/7 access to courses. Set your own schedule and learn when it's most convenient for you""",
       Appimages.books),
   Benefitsmodel(
       'Expert Instructors',
-      "Learn from industry professionals with years of practical experience. Our instructors are passionate about sharing their knowledge.",
+      """Learn from industry professionals with years of practical experience. Our instructors are passionate about sharing their knowledge.""",
       Appimages.teacher),
   Benefitsmodel(
       'Interactive Content',
-      "Engage with hands-on projects, quizzes, and interactive assignments that reinforce your learning and keep you motivated.",
+      """Engage with hands-on projects, quizzes, and interactive assignments that reinforce your learning and keep you motivated.""",
       Appimages.hand),
   Benefitsmodel(
       'Career Support',
-      "Get guidance on career paths, resume building, and job opportunities. Connect with our network of industry partners.",
+      """Get guidance on career paths, resume building, and job opportunities. Connect with our network of industry partners.""",
       Appimages.suitcase),
   Benefitsmodel(
       'Community Learning',
-      "Join a vibrant community of learners. Collaborate on projects, share insights, and grow together through peer learning.",
+      """Join a vibrant community of learners. Collaborate on projects, share insights, and grow together through peer learning.""",
       Appimages.social),
   Benefitsmodel(
       'Certified Courses',
-      "Earn recognized certificates upon course completion. Add valuable credentials to your professional portfolio.",
+      """Earn recognized certificates upon course completion. Add valuable credentials to your professional portfolio.""",
       Appimages.mortarboard),
 ];
 

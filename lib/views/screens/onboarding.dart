@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/onboardingController.dart';
-import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/data/source/static.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
 import 'package:learn_nova/views/widgets/onboarding/backSkip.dart';
@@ -18,9 +17,9 @@ class Onboarding extends StatelessWidget {
         builder: (controller) => Scaffold(
               appBar: AppBar(
                 toolbarHeight: -10,
-                backgroundColor: Appcolor.backgroundColor,
+  
               ),
-              backgroundColor: Appcolor.backgroundColor,
+
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Column(

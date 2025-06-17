@@ -24,8 +24,9 @@ class Viewcourseshomepage extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   width: 200,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.grey.shade100),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Theme.of(context).colorScheme.background,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,8 +43,7 @@ class Viewcourseshomepage extends StatelessWidget {
                       SizedBox(height: 6),
                       Text(
                         "User Interfase Design",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Text(
                         "Meta",

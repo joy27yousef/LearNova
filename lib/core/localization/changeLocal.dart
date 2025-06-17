@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:learn_nova/core/constant/AppTheme.dart';
 import 'package:learn_nova/core/services/services.dart';
 
 class localController extends GetxController {
-  Locale? language;
-  ThemeData appTheme = themeEnglish;
+  Rx<Locale> language = Locale('en').obs;  
 
   MyServices myServices = Get.find();
-  changelang(String langcode) {
+
+  void changelang(String langcode) {
     Locale locale = Locale(langcode);
     myServices.sharedPreference.setString('lang', langcode);
+    language.value = locale; 
     Get.updateLocale(locale);
   }
 
@@ -22,11 +24,11 @@ class localController extends GetxController {
     super.onInit();
     String? sharedprefLang = myServices.sharedPreference.getString('lang');
     if (sharedprefLang == 'ar') {
-      language = Locale('ar');
+      language.value = Locale('ar');
     } else if (sharedprefLang == 'en') {
-      language = Locale('en');
+      language.value = Locale('en');
     } else {
-      language = Locale(Get.deviceLocale!.languageCode);
+      language.value = Locale(Get.deviceLocale?.languageCode ?? 'en');
     }
   }
 }

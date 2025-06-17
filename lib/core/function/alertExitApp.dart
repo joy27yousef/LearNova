@@ -10,7 +10,7 @@ Future<bool> alerExitApp() {
     title: '',
     titlePadding: EdgeInsets.zero,
     contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-    backgroundColor: Appcolor.backgroundColor,
+ 
     content: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -11,17 +11,17 @@ class MainCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Appcolor.backgroundColor,
         appBar: AppBar(
-          title: Text('Name of Main Cat',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: AppFonts.Poppins,
-                  fontWeight: FontWeight.bold)),
-          backgroundColor: Appcolor.backgroundColor,
+          title: Text(
+            'Name of Main Cat',
+            style: Theme.of(context).appBarTheme.titleTextStyle,
+          ),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
+            icon: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             onPressed: () => Get.back(),
           ),
         ),

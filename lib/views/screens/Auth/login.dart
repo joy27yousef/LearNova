@@ -20,7 +20,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginControllerImp controller = Get.put(LoginControllerImp());
     return Scaffold(
-        backgroundColor: Appcolor.backgroundColor,
+        backgroundColor: Appcolor.backgroundLight,
         body: WillPopScope(
           onWillPop: alerExitApp,
           child: Form(

@@ -35,7 +35,6 @@ class Messagecontainer extends StatelessWidget {
                       controller: controller.pageController,
                       physics: NeverScrollableScrollPhysics(),
                       onPageChanged: (val) {
-                        print(val);
                         controller.onChangeMessage(val);
                       },
                       itemCount: homeScrol.length,
@@ -60,11 +59,9 @@ class Messagecontainer extends StatelessWidget {
                                   children: [
                                     Text(
                                       homeScrol[i].content!,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .displayLarge,
                                     ),
                                     Center(
                                       child: Image.asset(

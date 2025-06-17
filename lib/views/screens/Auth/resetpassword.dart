@@ -17,7 +17,7 @@ class Resetpassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Appcolor.backgroundColor,
+        backgroundColor: Appcolor.backgroundLight,
         title: Text(
           '33'.tr,
           style: TextStyle(
@@ -26,7 +26,7 @@ class Resetpassword extends StatelessWidget {
               fontWeight: FontWeight.w400),
         ),
       ),
-      backgroundColor: Appcolor.backgroundColor,
+      backgroundColor: Appcolor.backgroundLight,
       body: Form(
         key: controller.formstate,
         child: Padding(

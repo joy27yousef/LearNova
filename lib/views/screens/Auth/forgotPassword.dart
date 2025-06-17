@@ -17,7 +17,7 @@ class Forgotpassword extends StatelessWidget {
     ForgotpassControllerIMP controller = Get.put(ForgotpassControllerIMP());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Appcolor.backgroundColor,
+        backgroundColor: Appcolor.backgroundLight,
         title: Text(
           '30'.tr,
           style: TextStyle(
@@ -26,7 +26,7 @@ class Forgotpassword extends StatelessWidget {
               fontWeight: FontWeight.w400),
         ),
       ),
-      backgroundColor: Appcolor.backgroundColor,
+      backgroundColor: Appcolor.backgroundLight,
       body: Form(
         key: controller.formstate,
         child: Padding(

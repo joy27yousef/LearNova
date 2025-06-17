@@ -9,7 +9,7 @@ class Appbartitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Appcolor.backgroundColor,
+      backgroundColor: Appcolor.backgroundLight,
       title: Text(
         title!,
         style: TextStyle(
