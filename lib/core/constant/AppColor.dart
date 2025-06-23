@@ -6,4 +6,6 @@ class Appcolor {
   static const Color base = Color(0xff6d28d9);
   static const Color baselight = Color(0xffc4b5fd);
   static const Color baselight2 = Color(0xffddd6fe);
+
+  static var primaryColor;
 }

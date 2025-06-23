@@ -25,6 +25,7 @@ class TextformAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.bodySmall,
       controller: mycontroller,
       obscureText: obscureText == null || obscureText == false ? false : true,
       validator: valid,
@@ -36,7 +37,8 @@ class TextformAuth extends StatelessWidget {
             ),
             borderRadius: BorderRadius.all(Radius.circular(15))),
         hintText: hint,
-        hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
+        hintStyle: TextStyle(
+            color: Colors.grey, fontWeight: FontWeight.w300, fontSize: 15),
         suffixIcon: InkWell(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           onTap: onTapicon,
@@ -61,7 +63,7 @@ class TextformAuth extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Text(
             lable,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
           ),
         ),
       ),

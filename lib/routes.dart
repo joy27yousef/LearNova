@@ -5,7 +5,6 @@ import 'package:learn_nova/views/screens/home/benefitsPage.dart';
 import 'package:learn_nova/views/screens/home/coursePage.dart';
 import 'package:learn_nova/views/screens/home/mainCategory.dart';
 import 'package:learn_nova/core/middleware/AppMiddleware.dart';
-import 'package:learn_nova/test.dart';
 import 'package:learn_nova/views/screens/Auth/checkEmail.dart';
 import 'package:learn_nova/views/screens/Auth/forgotPassword.dart';
 import 'package:learn_nova/views/screens/Auth/login.dart';
@@ -18,18 +17,20 @@ import 'package:learn_nova/views/screens/onboarding.dart';
 import 'package:learn_nova/views/screens/home/searchPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/helpCenterPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/settingPage.dart';
-import 'package:learn_nova/views/testView.dart';
+import 'package:learn_nova/views/screens/test.dart';
+
+import 'testPage.dart';
 
 List<GetPage<dynamic>>? routes = [
   // GetPage(name: '/', page: () => Onboarding(), middlewares: [Mymiddleware()]),
-  // GetPage(name: '/', page: () => Testview()),
+  // GetPage(name: '/', page: () => Testpage()),
+  GetPage(name: '/', page: () => MainPage()),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.signup, page: () => Signup()),
   GetPage(name: AppRoutes.checkEmail, page: () => Checkemail()),
   GetPage(name: AppRoutes.forgotPassword, page: () => Forgotpassword()),
   GetPage(name: AppRoutes.resetpassword, page: () => Resetpassword()),
-  // GetPage(name: AppRoutes.homePage, page: () => HomePage()),
-  GetPage(name: '/', page: () => MainPage()),
+  GetPage(name: AppRoutes.mainPage, page: () => MainPage()),
   GetPage(name: AppRoutes.searhPage, page: () => SearchPage()),
   GetPage(name: AppRoutes.categoryPage, page: () => AllCategoryPage()),
   GetPage(name: AppRoutes.mainCategory, page: () => MainCategory()),

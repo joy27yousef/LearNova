@@ -85,7 +85,7 @@ class Login extends StatelessWidget {
                         Boxtext(
                           textin: '18'.tr,
                           onTapFun: () {
-                            controller.login();
+                            controller.login(context);
                           },
                         ),
                         SizedBox(

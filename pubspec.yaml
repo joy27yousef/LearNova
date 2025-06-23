@@ -30,11 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
   cupertino_icons: ^1.0.8
   curved_navigation_bar: ^1.0.6
   get: ^4.7.2
   get_storage: ^2.1.1
+  visibility_detector: ^0.4.0+2
   # DateTime
   jiffy: ^6.3.2
   intl: 0.19.0
@@ -107,6 +107,7 @@ flutter:
     - assets/images/Course1.gif
     - assets/images/Course2.gif
     - assets/images/UI-UX team.gif
+    - assets/images/verification.gif
     - assets/images/Learning.gif
     - assets/images/Courseapp.gif
     - assets/images/logo.jpg
@@ -114,6 +115,8 @@ flutter:
     - assets/images/Forgot password.gif
     - assets/images/Reset password.gif
     - assets/images/exit.png
+    - assets/images/success.png
+    - assets/images/cancel.png
     - assets/images/person.png
     - assets/images/Email campaign.gif
     - assets/images/testpop1.jpg
@@ -122,6 +125,7 @@ flutter:
     - assets/images/TT2.jpg
     - assets/images/TT1.jpg
     - assets/lottie/loading.json
+    - assets/lottie/loading2.json
    # icons
     - assets/icons/settings.png
     - assets/icons/search.png
@@ -130,20 +134,30 @@ flutter:
     - assets/icons/my-profile.png
     - assets/icons/chat.png
     - assets/icons/bell.png
+    - assets/lottie/time.json
+    - assets/lottie/Advantage.json
+    - assets/lottie/Individual.json
+    - assets/lottie/offline.json
+    - assets/lottie/plus.json
     # homepage
     - assets/images/homeScrol4.png
     - assets/images/homeScrol3.png
     - assets/images/homeScrol2.png
     - assets/images/homeScrol1.png
+    #course
+    - assets/images/translation.png
+    - assets/images/rating.png
+    - assets/images/certificate.png
     # categorg
-    - assets/images/Physical.png
     - assets/images/languages.png
-    - assets/images/data-science.png
-    - assets/images/health.png
+    - assets/images/mark.png
+    - assets/images/designer.png
     - assets/images/business.png
-    - assets/images/extracurricular-activities.png
-    - assets/images/mathematics.png
+    - assets/images/app-development.png
     - assets/images/self-confidence.png
+    - assets/images/information-technology.png
+    - assets/images/Nodata.png
+
     # Benefits
     - assets/images/hand.png
     - assets/images/mortarboard.png

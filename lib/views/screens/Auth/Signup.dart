@@ -126,7 +126,7 @@ class Signup extends StatelessWidget {
                         Boxtext(
                           textin: '27'.tr,
                           onTapFun: () {
-                            controller.Register();
+                            controller.Register(context);
                           },
                         ),
                         SizedBox(

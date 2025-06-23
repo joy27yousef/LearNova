@@ -1,48 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/auth/verificationController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
-import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
 
 class Checkemail extends StatelessWidget {
-  const Checkemail({super.key});
+  Checkemail({super.key});
+  final VerificationControllerIMP controller =
+      Get.put(VerificationControllerIMP());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Appcolor.backgroundLight,
       appBar: AppBar(
-        backgroundColor: Appcolor.backgroundLight,
+        elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(Appimages.checkEmail),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              "35".tr,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 17,
-                  fontFamily: AppFonts.Poppins,
-                  fontWeight: FontWeight.w400),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Boxtext(
-                textin: 'check',
-                onTapFun: () {
-                  Get.offAllNamed(AppRoutes.login);
-                })
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(Appimages.verification, height: 250),
+              const SizedBox(height: 30),
+              Text(
+                "Check your email",
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "Please enter the 6-digit code sent to your email.",
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              OtpTextField(
+                  borderRadius: BorderRadius.circular(20),
+                  numberOfFields: 6,
+                  borderColor: Appcolor.base,
+                  focusedBorderColor: Appcolor.base,
+                  showFieldAsBox: true,
+                  fieldWidth: 40,
+                  onSubmit: (xx) {
+                    controller.code = xx;
+                  }),
+              const SizedBox(height: 40),
+              SizedBox(
+                width: double.infinity,
+                child: Boxtext(
+                  textin: 'check',
+                  onTapFun: () {
+                    if (controller.code.isEmpty) {
+                      Get.defaultDialog(
+                          title: "Warning",
+                          middleText: "Please enter the verification code.");
+                    } else {
+                      controller.chechCode(context);
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

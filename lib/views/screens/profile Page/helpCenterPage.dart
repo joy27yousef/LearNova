@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:learn_nova/controller/helpCenterController.dart';
+import 'package:learn_nova/controller/profile/HelpCenterController.dart';
 import 'package:learn_nova/core/function/validinput.dart';
 import 'package:learn_nova/views/widgets/TextFormGen.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';

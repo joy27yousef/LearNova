@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_nova/controller/homePageController.dart';
+import 'package:learn_nova/controller/home/categoryController.dart';
+import 'package:learn_nova/controller/home/homePageController.dart';
+import 'package:learn_nova/controller/userController.dart';
+import 'package:learn_nova/core/class/handilingDataView.dart';
+import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/widgets/homePage/TestrimonialsHome.dart';
 import 'package:learn_nova/views/widgets/homePage/appBarHomePage.dart';
@@ -16,13 +20,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(HomepagecontrollerIMP());
+
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 15,
         ),
         body: ListView(
           children: [
-            Appbarhomepage(name: "joy"),
+            Appbarhomepage(name: Get.find<UserControllerIMP>().userName.value),
             Messagecontainer(),
             Headerline(
               hint1: '44'.tr,
@@ -31,7 +36,12 @@ class HomePage extends StatelessWidget {
                 Get.toNamed(AppRoutes.categoryPage);
               },
             ),
-            Categorywidget(),
+            GetBuilder<CategoryControllerIMP>(
+              builder: (controller) => Handilingdataview(
+                statusrequest: controller.statusrequest,
+                widget: Categorywidget(),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),

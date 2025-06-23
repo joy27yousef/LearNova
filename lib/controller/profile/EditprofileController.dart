@@ -52,7 +52,7 @@ class EditprofileControllerIMP extends EditprofileController {
       }
 
       final userController = Get.find<UserControllerIMP>();
-      userController.clearProfileImage();
+      userController.clearUserData();
     }
 
     imageFile.value = null;

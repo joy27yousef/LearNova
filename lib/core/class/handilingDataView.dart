@@ -12,9 +12,9 @@ class Handilingdataview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return statusrequest == Statusrequest.loading
-        ? Center(child:Lottie.asset(Appimages.loading) )
+        ? Center(child: Lottie.asset(Appimages.loading2))
         : statusrequest == Statusrequest.offlinefailure
-            ? Center(child: Text('offline'))
+            ? Center(child: Lottie.asset(Appimages.offline))
             : statusrequest == Statusrequest.serverfailure
                 ? Center(child: Text('server failure'))
                 : statusrequest == Statusrequest.failure

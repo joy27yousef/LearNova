@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_nova/controller/homePageController.dart';
+import 'package:learn_nova/controller/home/homePageController.dart';
 import 'package:learn_nova/data/source/static.dart';
 
 class Pointscrol extends StatelessWidget {

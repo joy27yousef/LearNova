@@ -1,8 +1,14 @@
 class Applinks {
-  static const String server = 'http://192.168.1.111/test';
-  static const String test = '$server/test.php';
-  static const String signup = '$server/auth/signup.php';
-
-//home page
-  static const String homepage = '$server/homepage.php';
+  static const String server =
+      'https://e-learning-server-me-production.up.railway.app/api';
+  //auth
+  static const String signup = '$server/phone-register';
+  static const String login = '$server/login';
+  static const String logout = '$server/logout';
+  static const String verify = '$server/verify-otp';
+  //homepage
+  static const String categories = '$server/v1/categories';
+  static const String externalCourses = '$server/v1/courses';
+  //user
+  static const String userInformation = '$server/user';
 }

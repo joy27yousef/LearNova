@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_nova/controller/EditprofileController.dart';
+import 'package:learn_nova/controller/profile/EditprofileController.dart';
 import 'package:learn_nova/core/function/validinput.dart';
 import 'package:learn_nova/views/widgets/TextFormGen.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';

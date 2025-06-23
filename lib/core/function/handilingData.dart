@@ -1,4 +1,3 @@
-
 import 'package:learn_nova/core/class/statusRequest.dart';
 
 handilingData(response) {

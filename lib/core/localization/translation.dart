@@ -78,6 +78,8 @@ class MyTranslation extends Translations {
           '62': 'Edit Account',
           '63': 'Logout',
           '64': 'settings',
+          //categories
+          '65': 'Explor by Categories',
         },
         "ar": {
           //onboarding
@@ -153,6 +155,8 @@ class MyTranslation extends Translations {
           '61': 'الحساب',
           '62': 'تعديل الحساب',
           '63': 'تسجيل الخروج',
+          //categories
+          '65': 'استكشف حسب الفئات',
         },
       };
 }

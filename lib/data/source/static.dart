@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/data/model/TestimonialsTest.dart';
 import 'package:learn_nova/data/model/benefitsModel.dart';
-import 'package:learn_nova/data/model/categoryTEST.dart';
 import 'package:learn_nova/data/model/homeScrolMesModel.dart';
 import 'package:learn_nova/data/model/onboardingModel.dart';
 
@@ -33,15 +32,14 @@ List<Homescrolmesmodel> homeScrol = [
 ];
 
 //\ Test for Category
-List<Categorytest> categoryTest = [
-  Categorytest(name: 'Computer\n Science', image: Appimages.datascience),
-  Categorytest(name: 'Health', image: Appimages.health),
-  Categorytest(name: 'Language', image: Appimages.languages),
-  Categorytest(name: 'Physical\n Sience', image: Appimages.Physical),
-  Categorytest(name: 'Business', image: Appimages.business),
-  Categorytest(name: 'Art and Humanities', image: Appimages.activities),
-  Categorytest(name: 'Math and Logic', image: Appimages.mathematics),
-  Categorytest(name: 'Personal Development', image: Appimages.selfConfidence),
+List categoryImage = [
+  Appimages.cat1,
+  Appimages.cat2,
+  Appimages.cat3,
+  Appimages.cat4,
+  Appimages.cat5,
+  Appimages.cat6,
+  Appimages.cat7,
 ];
 
 //Benefits

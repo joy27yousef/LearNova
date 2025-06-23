@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:learn_nova/controller/EditprofileController.dart';
+import 'package:learn_nova/controller/profile/EditprofileController.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
@@ -38,14 +38,14 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Joy yousef",
+                      Get.find<UserControllerIMP>().userName.value,
                       style: TextStyle(
                           fontFamily: AppFonts.Poppins,
                           fontSize: 23,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "Joy.yousef@gmail.com",
+                      Get.find<UserControllerIMP>().userEmail.value,
                       style: TextStyle(
                         fontFamily: AppFonts.Poppins,
                         color: Colors.black54,

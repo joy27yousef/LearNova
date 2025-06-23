@@ -15,7 +15,14 @@ ThemeData lightThemeEN = ThemeData(
     backgroundColor: Appcolor.backgroundLight,
     elevation: 0,
   ),
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
+    
+    headlineMedium: TextStyle(
+        height: 1.5,
+        fontFamily: AppFonts.Poppins,
+        color: Colors.grey[500],
+        fontSize: 15,
+        fontWeight: FontWeight.bold),
     displayLarge: TextStyle(
         height: 1.5,
         fontFamily: AppFonts.Poppins,
@@ -33,9 +40,15 @@ ThemeData lightThemeEN = ThemeData(
         fontSize: 18,
         fontWeight: FontWeight.bold),
     titleMedium: TextStyle(
-        fontSize: 15, color: Colors.black45, fontWeight: FontWeight.bold),
+        fontFamily: AppFonts.Poppins,
+        fontSize: 15,
+        color: Colors.black45,
+        fontWeight: FontWeight.bold),
     titleSmall: TextStyle(
-        color: Colors.black45, fontSize: 15, fontWeight: FontWeight.w400),
+        fontFamily: AppFonts.Poppins,
+        color: Colors.black45,
+        fontSize: 15,
+        fontWeight: FontWeight.w400),
     bodyLarge: TextStyle(
         fontFamily: AppFonts.Poppins,
         color: Colors.black,
@@ -67,7 +80,13 @@ ThemeData darkThemeEN = ThemeData(
     foregroundColor: Colors.white,
     elevation: 0,
   ),
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
+    headlineMedium: TextStyle(
+        height: 1.5,
+        fontFamily: AppFonts.Poppins,
+        color: Colors.white54,
+        fontSize: 15,
+        fontWeight: FontWeight.bold),
     displayLarge: TextStyle(
         height: 1.5,
         fontFamily: AppFonts.Poppins,
@@ -85,9 +104,15 @@ ThemeData darkThemeEN = ThemeData(
         fontSize: 18,
         fontWeight: FontWeight.bold),
     titleMedium: TextStyle(
-        fontSize: 15, color: Colors.white54, fontWeight: FontWeight.bold),
+        fontFamily: AppFonts.Poppins,
+        fontSize: 15,
+        color: Colors.white54,
+        fontWeight: FontWeight.bold),
     titleSmall: TextStyle(
-        color: Colors.white60, fontSize: 15, fontWeight: FontWeight.w400),
+        fontFamily: AppFonts.Poppins,
+        color: Colors.white60,
+        fontSize: 15,
+        fontWeight: FontWeight.w400),
     bodyLarge: TextStyle(
         fontFamily: AppFonts.Poppins,
         color: Colors.black,
@@ -119,10 +144,16 @@ ThemeData lightThemeAR = ThemeData(
     backgroundColor: Appcolor.backgroundLight,
     elevation: 0,
   ),
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
+    headlineMedium: TextStyle(
+        height: 1.5,
+        fontFamily: AppFonts.Cairo,
+        color: Colors.grey[500],
+        fontSize: 15,
+        fontWeight: FontWeight.bold),
     displayLarge: TextStyle(
         height: 1.5,
-        fontFamily: AppFonts.Poppins,
+        fontFamily: AppFonts.Cairo,
         color: Colors.white,
         fontSize: 18,
         fontWeight: FontWeight.bold),
@@ -178,9 +209,15 @@ ThemeData darkThemeAR = ThemeData(
     elevation: 0,
   ),
   textTheme: const TextTheme(
+    headlineMedium: TextStyle(
+        height: 1.5,
+        fontFamily: AppFonts.Cairo,
+        color: Colors.white54,
+        fontSize: 15,
+        fontWeight: FontWeight.bold),
     displayLarge: TextStyle(
         height: 1.5,
-        fontFamily: AppFonts.Poppins,
+        fontFamily: AppFonts.Cairo,
         color: Colors.white,
         fontSize: 18,
         fontWeight: FontWeight.bold),

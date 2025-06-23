@@ -6,6 +6,7 @@ class AppRoutes {
   static const String resetpassword = "/Resetpassword";
   static const String checkEmail = "/checkEmail";
   //home page
+  static const String mainPage = "/mainPage";
   static const String homePage = "/homePage";
   static const String searhPage = "/searhPage";
   static const String categoryPage = "/categoryPage";
