@@ -29,7 +29,7 @@ class Description extends StatelessWidget {
           GestureDetector(
             onTap: controller.toggleExpanded,
             child: Text(
-              controller.isExpanded.value ? 'read less' : 'Read more',
+              controller.isExpanded.value ? '70'.tr : '71'.tr,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,

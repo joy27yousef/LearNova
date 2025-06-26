@@ -51,6 +51,7 @@ class CourseViewinMainCat extends StatelessWidget {
         }
 
         return ListView.builder(
+          primary: false,
           itemCount: filteredCourses.length,
           itemBuilder: (context, i) {
             final course = filteredCourses[i];

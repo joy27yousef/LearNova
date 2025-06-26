@@ -5,8 +5,8 @@ import 'package:learn_nova/core/constant/AppFont.dart';
 
 import '../../../core/constant/AppColor.dart';
 
-class BaseView extends StatelessWidget {
-  BaseView({super.key});
+class ScrollViewCourse extends StatelessWidget {
+  ScrollViewCourse({super.key});
   CourseControllerIMP controller = Get.put(CourseControllerIMP());
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class BaseView extends StatelessWidget {
                       width: 2),
                 ),
                 child: Center(
-                  child: Text('About',
+                  child: Text('67'.tr,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             color: controller.selectedIndex.value == 0
                                 ? Colors.white
@@ -62,7 +62,7 @@ class BaseView extends StatelessWidget {
                 ),
                 child: Center(
                   child: Center(
-                    child: Text('Curriculcum',
+                    child: Text('68'.tr,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!

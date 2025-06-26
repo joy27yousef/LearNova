@@ -7,6 +7,7 @@ ThemeData lightThemeEN = ThemeData(
   primaryColor: Appcolor.base,
   scaffoldBackgroundColor: Appcolor.backgroundLight,
   appBarTheme: AppBarTheme(
+    scrolledUnderElevation: 0,
     titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
@@ -16,7 +17,6 @@ ThemeData lightThemeEN = ThemeData(
     elevation: 0,
   ),
   textTheme: TextTheme(
-    
     headlineMedium: TextStyle(
         height: 1.5,
         fontFamily: AppFonts.Poppins,

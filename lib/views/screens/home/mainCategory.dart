@@ -7,7 +7,7 @@ import 'package:learn_nova/views/widgets/category/rolinMainCat.dart';
 
 class MainCategory extends StatelessWidget {
   //initial
-  
+
   final CategoryControllerIMP controller = Get.put(CategoryControllerIMP());
 
   final String title = Get.arguments['title'];
@@ -25,6 +25,7 @@ class MainCategory extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: Text(
           title,
           style: Theme.of(context).appBarTheme.titleTextStyle,

@@ -37,9 +37,13 @@ class Appimages {
   static const String rating = "assets/images/rating.png";
   static const String certificate = "assets/images/certificate.png";
   static const String noData = "assets/images/Nodata.png";
-
+  static const String access = "assets/images/access.png";
+  static const String duration = "assets/images/duration.png";
+  static const String speedometer = "assets/images/speedometer.png";
+  static const String online_education = "assets/images/online-education.png";
+  static const String chapter = "assets/images/chapter.png";
+  static const String teamwork = "assets/images/teamwork.png";
   // category
-
   static const String cat1 = "assets/images/app-development.png";
   static const String cat2 = "assets/images/business.png";
   static const String cat3 = "assets/images/designer.png";

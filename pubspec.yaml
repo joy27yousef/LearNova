@@ -40,6 +40,8 @@ dependencies:
   intl: 0.19.0
   http: ^1.3.0
   # Images
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.4
   cached_network_image: ^3.4.1
   image_picker: ^1.1.2
   lottie: ^3.3.1
@@ -72,12 +74,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   google_nav_bar: ^5.0.7
   iconsax: ^0.0.8
-
   
-  
-
-
-
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +89,14 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+flutter_native_splash:
+  color: "#6d28d9"      
+  image: assets/logo.png 
+  android: true
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/app_icon.png"
+
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -101,8 +106,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/app_icon.png
+    - assets/app.png
+    - assets/logo.png
     - assets/images/Certification.gif
     - assets/images/Course1.gif
     - assets/images/Course2.gif
@@ -111,6 +118,7 @@ flutter:
     - assets/images/Learning.gif
     - assets/images/Courseapp.gif
     - assets/images/logo.jpg
+    - assets/images/teamwork.png
     - assets/images/google.png
     - assets/images/Forgot password.gif
     - assets/images/Reset password.gif
@@ -144,10 +152,15 @@ flutter:
     - assets/images/homeScrol3.png
     - assets/images/homeScrol2.png
     - assets/images/homeScrol1.png
+    - assets/images/access.png
+    - assets/images/duration.png
     #course
     - assets/images/translation.png
     - assets/images/rating.png
     - assets/images/certificate.png
+    - assets/images/speedometer.png
+    - assets/images/online-education.png
+    - assets/images/chapter.png
     # categorg
     - assets/images/languages.png
     - assets/images/mark.png
@@ -169,21 +182,6 @@ flutter:
 
 
 
-
-
-
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: Exo2
       fonts:
@@ -211,12 +209,3 @@ flutter:
     #       weight: 300
     #     - asset: assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-SemiBold.ttf
     #       weight: 700
-    # - family: Playpen_Sans_Arabic
-    #   fonts:
-    #     - asset: assets/fonts/IBM_Plex_Sans_Arabic/PlaypenSansArabic-Regular.ttf
-    #       weight: 400
-    #     - asset: assets/fonts/IBM_Plex_Sans_Arabic/PlaypenSansArabic-Medium.ttf
-    #       weight: 300
-    #     - asset: assets/fonts/IBM_Plex_Sans_Arabic/PlaypenSansArabic-Bold.ttf
-    #       weight: 700
-
