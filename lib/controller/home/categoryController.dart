@@ -8,31 +8,27 @@ import 'package:learn_nova/data/source/remote/home/categories.dart';
 abstract class CategoryController extends GetxController {
   getCourseData();
   getCategoryData();
-  onInit();
 }
 
 class CategoryControllerIMP extends CategoryController {
   //init
-  @override
-  void onInit() {
-    getCourseData();
-    getCategoryData();
-    super.onInit();
-  }
 
   CategoriesData categoriesData = CategoriesData(crud: Get.find<Crud>());
   ExternalCourseData externalCourseData =
       ExternalCourseData(crud: Get.find<Crud>());
   late Statusrequest statusrequest;
-
   List maincategories = []; // parent Categories
   List dataCategory = []; //all data in cateory
   List dataCourse = []; //all data in cateory
   List subcategoriesWithAll = [];
   var selectedIndex = 0.obs;
   var selectedCategoryId = 0.obs;
-  void changeTab(int index) {
-    selectedIndex.value = index;
+
+  @override
+  void onInit() {
+    getCourseData();
+    getCategoryData();
+    super.onInit();
   }
 
   @override
@@ -71,5 +67,9 @@ class CategoryControllerIMP extends CategoryController {
     selectedCategoryId.value = 0;
     selectedIndex.value = 0;
     update();
+  }
+
+  void changeTab(int index) {
+    selectedIndex.value = index;
   }
 }

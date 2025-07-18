@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
+import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/controller/home/homePageController.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/handilingDataView.dart';
@@ -10,6 +11,7 @@ import 'package:learn_nova/views/widgets/homePage/TestrimonialsHome.dart';
 import 'package:learn_nova/views/widgets/homePage/appBarHomePage.dart';
 import 'package:learn_nova/views/widgets/homePage/benefitsGen.dart';
 import 'package:learn_nova/views/widgets/homePage/categoryWidget.dart';
+import 'package:learn_nova/views/widgets/homePage/fAQHomePage.dart';
 import 'package:learn_nova/views/widgets/homePage/headerLine.dart';
 import 'package:learn_nova/views/widgets/homePage/messageContainer.dart';
 import 'package:learn_nova/views/widgets/homePage/viewCoursesHomePage.dart';
@@ -106,6 +108,18 @@ class HomePage extends StatelessWidget {
               onTapHeader: () {},
             ),
             Testrimonialshome(),
+            SizedBox(
+              height: 15,
+            ),
+            Headerline(
+              hint1: '86'.tr,
+              hint2: ''.tr,
+              onTapHeader: () {},
+            ),
+            FAQHomePage(),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ));
   }

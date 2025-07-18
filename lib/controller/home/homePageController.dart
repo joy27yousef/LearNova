@@ -10,6 +10,7 @@ abstract class Homepagecontroller extends GetxController {
 }
 
 class HomepagecontrollerIMP extends Homepagecontroller {
+  
   //scroll container
   late PageController pageController;
   Timer? timer;

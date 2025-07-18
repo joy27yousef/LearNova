@@ -19,10 +19,10 @@ class Messagecontainer extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    blurRadius: 1,
+                    blurRadius: 5,
                     blurStyle: BlurStyle.outer,
                     offset: Offset(0, 0),
-                    color: Appcolor.baselight,
+                    color: Theme.of(context).colorScheme.background,
                   )
                 ],
                 color: Appcolor.base,

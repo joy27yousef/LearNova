@@ -35,9 +35,7 @@ class Login extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Textinlogsingin(
-                            text1:'12'.tr ,
-                            text2: '13'.tr),
+                        Textinlogsingin(text1: '12'.tr, text2: '13'.tr),
                         SizedBox(
                           height: 35,
                         ),

@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
-import 'package:learn_nova/controller/home/courseController.dart';
+import 'package:learn_nova/controller/profile/favoritesCoursesController.dart';
 import 'package:learn_nova/core/class/AnimatedListItem.dart';
+import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/favoriteHeart.dart';
 import 'package:learn_nova/core/function/translationData.dart';
+import 'package:like_button/like_button.dart';
 import 'package:lottie/lottie.dart';
 
 class CourseViewinMainCat extends StatelessWidget {
   final int mainCategoryId = Get.arguments['mainCategoryId'];
-
   CourseViewinMainCat({super.key});
 
   @override
@@ -56,135 +58,152 @@ class CourseViewinMainCat extends StatelessWidget {
           itemBuilder: (context, i) {
             final course = filteredCourses[i];
             return InkWell(
-                onTap: () {
-                  Get.toNamed(AppRoutes.coursePage, arguments: {
-                    'ID': filteredCourses[i]['id'],
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  height: 160,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 5,
-                        blurStyle: BlurStyle.outer,
-                        color: Colors.grey.shade300,
-                      )
-                    ],
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(course['thumbnail_url']),
-                          ),
+              onTap: () {
+                Get.toNamed(AppRoutes.coursePage, arguments: {
+                  'ID': filteredCourses[i]['id'],
+                });
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5,
+                      blurStyle: BlurStyle.outer,
+                      color: Colors.grey.shade300,
+                    )
+                  ],
+                  color: Theme.of(context).colorScheme.background,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(course['thumbnail_url']),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                course['title'][translationData()],
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("By ${course['teacher']['name']}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Image.asset(
-                                      Appimages.rating,
-                                      width: 20,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Lottie.asset(
-                                    Appimages.advantage,
-                                    width: 25,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              course['title'][translationData()],
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "By ${course['teacher']['name']}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    overflow: TextOverflow.clip,
+                                    softWrap: true,
                                   ),
-                                  SizedBox(width: 5),
-                                  Text(course['difficulty_level'],
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .copyWith(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Lottie.asset(
-                                    Appimages.time,
-                                    width: 20,
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                      "  ${course['duration'][translationData()]}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .copyWith(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  // child: Image.asset(
+                                  //   Appimages.rating,
+                                  //   width: 20,
+                                  // ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Lottie.asset(
+                                  Appimages.advantage,
+                                  width: 25,
+                                ),
+                                SizedBox(width: 5),
+                                Text(course['difficulty_level'],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Lottie.asset(
+                                  Appimages.time,
+                                  width: 20,
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                    "  ${course['duration'][translationData()]}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
                                     " 24.00 \$",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Icon(Iconsax.heart_add),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                FavoriteHeart(
+                                  courseId: course['id'],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ));
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           },
         );
       }),

@@ -43,6 +43,7 @@ class Appimages {
   static const String online_education = "assets/images/online-education.png";
   static const String chapter = "assets/images/chapter.png";
   static const String teamwork = "assets/images/teamwork.png";
+  static const String enroll = "assets/images/enroll.png";
   // category
   static const String cat1 = "assets/images/app-development.png";
   static const String cat2 = "assets/images/business.png";

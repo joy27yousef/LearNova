@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
-import 'package:learn_nova/core/function/alert.dart';
+
 import 'package:learn_nova/core/function/handilingData.dart';
 import 'package:learn_nova/data/source/remote/auth/signup.dart';
 import 'package:path/path.dart';
@@ -14,22 +14,18 @@ abstract class SignupController extends GetxController {
 }
 
 class SignupControllerIMP extends SignupController {
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  SignupData signupData = SignupData(crud: Get.find<Crud>());
+  late Statusrequest statusrequest;
   late String userName;
   late String userEmail;
-  GlobalKey<FormState> formstate = GlobalKey<FormState>();
-  late Statusrequest statusrequest;
-  SignupData signupData = SignupData(crud: Get.find<Crud>());
-  RxBool isChecked = false.obs;
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController username;
   late TextEditingController confirmPassword;
+  RxBool isChecked = false.obs;
 
-  bool isShowPassword = true;
-  showPassword() {
-    isShowPassword = isShowPassword == true ? false : true;
-    update();
-  }
+
 
   @override
   void onInit() {
@@ -50,11 +46,6 @@ class SignupControllerIMP extends SignupController {
   }
 
   @override
-  void toggleCheckbox(bool? value) {
-    isChecked.value = value ?? false;
-  }
-
-  @override
   Register(context) async {
     if (formstate.currentState!.validate()) {
       print('valid');
@@ -65,7 +56,7 @@ class SignupControllerIMP extends SignupController {
         var userId = response['user']['id'];
         Get.offAllNamed(AppRoutes.checkEmail, arguments: {'userId': userId});
       } else {
-        alert(context, Appimages.failure, "Your email already exists");
+        // alert(context, Appimages.failure, "Your email already exists");
 
         // statusrequest = Statusrequest.failure;
       }
@@ -73,5 +64,14 @@ class SignupControllerIMP extends SignupController {
     } else {
       print('Not valid');
     }
+  }
+    bool isShowPassword = true;
+  showPassword() {
+    isShowPassword = isShowPassword == true ? false : true;
+    update();
+  }
+   @override
+  void toggleCheckbox(bool? value) {
+    isChecked.value = value ?? false;
   }
 }

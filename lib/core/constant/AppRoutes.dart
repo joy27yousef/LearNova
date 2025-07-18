@@ -18,4 +18,10 @@ class AppRoutes {
   static const String editProfile = "/editProfile";
   static const String settingsPage = "/settingsPage";
   static const String helpCenterPage = "/helpCenterPage";
+  static const String favoritesPage = "/FavoritesPage";
+  //courses
+  static const String learningCourse = "/learningCourse";
+  static const String mycoursespage = "/mycoursespage";
+  static const String videoPage = "/videoPage";
+  static const String ratingPage = "/ratingPage";
 }

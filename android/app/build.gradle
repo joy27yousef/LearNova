@@ -11,7 +11,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 }
 android {
-    namespace = "com.example.learn_nova"
+    namespace 'com.example.learn_nova'
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

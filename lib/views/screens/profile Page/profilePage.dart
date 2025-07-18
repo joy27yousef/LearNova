@@ -46,11 +46,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     Text(
                       Get.find<UserControllerIMP>().userEmail.value,
-                      style: TextStyle(
-                        fontFamily: AppFonts.Poppins,
-                        color: Colors.black54,
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     SizedBox(
                       height: 20,
@@ -72,11 +68,22 @@ class ProfilePage extends StatelessWidget {
                           title: '55'.tr,
                           icon1: Iconsax.heart_circle,
                           icon2: Icons.navigate_next_rounded,
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.favoritesPage);
+                          },
                         ),
                         SizedBox(
                           height: 5,
                         ),
+                        // Listof(
+                        //   title: 'Alarts',
+                        //   icon1: Iconsax.alarm,
+                        //   icon2: Icons.navigate_next_rounded,
+                        //   onTap: () {},
+                        // ),
+                        // SizedBox(
+                        //   height: 5,
+                        // ),
                         Listof(
                           title: '56'.tr,
                           icon1: Icons.help_outline_rounded,

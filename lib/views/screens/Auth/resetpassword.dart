@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/auth/resetPasController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
-import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/function/validinput.dart';
 import 'package:learn_nova/views/widgets/auth/textformAuth.dart';
@@ -13,20 +13,15 @@ class Resetpassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ResetpascontrollerIMP controller = Get.put(ResetpascontrollerIMP());
     ResetpascontrollerIMP controller = Get.put(ResetpascontrollerIMP());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Appcolor.backgroundLight,
         title: Text(
           '33'.tr,
-          style: TextStyle(
-              fontSize: 18,
-              fontFamily: AppFonts.Poppins,
-              fontWeight: FontWeight.w400),
         ),
       ),
-      backgroundColor: Appcolor.backgroundLight,
       body: Form(
         key: controller.formstate,
         child: Padding(
@@ -34,7 +29,7 @@ class Resetpassword extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Image.asset(
                     Appimages.resetpassword,
                     width: 300,
@@ -43,20 +38,33 @@ class Resetpassword extends StatelessWidget {
                 height: 30,
               ),
               Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: ListView(
                     children: [
                       Text(
+                        "Please enter the 6-digit code sent to your email.",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 20),
+                      OtpTextField(
+                          borderRadius: BorderRadius.circular(20),
+                          numberOfFields: 6,
+                          borderColor: Appcolor.base,
+                          focusedBorderColor: Appcolor.base,
+                          showFieldAsBox: true,
+                          fieldWidth: 40,
+                          onSubmit: (code) {
+                            controller.code = code;
+                          }),
+                      const SizedBox(height: 20),
+                      Text(
                         '34'.tr,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: 17,
-                            fontFamily: AppFonts.Poppins,
-                            fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 10,
                       ),
                       GetBuilder<ResetpascontrollerIMP>(
                         builder: (controller) => TextformAuth(
@@ -97,10 +105,8 @@ class Resetpassword extends StatelessWidget {
                             Icons.lock_outline_rounded,
                             color: Appcolor.baselight2,
                           ),
-                          mycontroller: controller.password,
+                          mycontroller: controller.confirmPassword,
                           typekey: TextInputType.name,
-
-                          // isnumber: isnumber
                         ),
                       ),
                       SizedBox(

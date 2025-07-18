@@ -14,16 +14,13 @@ class Forgotpassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ForgotpassControllerIMP controller = Get.put(ForgotpassControllerIMP());
     ForgotpassControllerIMP controller = Get.put(ForgotpassControllerIMP());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Appcolor.backgroundLight,
         title: Text(
           '30'.tr,
-          style: TextStyle(
-              fontSize: 18,
-              fontFamily: AppFonts.Poppins,
-              fontWeight: FontWeight.w400),
         ),
       ),
       backgroundColor: Appcolor.backgroundLight,
@@ -73,7 +70,7 @@ class Forgotpassword extends StatelessWidget {
                       Boxtext(
                         textin: '32'.tr,
                         onTapFun: () {
-                          controller.verification();
+                          controller.sendEmailOTP();
                         },
                       ),
                     ],

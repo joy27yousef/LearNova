@@ -127,7 +127,8 @@ ThemeData darkThemeEN = ThemeData(
   colorScheme: ColorScheme.dark(
       primary: Appcolor.base,
       secondary: Colors.white,
-      background: Colors.grey.shade700),
+      // background: Colors.grey.shade700
+      background: Color.fromARGB(255, 65, 57, 86)),
 );
 
 //Arabic/////////////////////////////////////////////////////////////////////////////////
@@ -189,9 +190,10 @@ ThemeData lightThemeAR = ThemeData(
         fontWeight: FontWeight.normal),
   ),
   colorScheme: ColorScheme.light(
-      primary: Appcolor.base,
-      secondary: Colors.black,
-      background: Colors.grey.shade100),
+    primary: Appcolor.base,
+    secondary: Colors.black,
+    background: Color.fromARGB(255, 65, 57, 86),
+  ),
 );
 
 ThemeData darkThemeAR = ThemeData(

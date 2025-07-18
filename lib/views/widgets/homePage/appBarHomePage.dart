@@ -46,10 +46,7 @@ class Appbarhomepage extends StatelessWidget {
                   ),
                   TextSpan(
                     text: name,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),

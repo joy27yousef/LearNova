@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/data/model/TestimonialsTest.dart';
 import 'package:learn_nova/data/model/benefitsModel.dart';
+import 'package:learn_nova/data/model/fAQHomePage.dart';
 import 'package:learn_nova/data/model/homeScrolMesModel.dart';
 import 'package:learn_nova/data/model/onboardingModel.dart';
 
@@ -92,4 +93,17 @@ List<Testimonialstest> Testimonials = [
       "Graphic Designer",
       "I excelled in the graphic design course as a beginner, and it was the perfect starting point. The instructor's guidance and feedback improved my design abilities significantly. I'm grateful for this course!",
       Appimages.TT4),
+];
+List<Faqhomepage> fAQHomePage = [
+  Faqhomepage('Can I enroll in multiple courses at once ?',
+      "Absolutely! You can enroll in multiple courses simultaneously and access them at your convenience."),
+  Faqhomepage('What kind of support can I expect from instructors ?',
+      "Our instructors provide comprehensive support including live Q&A sessions, personalized feedback on assignments, and timely responses to your questions through our learning platform."),
+  Faqhomepage(
+      'Are the courses self-paced or do they have specific start and end dates ?',
+      "We offer both types of courses. Self-paced courses allow you to learn at your own speed, while scheduled courses have specific start and end dates to help you stay on track."),
+  Faqhomepage('Are there any prerequisites for the courses ?',
+      "Prerequisites vary by course. Basic courses typically don't require prior knowledge, while advanced courses might need specific skills or completion of prerequisite courses."),
+  Faqhomepage('Can I download the course materials for offline access ?',
+      "Yes, most course materials including video lectures, PDFs, and assignments can be downloaded for offline viewing through our mobile app."),
 ];

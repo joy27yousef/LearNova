@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_nova/controller/onboardingController.dart';
 import 'package:learn_nova/data/source/static.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
-import 'package:learn_nova/views/widgets/onboarding/backSkip.dart';
+import 'package:learn_nova/views/widgets/onboarding/onbpardingHeader.dart';
 import 'package:learn_nova/views/widgets/onboarding/pagescroll.dart';
 import 'package:learn_nova/views/widgets/onboarding/pointcontroller.dart';
 
@@ -17,7 +17,6 @@ class Onboarding extends StatelessWidget {
         builder: (controller) => Scaffold(
               appBar: AppBar(
                 toolbarHeight: -10,
-  
               ),
 
               body: Padding(
@@ -26,7 +25,7 @@ class Onboarding extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Backskip(),
+                    OnbpardingHeader(),
                     Pagescroll(),
                     Expanded(
                         flex: 2,

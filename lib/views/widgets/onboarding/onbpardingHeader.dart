@@ -4,9 +4,8 @@ import 'package:learn_nova/controller/onboardingController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 
-
-class Backskip extends GetView<OnboardingcontrollerIMP> {
-  const Backskip({super.key});
+class OnbpardingHeader extends GetView<OnboardingcontrollerIMP> {
+  const OnbpardingHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,6 @@ class Backskip extends GetView<OnboardingcontrollerIMP> {
                   color: Appcolor.baselight2),
               child: Icon(
                 Icons.arrow_back_ios_rounded,
-                // color: Colors.white,
                 color: Appcolor.base,
               ),
             ),

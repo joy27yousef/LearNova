@@ -7,8 +7,8 @@ import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
-import 'package:learn_nova/core/function/alert.dart';
-import 'package:path/path.dart';
+
+import 'package:learn_nova/core/function/loadindDialog.dart';
 import '../../core/function/handilingData.dart';
 import '../../data/source/remote/auth/login.dart';
 
@@ -34,6 +34,7 @@ class LoginControllerImp extends LoginController {
     if (formstate.currentState!.validate()) {
       if (formstate.currentState!.validate()) {
         print('valid');
+        showLoadingDialog();
         var response = await loginData.getData(email.text, password.text);
         statusrequest = handilingData(response);
         if (Statusrequest.success == statusrequest) {
@@ -45,14 +46,16 @@ class LoginControllerImp extends LoginController {
           var userController = Get.find<UserControllerIMP>();
           userController.userName.value = response['user']['name'];
           userController.userEmail.value = response['user']['email'];
+          userController.userId.value = response['user']['id'];
           await userController.setUserData(
             name: response['user']['name'],
             email: response['user']['email'],
+            id: response['user']['id'],
           );
-          alert(context, Appimages.success, "The login was done with a whine");
+          // alert(context, Appimages.success, "The login was done with a whine");
           Get.offAllNamed(AppRoutes.mainPage);
         } else {
-          alert(context, Appimages.failure, "Incorrect email or password");
+          // alert(context, Appimages.failure, "Incorrect email or password");
 
           statusrequest = Statusrequest.failure;
         }
