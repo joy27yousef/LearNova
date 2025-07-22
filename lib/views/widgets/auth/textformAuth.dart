@@ -25,6 +25,7 @@ class TextformAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: false,
       style: Theme.of(context).textTheme.bodySmall,
       controller: mycontroller,
       obscureText: obscureText == null || obscureText == false ? false : true,

@@ -6,6 +6,8 @@ import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
+import 'package:learn_nova/core/function/customSnackBar.dart';
+import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/data/source/remote/auth/logout.dart';
 import '../../core/constant/AppRoutes.dart';
 import '../../core/localization/changeLocal.dart';
@@ -16,16 +18,31 @@ class SettingControllerIMP extends SettingController {
   late Statusrequest statusrequest;
   localController controllerLang = Get.put(localController());
 
-  logout() async {
+  logout(BuildContext context) async {
+    showLoadingDialog(context, 'Logging out is underway..');
     LogoutData logoutData = LogoutData(crud: Get.find<Crud>());
     var status = await logoutData.getData();
     if (status == Statusrequest.success) {
       await GetStorage().erase();
       Get.find<UserControllerIMP>().clearUserData();
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       Get.offAllNamed(AppRoutes.login);
-      Get.snackbar("Sucssess", "Logout done", backgroundColor: Colors.pink[50]);
+      showCustomSnackbar(
+          title: 'Sucssess',
+          message: 'Logged out has been logged out',
+          icon: Icons.done,
+          backgroundColor: Colors.green);
     } else {
-      Get.snackbar("Error", "Logout failed");
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      showCustomSnackbar(
+          title: 'Logout failed',
+          message: 'try again',
+          icon: Icons.error,
+          backgroundColor: Colors.red);
     }
   }
 

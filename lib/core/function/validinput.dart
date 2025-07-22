@@ -1,34 +1,33 @@
-
-import 'package:get/get_utils/src/get_utils/get_utils.dart';
+import 'package:get/get.dart';
 
 String? validInput(String val, int min, int max, String type) {
   if (val.isEmpty) {
-    return "can't be empty";
+    return "v1".tr;
   }
 
   if (val.length < min) {
-    return "value can't be less than $min";
+    return "v2".tr + ' $min';
   }
 
   if (val.length > max) {
-    return "value can't be larger than $max";
+    return "v4".tr + " $max";
   }
 
   if (type == "email") {
     if (!GetUtils.isEmail(val)) {
-      return "Invalid e-mail address";
+      return "v5".tr;
     }
   }
 
   if (type == "username") {
     if (!GetUtils.isUsername(val)) {
-      return "the username should contain only letters and numbers";
+      return "v6".tr;
     }
   }
 
   if (type == "password") {
     if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$').hasMatch(val)) {
-      return 'The password must contain letters and numbers and not less than 8 digits';
+      return 'v7'.tr;
     }
   }
 

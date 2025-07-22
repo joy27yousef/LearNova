@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/core/class/handilingDataView.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+import 'package:learn_nova/core/function/favoriteHeart.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/views/widgets/course/SomInfCours.dart';
 import 'package:learn_nova/views/widgets/course/bottom.dart';
@@ -56,13 +58,7 @@ class _CoursePageState extends State<CoursePage> {
                   slivers: [
                     SliverAppBar(
                       actions: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: IconButton(
-                            icon: const Icon(Iconsax.heart),
-                            onPressed: () {},
-                          ),
-                        ),
+                        FavoriteHeart(courseId: controller.data['id']),
                       ],
                       scrolledUnderElevation: 0,
                       pinned: true,
@@ -91,8 +87,8 @@ class _CoursePageState extends State<CoursePage> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                              controller.data['thumbnail_url'],
+                            child: CachedNetworkImage(
+                              imageUrl: controller.data['thumbnail_url'],
                               fit: BoxFit.cover,
                             ),
                           ),

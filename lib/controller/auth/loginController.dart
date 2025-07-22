@@ -5,9 +5,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
-import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
-
+import 'package:learn_nova/core/function/customSnackBar.dart';
 import 'package:learn_nova/core/function/loadindDialog.dart';
 import '../../core/function/handilingData.dart';
 import '../../data/source/remote/auth/login.dart';
@@ -17,54 +16,13 @@ abstract class LoginController extends GetxController {
 }
 
 class LoginControllerImp extends LoginController {
-  late Statusrequest statusrequest;
-  LoginData loginData = LoginData(crud: Get.find<Crud>());
-
+  //init
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  LoginData loginData = LoginData(crud: Get.find<Crud>());
+  late Statusrequest statusrequest;
   late TextEditingController email;
   late TextEditingController password;
   bool isShowPassword = true;
-  showPassword() {
-    isShowPassword = isShowPassword == true ? false : true;
-    update();
-  }
-
-  @override
-  login(BuildContext context) async {
-    if (formstate.currentState!.validate()) {
-      if (formstate.currentState!.validate()) {
-        print('valid');
-        showLoadingDialog();
-        var response = await loginData.getData(email.text, password.text);
-        statusrequest = handilingData(response);
-        if (Statusrequest.success == statusrequest) {
-          String token = response['token'];
-          final box = GetStorage();
-          await box.write('token', token);
-          String? savedToken = box.read('token');
-          print("Token from storage: $savedToken");
-          var userController = Get.find<UserControllerIMP>();
-          userController.userName.value = response['user']['name'];
-          userController.userEmail.value = response['user']['email'];
-          userController.userId.value = response['user']['id'];
-          await userController.setUserData(
-            name: response['user']['name'],
-            email: response['user']['email'],
-            id: response['user']['id'],
-          );
-          // alert(context, Appimages.success, "The login was done with a whine");
-          Get.offAllNamed(AppRoutes.mainPage);
-        } else {
-          // alert(context, Appimages.failure, "Incorrect email or password");
-
-          statusrequest = Statusrequest.failure;
-        }
-        update();
-      } else {
-        print('Not valid');
-      }
-    }
-  }
 
   @override
   void onInit() {
@@ -81,5 +39,61 @@ class LoginControllerImp extends LoginController {
     email.dispose();
     password.dispose();
     super.dispose();
+  }
+
+  @override
+  login(BuildContext context) async {
+    if (formstate.currentState!.validate()) {
+      if (formstate.currentState!.validate()) {
+        print('valid');
+        showLoadingDialog(context, 'm2'.tr);
+        var response = await loginData.getData(email.text, password.text);
+        statusrequest = handilingData(response);
+        if (Statusrequest.success == statusrequest) {
+          if (Get.isDialogOpen ?? false) {
+            Get.back();
+          }
+          String token = response['token'];
+          final box = GetStorage();
+          await box.write('token', token);
+          String? savedToken = box.read('token');
+          print("Token from storage: $savedToken");
+          var userController = Get.find<UserControllerIMP>();
+          userController.userName.value = response['user']['name'];
+          userController.userEmail.value = response['user']['email'];
+          userController.userId.value = response['user']['id'];
+          await userController.setUserData(
+            name: response['user']['name'],
+            email: response['user']['email'],
+            id: response['user']['id'],
+          );
+          showCustomSnackbar(
+              title: 'm3'.tr,
+              message: 'a3'.tr,
+              icon: Icons.done_rounded,
+              backgroundColor: Colors.green);
+          Get.offAllNamed(AppRoutes.mainPage);
+        } else {
+          if (Get.isDialogOpen ?? false) {
+            Get.back();
+          }
+          showCustomSnackbar(
+              title: 'm4'.tr,
+              message: 'a2'.tr,
+              icon: Icons.error,
+              backgroundColor: Colors.red);
+
+          statusrequest = Statusrequest.failure;
+        }
+        update();
+      } else {
+        print('Not valid');
+      }
+    }
+  }
+
+  showPassword() {
+    isShowPassword = isShowPassword == true ? false : true;
+    update();
   }
 }

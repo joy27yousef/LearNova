@@ -3,7 +3,7 @@ class Appimages {
   static const String onboadring2 = "assets/images/UI-UX team.gif";
   static const String onboadring3 = "assets/images/Courseapp.gif";
   static const String onboadring4 = "assets/images/Certification.gif";
-  static const String logo = "assets/images/logo.jpg";
+  static const String logo = "assets/logo.png";
   static const String googleLogo = "assets/images/google.png";
   static const String forgotpassword = "assets/images/Forgot password.gif";
   static const String resetpassword = "assets/images/Reset password.gif";
@@ -14,6 +14,7 @@ class Appimages {
   static const String TT2 = "assets/images/TT2.jpg";
   static const String TT3 = "assets/images/TT3.jpg";
   static const String TT4 = "assets/images/TT4.jpg";
+  static const String logout = "assets/images/log-out.png";
   // icons
   static const String settings = "assets/icons/settings.png";
   static const String search = "assets/icons/search.png";

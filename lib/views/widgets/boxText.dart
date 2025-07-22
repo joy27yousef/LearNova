@@ -38,16 +38,13 @@ class Boxtext extends GetView<OnboardingcontrollerIMP> {
           color: Appcolor.base,
         ),
         child: Center(
-          child: Text(
-            textin,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: AppFonts.Poppins,
-              fontSize: screenWidth * 0.05,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: Text(textin,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Colors.white,
+                    fontSize: screenWidth * 0.05,
+                    fontWeight: FontWeight.bold,
+                  )),
         ),
       ),
     );

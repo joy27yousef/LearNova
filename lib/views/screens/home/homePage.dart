@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
-import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/controller/home/homePageController.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/handilingDataView.dart';
-import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/widgets/homePage/TestrimonialsHome.dart';
 import 'package:learn_nova/views/widgets/homePage/appBarHomePage.dart';

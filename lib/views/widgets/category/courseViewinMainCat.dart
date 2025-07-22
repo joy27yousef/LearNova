@@ -1,15 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
-import 'package:learn_nova/controller/profile/favoritesCoursesController.dart';
 import 'package:learn_nova/core/class/AnimatedListItem.dart';
-import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/favoriteHeart.dart';
 import 'package:learn_nova/core/function/translationData.dart';
-import 'package:like_button/like_button.dart';
 import 'package:lottie/lottie.dart';
 
 class CourseViewinMainCat extends StatelessWidget {
@@ -80,14 +77,17 @@ class CourseViewinMainCat extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.all(10),
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                        image: DecorationImage(
+                      width: 115,
+                      height: 145,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: CachedNetworkImage(
+                          imageUrl: course['thumbnail_url'],
+                          placeholder: (context, url) =>
+                              Center(child: Lottie.asset(Appimages.loading2)),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
                           fit: BoxFit.cover,
-                          image: NetworkImage(course['thumbnail_url']),
                         ),
                       ),
                     ),

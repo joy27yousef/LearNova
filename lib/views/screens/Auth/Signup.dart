@@ -20,9 +20,8 @@ class Signup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Appcolor.backgroundLight,
-        // ignore: deprecated_member_use
         body: WillPopScope(
-          onWillPop: alerExitApp,
+          onWillPop: () => alerExitApp(context),
           child: Form(
             key: controller.formstate,
             child: Stack(

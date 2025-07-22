@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/profile/settingController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/views/widgets/profile/ListofChangeMode.dart';
 import 'package:learn_nova/views/widgets/profile/listof.dart';
 
@@ -74,56 +76,16 @@ class SettingPage extends StatelessWidget {
                 title: '63'.tr,
                 icon1: Iconsax.logout,
                 icon2: Icons.navigate_next_rounded,
-                onTap: () async {
-                  Get.defaultDialog(
-                      radius: 20,
-                      title: "Logout",
-                      titlePadding: EdgeInsets.all(20),
-                      titleStyle: Theme.of(context).textTheme.titleLarge,
-                      middleText: "Would you like to logout of lernova ??",
-                      middleTextStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.normal),
-                      actions: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                child: Text(
-                                  'Cancel',
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
-                                ),
-                                onTap: () => Get.back(),
-                              ),
-                              InkWell(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                child: Text(
-                                  'Log out',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium
-                                      ?.copyWith(
-                                          color: Appcolor.base,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                ),
-                                onTap: () => controller.logout(),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor);
+                onTap: () {
+                  confirmationAelrt(
+                      context,
+                      Appimages.logout,
+                      'Are you sure you want to logout from LearNova',
+                      'No, stay logged in',
+                      'Yes, Logout',
+                      Colors.red, () {
+                    controller.logout(context);
+                  });
                 },
               ),
             ],

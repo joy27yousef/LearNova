@@ -62,7 +62,6 @@ dependencies:
   firebase_core: ^3.12.1
   flutter_local_notifications: ^18.0.1
   cloud_firestore: ^5.6.5
-
   # Google Auth
   google_sign_in: ^5.3.1  
   responsive_builder: ^0.4.2
@@ -84,6 +83,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   percent_indicator: ^4.2.5
   like_button: ^2.1.0
+
   
 
 dev_dependencies:
@@ -113,6 +113,7 @@ flutter:
     - assets/app_icon.png
     - assets/app.png
     - assets/logo.png
+    - assets/logoimage.png
     - assets/images/Certification.gif
     - assets/images/Course1.gif
     - assets/images/Course2.gif
@@ -120,7 +121,6 @@ flutter:
     - assets/images/verification.gif
     - assets/images/Learning.gif
     - assets/images/Courseapp.gif
-    - assets/images/logo.jpg
     - assets/images/teamwork.png
     - assets/images/google.png
     - assets/images/Forgot password.gif
@@ -135,6 +135,7 @@ flutter:
     - assets/images/TT3.jpg
     - assets/images/TT2.jpg
     - assets/images/TT1.jpg
+    - assets/images/log-out.png
     - assets/lottie/loading.json
     - assets/lottie/loading2.json
    # icons

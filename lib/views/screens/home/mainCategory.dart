@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
 import 'package:learn_nova/core/class/handilingDataView.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
+import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/widgets/category/courseViewinMainCat.dart';
 import 'package:learn_nova/views/widgets/category/rolinMainCat.dart';
 
@@ -38,6 +40,21 @@ class MainCategory extends StatelessWidget {
           ),
           onPressed: () => Get.back(),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              onTap: () {
+                Get.toNamed(AppRoutes.searhPage);
+              },
+              child: Image.asset(
+                Appimages.search,
+                width: 30,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
           child: Handilingdataview(

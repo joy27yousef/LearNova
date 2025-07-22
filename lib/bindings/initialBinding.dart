@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import 'package:learn_nova/controller/auth/signupController.dart';
+import 'package:learn_nova/controller/home/SearchController.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
 import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/controller/profile/favoritesCoursesController.dart';
@@ -16,5 +17,6 @@ class Initialbinding extends Bindings {
     Get.put(SignupControllerIMP());
     Get.put(CategoryControllerIMP());
     Get.put(FavoritesCoursesController());
+    // Get.put(SearchCourseController());
   }
 }

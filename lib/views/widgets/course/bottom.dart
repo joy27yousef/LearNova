@@ -8,7 +8,6 @@ import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/screens/main_page.dart';
-import 'package:another_flushbar/flushbar.dart';
 
 class Bottom extends StatelessWidget {
   final CourseControllerIMP controller = Get.find();

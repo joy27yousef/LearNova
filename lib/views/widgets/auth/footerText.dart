@@ -4,7 +4,6 @@ import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 
-
 class Footertext extends StatelessWidget {
   final String text1;
   final String text2;
@@ -16,29 +15,23 @@ class Footertext extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          text1,
-          style: TextStyle(
-              color: Colors.black54,
-              fontSize: 17,
-              fontFamily: AppFonts.Poppins,
-              fontWeight: FontWeight.w300),
-        ),
+        Text(text1,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Colors.black54,
+                fontSize: 17,
+                fontWeight: FontWeight.w300)),
         InkWell(
           onTap: () {
             Get.offNamed((i == 'login') ? AppRoutes.signup : AppRoutes.login);
           },
-          child: Text(
-            text2,
-            style: TextStyle(
-                color: Appcolor.base,
-                fontSize: 17,
-                fontFamily: AppFonts.Poppins,
-                fontWeight: FontWeight.w500,
-                decoration: TextDecoration.underline,
-                decorationColor: Appcolor.base,
-                decorationThickness: 1.5),
-          ),
+          child: Text(text2,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Appcolor.base,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Appcolor.base,
+                  decorationThickness: 1.5)),
         )
       ],
     );

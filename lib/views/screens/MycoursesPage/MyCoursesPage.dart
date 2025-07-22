@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
 import 'package:learn_nova/core/class/AnimatedListItem.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:lottie/lottie.dart';
 
 class Mycoursespage extends StatelessWidget {
   MyCoursesControllerIMP controller = Get.put(MyCoursesControllerIMP());
@@ -42,17 +45,22 @@ class Mycoursespage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: const EdgeInsets.all(10),
                         height: 120,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          image: DecorationImage(
+                        width: 500,
+                        margin: EdgeInsets.all(10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          child: CachedNetworkImage(
+                            imageUrl: course['courseThumbnailUrl'],
+                            placeholder: (context, url) =>
+                                Center(child: Lottie.asset(Appimages.loading2)),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                             fit: BoxFit.cover,
-                            image: NetworkImage(course['courseThumbnailUrl']),
                           ),
                         ),
                       ),
+
                       ListTile(
                         title: Text(
                           course['courseTitle']['en'],

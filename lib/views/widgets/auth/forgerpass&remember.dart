@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
-import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 
 class Forgerpasstext extends StatelessWidget {
@@ -17,15 +15,12 @@ class Forgerpasstext extends StatelessWidget {
           onTap: () {
             Get.toNamed(AppRoutes.forgotPassword);
           },
-          child: const Text(
-            'Forgot Password ?',
-            style: TextStyle(
-              color: Appcolor.base,
-              fontSize: 15,
-              fontFamily: AppFonts.Poppins,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          child: Text('30'.tr,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Appcolor.base,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  )),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 class AppRoutes {
   //auth
+  static const String onboardingAuth = "/onboardingAuth";
   static const String login = "/login";
   static const String signup = "/signup";
   static const String forgotPassword = "/Forgotpassword";

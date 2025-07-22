@@ -7,7 +7,6 @@ import 'package:learn_nova/core/function/handilingData.dart';
 import 'package:learn_nova/data/source/remote/profile/favoritesCoursesData.dart';
 
 class FavoritesCoursesController extends GetxController {
-  late Statusrequest statusrequest;
 
   AddToFavoritesData addToFavoritesData =
       AddToFavoritesData(crud: Get.find<Crud>());
@@ -18,71 +17,60 @@ class FavoritesCoursesController extends GetxController {
   CheckFavoritesData checkFavoritesData =
       CheckFavoritesData(crud: Get.find<Crud>());
 
+  late Statusrequest statusrequest;
   RxList<int> favoriteIds = <int>[].obs;
   List data = [];
+
+  @override
+  void onInit() {
+    super.onInit();
+    viewFavorites();
+  }
+
+  //controller Functions
 
   addToFavorites(courseId) async {
     statusrequest = Statusrequest.loading;
     update();
-
     var response = await addToFavoritesData.getData(courseId);
     statusrequest = handilingData(response);
-
     if (Statusrequest.success == statusrequest) {
       if (!favoriteIds.contains(courseId)) {
         favoriteIds.add(courseId);
       }
-
       showCustomSnackbar(
         title: "Successfully added to the favorit",
         message: "Go to the profile to browse your favorite courses",
         icon: Icons.done,
         backgroundColor: Colors.green,
       );
-
       print('✅ add to favorites');
-
-      // ⬇️ تحديث القائمة بعد الإضافة
       await viewFavorites();
     } else {
       print("❌ Failed to add to favorites");
     }
-
     update();
   }
 
   removeFromFavorites(courseId) async {
     statusrequest = Statusrequest.loading;
     update();
-
     var response = await removeFromFavoritesData.getData(courseId);
     statusrequest = handilingData(response);
-
     if (Statusrequest.success == statusrequest) {
       favoriteIds.remove(courseId);
-
       showCustomSnackbar(
         title: "Successfully removed from the favorit",
         message: "Course removed from the favorites page",
         icon: Icons.done,
         backgroundColor: Colors.green,
       );
-
       print('✅ remove from favorites');
-
-      // ⬇️ تحديث القائمة بعد الحذف
       await viewFavorites();
     } else {
       print("❌ Failed to remove from favorites");
     }
-
     update();
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    viewFavorites();
   }
 
   viewFavorites() async {
@@ -101,7 +89,6 @@ class FavoritesCoursesController extends GetxController {
     }
     update();
   }
-
   // checkFavCourse(courseId) async {
   //   statusrequest = Statusrequest.loading;
   //   update();

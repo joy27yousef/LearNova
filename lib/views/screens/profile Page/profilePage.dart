@@ -7,6 +7,7 @@ import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/views/widgets/ConfirmationMessage.dart';
 import 'package:learn_nova/views/widgets/profile/listof.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -99,7 +100,10 @@ class ProfilePage extends StatelessWidget {
                           title: '57'.tr,
                           icon1: Iconsax.message,
                           icon2: Icons.navigate_next_rounded,
-                          onTap: () {},
+                          onTap: () {
+                            showRegisterConfirmation(context, () {}, 'test',
+                                'blabla bak;jBIVUwd ', 'cancel', 'confirm');
+                          },
                         ),
                         SizedBox(
                           height: 5,

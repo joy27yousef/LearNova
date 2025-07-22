@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/customSnackBar.dart';
+import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/data/source/remote/auth/verification.dart';
-
 
 abstract class VerificationController extends GetxController {
   chechCode(BuildContext context);
@@ -27,22 +28,45 @@ class VerificationControllerIMP extends VerificationController {
     super.dispose();
   }
 
-  chechCode( context) async {
+  chechCode(context) async {
+    showLoadingDialog(context, 'm9'.tr);
     var response = await verify.getData(id, code);
+
     response.fold(
       (failure) {
         statusrequest = failure;
-        // alert(context, Appimages.failure, "Error");
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
+        showCustomSnackbar(
+            title: 'a4'.tr,
+            message: 'a2'.tr,
+            icon: Icons.error_outline_rounded,
+            backgroundColor: Colors.red);
       },
-      (data)  {
+      (data) {
         statusrequest = Statusrequest.success;
         if (data['message'] == 'Email verified successfully') {
+          if (Get.isDialogOpen ?? false) {
+            Get.back();
+          }
           print(data);
-          //  alert(
-          //     context, Appimages.success, "Email checked\nYour email verified");
+          showCustomSnackbar(
+              title: "m10".tr,
+              message: 'm11'.tr,
+              icon: Icons.done,
+              backgroundColor: Colors.green);
+
           Get.offAllNamed(AppRoutes.login);
         } else {
-          // alert(context, Appimages.failure, "Your code is wrong");
+          if (Get.isDialogOpen ?? false) {
+            Get.back();
+          }
+          showCustomSnackbar(
+              title: 'm6'.tr,
+              message: 'a2'.tr,
+              icon: Icons.error_outline_rounded,
+              backgroundColor: Colors.red);
         }
       },
     );

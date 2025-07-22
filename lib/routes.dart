@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/views/screens/Auth/onboardingAuth.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/MyCoursesPage.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/courseLearning.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/ratinPage.dart';
@@ -26,11 +27,12 @@ import 'package:learn_nova/views/screens/test.dart';
 import 'testPage.dart';
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(name: '/', page: () => Onboarding(), middlewares: [Mymiddleware()]),
-  // GetPage(name: '/', page: () => Testpage()),
+  // GetPage(name: '/', page: () => Onboarding(), middlewares: [Mymiddleware()]),
+  GetPage(name: '/', page: () => Onboarding()),
   // GetPage(name: '/', page: () => MainPage()),
   // GetPage(name: '/', page: () => MainPage()),
   //Auth
+  GetPage(name: AppRoutes.onboardingAuth, page: () => OnboardingAuth()),
   GetPage(name: AppRoutes.login, page: () => Login()),
   GetPage(name: AppRoutes.signup, page: () => Signup()),
   GetPage(name: AppRoutes.checkEmail, page: () => Checkemail()),

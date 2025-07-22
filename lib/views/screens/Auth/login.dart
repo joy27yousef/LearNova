@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/instance_manager.dart';
 import 'package:learn_nova/controller/auth/loginController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/function/alertExitApp.dart';
@@ -22,7 +20,7 @@ class Login extends StatelessWidget {
     return Scaffold(
         backgroundColor: Appcolor.backgroundLight,
         body: WillPopScope(
-          onWillPop: alerExitApp,
+          onWillPop: () => alerExitApp(context),
           child: Form(
             key: controller.formstate,
             child: Stack(

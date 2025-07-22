@@ -20,6 +20,7 @@ class CourseControllerIMP extends CourseController {
   CourseEnrollData courseEnroll = CourseEnrollData(crud: Get.find<Crud>());
   CourseUnEnrollData courseUnEnroll =
       CourseUnEnrollData(crud: Get.find<Crud>());
+
   Statusrequest statusrequest = Statusrequest.none;
   Map<String, dynamic> data = {};
   RxList skills = [].obs;
@@ -65,7 +66,6 @@ class CourseControllerIMP extends CourseController {
         data.clear();
         data.addAll(response);
         sections.value = data['sections'] ?? [];
-
         if (Get.isRegistered<CoursepProgresscConteroller>()) {
           var progressController = Get.find<CoursepProgresscConteroller>();
           await progressController.loadWatchedVideos();
@@ -146,20 +146,27 @@ class CourseControllerIMP extends CourseController {
   unEnroll(BuildContext context) async {
     statusrequest = Statusrequest.loading;
     update();
-    showLoadingDialog();
+    // showLoadingDialog();
     var response = await courseUnEnroll.getData("$idCourse");
     print(response);
     statusrequest = handilingData(response);
     if (statusrequest == Statusrequest.success) {
-      // alert(context, Appimages.success,
-      //     'The course registration process was successfully completed');
+      showCustomSnackbar(
+        title: "Registration has been successfully canceled ",
+        message: "We hope you have benefited from the course",
+        icon: Icons.done,
+        backgroundColor: Colors.green,
+      );
       checkEnrollment();
     } else {
       print("Failed to fetch course data");
-      // alert(
-      //     context, Appimages.failure, 'Failed the course registration process');
+      showCustomSnackbar(
+        title: "Successful cancellation of registration failed",
+        message: "Try again",
+        icon: Icons.done,
+        backgroundColor: Colors.red,
+      );
     }
-
     update();
   }
 

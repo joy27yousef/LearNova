@@ -29,7 +29,7 @@ class OnboardingcontrollerIMP extends Onboardingcontroller {
     currentPage++;
     if (currentPage > onboardingList.length - 1) {
       myServices.sharedPreference.setString('onboarding', '1');
-      Get.offAllNamed(AppRoutes.login);
+      Get.offAllNamed(AppRoutes.onboardingAuth);
     } else {
       pageController.animateToPage(currentPage,
           duration: Duration(milliseconds: 900), curve: Curves.easeInOut);
@@ -52,6 +52,6 @@ class OnboardingcontrollerIMP extends Onboardingcontroller {
   @override
   skip() {
     myServices.sharedPreference.setString('onboarding', '1');
-    Get.offAllNamed(AppRoutes.login);
+    Get.offAllNamed(AppRoutes.onboardingAuth);
   }
 }

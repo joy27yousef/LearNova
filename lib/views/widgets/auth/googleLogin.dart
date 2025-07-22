@@ -10,11 +10,11 @@ class Googlelogin extends StatelessWidget {
       onTap: () {},
       child: Container(
         height: 50,
-        width: 50,
+        width: 300,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(blurRadius: 10, color: Colors.grey.shade400)],
-          borderRadius: BorderRadius.all(Radius.circular(50)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
           color: Colors.grey.shade200,
         ),
         child: Image.asset(Appimages.googleLogo, width: 50),

@@ -4,6 +4,20 @@ class MyTranslation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         "en": {
+          //alarts
+          'a1': 'failed to connect to the server',
+          'a2': 'try again!',
+          'a3': 'welcome!',
+          'a4': 'Error!',
+          //validation
+          'v1': "can't be empty",
+          'v2': "value can't be less than",
+          'v3': "value can't be larger than",
+          'v4': "value can't be larger than",
+          'v5': "Invalid e-mail address",
+          'v6': "the username should contain only letters and numbers",
+          'v7':
+              "The password must contain letters and numbers and not less than 8 digits",
           //onboarding
           '1': 'Skip',
           '2': 'Take Video Courses',
@@ -27,6 +41,9 @@ class MyTranslation extends Translations {
           '18': 'Login',
           '19': "Don't have an Account?",
           '20': "Create new account",
+          'm2': 'Logging in..',
+          'm3': 'successfully logged in',
+          'm4': 'Incorrect email or password',
           //sign up
           '21': "Create New Account\n",
           '22': "Hello! let's join with us",
@@ -37,15 +54,23 @@ class MyTranslation extends Translations {
           '27': 'Register',
           '28': 'Already have account!',
           '29': 'Login Now',
+          'm7': 'Recording in progress..',
+          'm8': 'Your email already exists..',
           //forgot password
           '30': 'Forgot Password',
           '31': 'Pleas enter Your email address to verification your account..',
           '32': 'Send Email',
+          'm1': 'Sending an email..',
           //reset pasword
           '33': 'Reset Password',
           '34': 'Enter Your New Password..',
+          'm5': 'Password change is in progress..',
+          'm6': 'Your code is wrong',
           //check email
           '35': 'Check the email to verify your account',
+          'm9': 'Checking in..',
+          'm10': 'Email checked ',
+          'm11': 'Your email verified',
           //HomePage
           '36': 'Good morning\n',
           '37': 'Good afternoon\n',
@@ -109,6 +134,19 @@ class MyTranslation extends Translations {
           '91': 'Designed for those already in the industry',
         },
         "ar": {
+          //alarts
+          'a1': 'فشل الاتصال في الخادم',
+          'a2': 'حاول مجدداً!',
+          'a3': 'أهلاً وسهلاً بك!',
+          'a4': 'خطأ!',
+          //validation
+          'v1': "لا يمكن أن يكون فارغا",
+          'v2': "لا يمكن أن تكون القيمة أقل من",
+          'v3': "لا يمكن أن تكون القيمة أكبر من",
+          'v4': "لا يمكن أن تكون القيمة أكبر من",
+          'v5': "عنوان بريد إلكتروني غير صالح",
+          'v6': "يجب أن يحتوي اسم المستخدم على أحرف وأرقام فقط",
+          'v7': "يجب أن تحتوي كلمة المرور على أحرف وأرقام ولا تقل عن 8 أرقام",
           //onboarding
           '1': 'تخطي',
           '2': 'كورسات وفيديوهات تعليمية',
@@ -131,6 +169,9 @@ class MyTranslation extends Translations {
           '18': 'سجّل الدخول',
           '19': "لا تملك حساب ؟؟",
           '20': "انشأ حساب جديد",
+          'm2': 'جاري تسجيل الدخول',
+          'm3': 'تم تسجيل الدخول بنجاح',
+          'm4': 'خطأ في البريد الإلكتروني أو كلمة المرور',
           //sign in
           '21': "انشاء حساب جديد\n",
           '22': "اهلاً بك ! هيّا للإنضمام إلينا",
@@ -141,16 +182,24 @@ class MyTranslation extends Translations {
           '27': 'تسجيل',
           '28': 'لديك حساب بالفعل!',
           '29': 'تسجيل الدخول',
+          'm7': '..جاري انشاء الحساب',
+          'm8': 'حسابك موجود مسبقاً',
           //forgot password
           '30': 'نسيت كلمة المرور',
           '31':
               'ادخل بريدك الالكتروني للتحقق من بريدك وإعادة تعيين كلمة المرور',
           '32': 'ارسل بريد الكتروني',
+          'm1': 'جاري إرسال الإميل..',
           //reset pasword
           '33': 'إعادة تعيين كلمة المرور',
           '34': 'ادخل كلمة المرور الجديدة',
+          'm5': 'جاري إعادة تعيين كلمة المرور..',
+          'm6': 'الكود خاطئ',
           //check email
           '35': 'تحقق من بريدك الالكتروني لتفعيل حسابك',
+          'm9': 'جاري التحقق..',
+          'm10': 'تم التحقق',
+          'm11': 'حسابك موثق الآن',
           //HomePage
           '36': 'صباح الخير \n',
           '37': 'مساء الخير\n',
