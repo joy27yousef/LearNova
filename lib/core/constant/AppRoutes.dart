@@ -20,9 +20,11 @@ class AppRoutes {
   static const String settingsPage = "/settingsPage";
   static const String helpCenterPage = "/helpCenterPage";
   static const String favoritesPage = "/FavoritesPage";
+  static const String aboutLearnova = "/AboutLearnova";
   //courses
   static const String learningCourse = "/learningCourse";
   static const String mycoursespage = "/mycoursespage";
   static const String videoPage = "/videoPage";
   static const String ratingPage = "/ratingPage";
+  static const String quizPage = "/quizPage";
 }

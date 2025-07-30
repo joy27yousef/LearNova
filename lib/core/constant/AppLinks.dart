@@ -26,4 +26,14 @@ class Applinks {
       '$server/v1/user/watched-videos'; //send token
   //favorites Courses
   static const String FavCour = '$server/v1/saved-courses'; //send token
+  //quizs
+  static const String quiz = '$server/v1/courses'; //send token and course id
+  //notes
+  static const String notes = '$server/v1/notes'; //send token and course id
+
+  //profilePages
+  static const String helpCenter = '$server/v1/contact';
+  //ai assistant
+  static const String aiAssistant =
+      'https://waraqh.buildship.run/quickApi-ccc1f5022b0d';
 }

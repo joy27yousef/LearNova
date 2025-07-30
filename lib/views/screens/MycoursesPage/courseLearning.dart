@@ -8,7 +8,9 @@ import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/curriculcumInCourse.dart';
+import 'package:learn_nova/views/screens/MycoursesPage/gradesPage.dart';
 import 'package:learn_nova/views/widgets/course/descriptionPart.dart';
+import 'package:learn_nova/views/screens/MycoursesPage/notesPage.dart';
 
 class CourseLearning extends StatelessWidget {
   final MyCoursesControllerIMP myCoursesController = Get.find();
@@ -142,8 +144,8 @@ class CourseLearning extends StatelessWidget {
                   widget: TabBarView(
                     children: [
                       CurriculcumInCourse(),
-                      const Grades(),
-                      const Notes(),
+                      Grades(),
+                      AllNotesPage(),
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: ListView(
@@ -160,28 +162,6 @@ class CourseLearning extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class Grades extends StatelessWidget {
-  const Grades({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [],
-    );
-  }
-}
-
-class Notes extends StatelessWidget {
-  const Notes({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [],
     );
   }
 }

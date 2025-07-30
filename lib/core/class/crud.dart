@@ -130,47 +130,52 @@ class Crud {
       return Left(Statusrequest.serverException);
     }
   }
-}
 
-// put Request
-Future<Either<Statusrequest, Map>> putRequest(
-  String linkUrl,
-  Map data, {
-  Map<String, String>? headers,
-  String? token,
-}) async {
-  try {
-    if (await checkInternet()) {
-      var defaultHeaders = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      };
-      if (token != null && token.isNotEmpty) {
-        defaultHeaders["Authorization"] = "Bearer $token";
-      }
-      if (headers != null) {
-        defaultHeaders.addAll(headers);
-      }
-      var response = await http.put(
-        Uri.parse(linkUrl),
-        body: jsonEncode(data),
-        headers: defaultHeaders,
-      );
-      print("🔗 PUT Request to: $linkUrl");
-      print("📤 Data sent: $data");
-      print("📥 Status Code: ${response.statusCode}");
-      print("📥 Response Body: ${response.body}");
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map responsebody = jsonDecode(response.body);
-        return Right(responsebody);
+  // put Request
+  Future<Either<Statusrequest, Map>> putRequest(
+    String linkUrl,
+    Map data, {
+    Map<String, String>? headers,
+    bool withToken = false,
+  }) async {
+    try {
+      if (await checkInternet()) {
+        Map<String, String> defaultHeaders = {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        };
+
+        if (withToken) {
+          final box = GetStorage();
+          String? token = box.read('token');
+          if (token != null && token.isNotEmpty) {
+            defaultHeaders['Authorization'] = 'Bearer $token';
+          }
+        }
+        if (headers != null) {
+          defaultHeaders.addAll(headers);
+        }
+        var response = await http.put(
+          Uri.parse(linkUrl),
+          body: jsonEncode(data),
+          headers: defaultHeaders,
+        );
+        print("🔗 PUT Request to: $linkUrl");
+        print("📤 Data sent: $data");
+        print("📥 Status Code: ${response.statusCode}");
+        print("📥 Response Body: ${response.body}");
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          Map responsebody = jsonDecode(response.body);
+          return Right(responsebody);
+        } else {
+          return Left(Statusrequest.serverfailure);
+        }
       } else {
-        return Left(Statusrequest.serverfailure);
+        return Left(Statusrequest.offlinefailure);
       }
-    } else {
-      return Left(Statusrequest.offlinefailure);
+    } catch (e) {
+      print("❌ Exception during PUT request: $e");
+      return Left(Statusrequest.serverException);
     }
-  } catch (e) {
-    print("❌ Exception during PUT request: $e");
-    return Left(Statusrequest.serverException);
   }
 }

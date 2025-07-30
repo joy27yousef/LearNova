@@ -17,6 +17,12 @@ ThemeData lightThemeEN = ThemeData(
     elevation: 0,
   ),
   textTheme: TextTheme(
+    labelSmall: TextStyle(
+      height: 1.5,
+      fontFamily: AppFonts.Poppins,
+      color: Colors.black,
+      fontSize: 15,
+    ),
     headlineMedium: TextStyle(
         height: 1.5,
         fontFamily: AppFonts.Poppins,
@@ -81,6 +87,12 @@ ThemeData darkThemeEN = ThemeData(
     elevation: 0,
   ),
   textTheme: TextTheme(
+    labelSmall: TextStyle(
+      height: 1.5,
+      fontFamily: AppFonts.Poppins,
+      color: Colors.white,
+      fontSize: 15,
+    ),
     headlineMedium: TextStyle(
         height: 1.5,
         fontFamily: AppFonts.Poppins,
@@ -191,7 +203,7 @@ ThemeData lightThemeAR = ThemeData(
   ),
   colorScheme: ColorScheme.light(
     primary: Appcolor.base,
-    secondary: Colors.black, 
+    secondary: Colors.black,
     background: Colors.grey.shade100,
   ),
 );

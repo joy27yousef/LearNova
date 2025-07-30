@@ -38,6 +38,12 @@ class MyApp extends StatelessWidget {
         themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
         getPages: routes,
         initialBinding: Initialbinding(),
+        builder: (context, child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!,
+          );
+        },
       );
     });
   }

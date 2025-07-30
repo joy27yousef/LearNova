@@ -7,6 +7,7 @@ import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/views/screens/main_page.dart';
 
 class Bottom extends StatelessWidget {
@@ -28,70 +29,21 @@ class Bottom extends StatelessWidget {
                   Get.find<MainpagecontrollerIMP>().changePage(1);
                   Get.offAll(() => MainPage());
                 } else {
-                  Get.defaultDialog(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    title: '',
-                    content: Column(
-                      children: [
-                        Image.asset(
-                          Appimages.enroll,
-                          width: 150,
-                        ),
-                        const SizedBox(height: 30),
-                        Center(
-                          child: Text(
-                            'Would you really like to enroll in this course ??',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                      ],
-                    ),
-                    actions: [
-                      InkWell(
-                        onTap: () => Get.back(),
-                        child: Text(
-                          'Cancel',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(
-                                  fontSize: 20, fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      const SizedBox(width: 30),
-                      InkWell(
-                        onTap: () async {
-                          await controller.enroll();
-                          await myCourseController.getMyCourses(
-                              Get.find<UserControllerIMP>().userId.value);
-                          controller.checkEnrollment();
-                          Get.find<MainpagecontrollerIMP>().changePage(1);
-                          Get.offAll(() => MainPage());
-                          Future.delayed(Duration(milliseconds: 300), () {
-                            Get.toNamed(AppRoutes.learningCourse, arguments: {
-                              'ID': controller.idCourse,
-                            });
-                          });
-                        },
-                        child: Text(
-                          'Enroll',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                                  color: Appcolor.base,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                    ],
+                  confirmationAelrt(
+                    context,
+                    Appimages.enroll,
+                    'Would you really like to enroll in this course ??',
+                    "No, I don't want",
+                    'Yes, Enroll',
+                    Appcolor.base,
+                    () async {
+                      await controller.enroll(context);
+                      await myCourseController.getMyCourses(
+                          Get.find<UserControllerIMP>().userId.value);
+                      controller.checkEnrollment();
+                      // Get.find<MainpagecontrollerIMP>().changePage(1);
+                      // Get.offAll(() => MainPage());
+                    },
                   );
                 }
               },

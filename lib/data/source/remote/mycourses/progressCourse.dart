@@ -10,18 +10,22 @@ class ViewProgress {
     return response.fold((l) => l, (r) => r);
   }
 }
-
-class UpdateProgress {
+class UpdateProgress{
   Crud? crud;
   UpdateProgress({this.crud});
-  getData(int courseId, int progress, int videos) async {
-    var response = await crud!.postRequest(
-        "${Applinks.progress}/$courseId/progress",
-        {"progress": progress, "videos_completed": videos},
-        withToken: true);
-    return response.fold((l) => l, (r) => r);
-  }
+  getData(int courseId, int progress, bool completedVideos) async {
+  var response = await crud!.postRequest(
+    "${Applinks.progress}/$courseId/progress",
+    {
+      "progress": progress,
+      "videos_completed": completedVideos,
+    },
+    withToken: true,
+  );
+  return response.fold((l) => l, (r) => r);
 }
+}
+
 
 class MakeWatchedVideo {
   Crud? crud;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/controller/myCourses/courseProgressConteroller.dart';
+
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/function/customSnackBar.dart';
 import 'package:learn_nova/core/function/translationData.dart';

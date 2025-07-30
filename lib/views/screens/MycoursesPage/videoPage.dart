@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_nova/controller/myCourses/courseProgressConteroller.dart';
+import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
@@ -102,8 +103,7 @@ class _VideoPageState extends State<VideoPage> {
             child: Boxtext(
               textin: "Next",
               onTapFun: () async {
-                var progressController =
-                    Get.find<CoursepProgresscConteroller>();
+                var progressController = Get.find<CoursepProgresscConteroller>();
                 progressController.videoId = Get.arguments['videoId'];
                 await progressController.markVideoAsWatched();
               },

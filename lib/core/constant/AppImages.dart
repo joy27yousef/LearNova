@@ -18,11 +18,13 @@ class Appimages {
   // icons
   static const String settings = "assets/icons/settings.png";
   static const String search = "assets/icons/search.png";
-  static const String streaming = "assets/icons/streaming.png";
+  static const String learning = "assets/icons/online-learning.png";
   static const String myProfile = "assets/icons/my-profile.png";
   static const String chat = "assets/icons/chat.png";
+  static const String chatgpt = "assets/icons/chatgpt.png";
   static const String home = "assets/icons/home.png";
-  static const String notification = "assets/icons/bell.png";
+  static const String bell = "assets/icons/bell.png";
+  static const String notification = "assets/icons/notification.png";
   static const String time = "assets/lottie/time.json";
   static const String advantage = "assets/lottie/Advantage.json";
   static const String individual = "assets/lottie/Individual.json";
@@ -45,6 +47,7 @@ class Appimages {
   static const String chapter = "assets/images/chapter.png";
   static const String teamwork = "assets/images/teamwork.png";
   static const String enroll = "assets/images/enroll.png";
+  static const String addNotes = "assets/images/add-note.png";
   // category
   static const String cat1 = "assets/images/app-development.png";
   static const String cat2 = "assets/images/business.png";
@@ -69,4 +72,7 @@ class Appimages {
   static const String success = "assets/images/success.png";
   static const String failure = "assets/images/cancel.png";
   static const String exitApp = "assets/images/exit.png";
+  //ai
+  static const String backgrounddark = "assets/backgroundark.png";
+  static const String background = "assets/background.png";
 }

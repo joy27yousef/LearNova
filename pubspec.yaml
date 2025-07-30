@@ -35,6 +35,7 @@ dependencies:
   get: ^4.7.2
   get_storage: ^2.1.1
   visibility_detector: ^0.4.0+2
+  flutter_native_splash: ^2.4.0
   # DateTime
   jiffy: ^6.3.2
   intl: 0.19.0
@@ -84,11 +85,20 @@ dependencies:
   percent_indicator: ^4.2.5
   like_button: ^2.1.0
 
-  
+flutter_native_splash:
+  color: "#6d28d9"
+  image: assets/logoWhite.png
+  android: true
+  ios: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFill
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -111,8 +121,11 @@ flutter:
 
   assets:
     - assets/app_icon.png
+    - assets/backgroundark.png
+    - assets/background.png
     - assets/app.png
     - assets/logo.png
+    - assets/logoWhite.png
     - assets/logoimage.png
     - assets/images/Certification.gif
     - assets/images/Course1.gif
@@ -140,11 +153,13 @@ flutter:
     - assets/lottie/loading2.json
    # icons
     - assets/icons/settings.png
+    - assets/icons/notification.png
     - assets/icons/search.png
     - assets/icons/home.png
-    - assets/icons/streaming.png
+    - assets/icons/online-learning.png
     - assets/icons/my-profile.png
     - assets/icons/chat.png
+    - assets/icons/chatgpt.png
     - assets/icons/bell.png
     - assets/lottie/time.json
     - assets/lottie/Advantage.json
@@ -165,6 +180,7 @@ flutter:
     - assets/images/speedometer.png
     - assets/images/online-education.png
     - assets/images/chapter.png
+    - assets/images/add-note.png
     # categorg
     - assets/images/languages.png
     - assets/images/mark.png

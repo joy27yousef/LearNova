@@ -5,23 +5,32 @@ import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
+import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/customSnackBar.dart';
 import 'package:learn_nova/core/function/handilingData.dart';
 import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/data/source/remote/home/course.dart';
+import 'package:learn_nova/data/source/remote/mycourses/notes.dart';
 
 abstract class CourseController extends GetxController {
   getData();
 }
 
 class CourseControllerIMP extends CourseController {
+  late TextEditingController title;
+
+  late TextEditingController content;
   CourseData courseData = CourseData(crud: Get.find<Crud>());
   CourseEnrollData courseEnroll = CourseEnrollData(crud: Get.find<Crud>());
+  DeleteNotesData deleteNotesData = DeleteNotesData(crud: Get.find<Crud>());
   CourseUnEnrollData courseUnEnroll =
       CourseUnEnrollData(crud: Get.find<Crud>());
 
   Statusrequest statusrequest = Statusrequest.none;
+  ViewNotesData viewNotesData = ViewNotesData(crud: Get.find<Crud>());
+  AddNotesData addNotesData = AddNotesData(crud: Get.find<Crud>());
+  RxList allNotes = [].obs;
   Map<String, dynamic> data = {};
   RxList skills = [].obs;
   RxList benefits = [].obs;
@@ -42,9 +51,12 @@ class CourseControllerIMP extends CourseController {
   @override
   void onInit() {
     super.onInit();
+    title = TextEditingController();
+    content = TextEditingController();
     idCourse = Get.arguments['ID'];
     if (idCourse != null) {
       getData();
+
       Future.delayed(Duration.zero, () async {
         int uid = Get.find<UserControllerIMP>().userId.value;
         await Get.find<MyCoursesControllerIMP>().getMyCourses(uid);
@@ -66,6 +78,7 @@ class CourseControllerIMP extends CourseController {
         data.clear();
         data.addAll(response);
         sections.value = data['sections'] ?? [];
+        getAllNotes(idCourse);
         if (Get.isRegistered<CoursepProgresscConteroller>()) {
           var progressController = Get.find<CoursepProgresscConteroller>();
           await progressController.loadWatchedVideos();
@@ -117,12 +130,16 @@ class CourseControllerIMP extends CourseController {
   }
 
   @override
-  enroll() async {
+  enroll(BuildContext context) async {
     statusrequest = Statusrequest.loading;
+    showLoadingDialog(context, 'm12'.tr);
     update();
     var response = await courseEnroll.getData("$idCourse");
     statusrequest = handilingData(response);
     if (statusrequest == Statusrequest.success) {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       checkEnrollment();
       showCustomSnackbar(
         title: "Registration has been successfully completed",
@@ -130,7 +147,15 @@ class CourseControllerIMP extends CourseController {
         icon: Icons.done,
         backgroundColor: Colors.green,
       );
+      Future.delayed(Duration(milliseconds: 300), () {
+        Get.toNamed(AppRoutes.learningCourse, arguments: {
+          'ID': idCourse,
+        });
+      });
     } else {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       showCustomSnackbar(
         title: "Failed course registration",
         message: "Try again..",
@@ -182,5 +207,101 @@ class CourseControllerIMP extends CourseController {
 
   void toggleExpanded() {
     isExpanded.value = !isExpanded.value;
+  }
+
+  getAllNotes(idCourse) async {
+    statusrequest = Statusrequest.loading;
+
+    update();
+    var response = await viewNotesData.getData(idCourse);
+    statusrequest = handilingData(response);
+    update();
+    if (Statusrequest.success == statusrequest) {
+      allNotes.clear();
+      if (response['data'] is List) {
+        allNotes.addAll(response['data']);
+      }
+      print("✅ success to get notes");
+    } else {
+      print("❌ Failed to get notes");
+      statusrequest = Statusrequest.failure;
+    }
+    update();
+  }
+
+  addNote(BuildContext context) async {
+    statusrequest = Statusrequest.loading;
+    showLoadingDialog(context, 'adding the not..');
+    update();
+    var response = await addNotesData.getData(idCourse!, content.text, null);
+    statusrequest = handilingData(response);
+    update();
+    if (Statusrequest.success == statusrequest) {
+      getAllNotes(idCourse);
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      print("✅ success to add notes");
+      content.clear();
+      Get.back();
+      showCustomSnackbar(
+        title: "The note has been successfully added",
+        message: "You can edit and delete it",
+        icon: Icons.done,
+        backgroundColor: Colors.green,
+      );
+    } else {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      print("❌ Failed to add notes");
+      showCustomSnackbar(
+        title: "Failed to add a note",
+        message: "tray again !",
+        icon: Icons.done,
+        backgroundColor: Colors.red,
+      );
+
+      statusrequest = Statusrequest.failure;
+    }
+    update();
+  }
+
+  deleteNote(BuildContext context, int noteId) async {
+    statusrequest = Statusrequest.loading;
+    showLoadingDialog(context, 'seleting the note..');
+    update();
+    var response = await deleteNotesData.getData(noteId);
+    statusrequest = handilingData(response);
+    update();
+    if (Statusrequest.success == statusrequest) {
+      getAllNotes(idCourse);
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      print("✅ success to delete notes");
+      content.clear();
+
+      showCustomSnackbar(
+        title: "The note has been successfully deleted",
+        message: "",
+        icon: Icons.done,
+        backgroundColor: Colors.green,
+      );
+    } else {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
+      print("❌ Failed to delete notes");
+      showCustomSnackbar(
+        title: "Failed to delete a note",
+        message: "try again !",
+        icon: Icons.done,
+        backgroundColor: Colors.red,
+      );
+
+      statusrequest = Statusrequest.failure;
+    }
+    update();
   }
 }

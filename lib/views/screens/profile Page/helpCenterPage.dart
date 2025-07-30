@@ -16,163 +16,178 @@ class HelpCenterPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contact Us'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          onPressed: () => Get.back(),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            Text(
-              """We’re always happy to hear from you! Whether you have a question, need support, or simply want to share your feedback, our team is here and ready to help. """,
-              style: Theme.of(context).textTheme.bodySmall,
-              textAlign: TextAlign.justify,
-              softWrap: true,
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              'First Name',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'First Name',
-              lable: "Enter Your First Name",
-              iconform: Icon(
-                Icons.person_pin,
-                color: Colors.grey.shade500,
+      body: Form(
+        key: controller.formstate,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: [
+              Text(
+                """We’re always happy to hear from you! Whether you have a question, need support, or simply want to share your feedback, our team is here and ready to help. """,
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.justify,
+                softWrap: true,
               ),
-              mycontroller: controller.first,
-              typekey: TextInputType.text,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'name');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Last Name',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'Last Name',
-              lable: "Enter Your Last Name",
-              iconform: Icon(
-                Icons.person_pin,
-                color: Colors.grey.shade500,
+              SizedBox(
+                height: 40,
               ),
-              mycontroller: controller.last,
-              typekey: TextInputType.text,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'name');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Email',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'Email',
-              lable: "Enter Your Email",
-              iconform: Icon(
-                Icons.email_rounded,
-                color: Colors.grey.shade500,
+              Text(
+                'First Name',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              mycontroller: controller.email,
-              typekey: TextInputType.emailAddress,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'email');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Phone',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'Phone',
-              lable: "Enter Your Phone",
-              iconform: Icon(
-                Icons.phone,
-                color: Colors.grey.shade500,
+              SizedBox(
+                height: 10,
               ),
-              mycontroller: controller.number,
-              typekey: TextInputType.number,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'phone');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Subject',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'Subject',
-              lable: "Enter Your Subject",
-              iconform: Icon(
-                Icons.subject_rounded,
-                color: Colors.grey.shade500,
+              TextFormGen(
+                hint: 'First Name',
+                lable: "Enter Your First Name",
+                iconform: Icon(
+                  Icons.person_pin,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.first,
+                typekey: TextInputType.text,
+                valid: (val) {
+                  return validInput(val!, 2, 100, 'name');
+                },
               ),
-              mycontroller: controller.subject,
-              typekey: TextInputType.text,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'name');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Message',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormGen(
-              hint: 'Message',
-              lable: "Enter Your Message",
-              iconform: Icon(
-                Iconsax.message_2,
-                color: Colors.grey.shade500,
+              SizedBox(
+                height: 20,
               ),
-              mycontroller: controller.message,
-              typekey: TextInputType.text,
-              valid: (val) {
-                return validInput(val!, 5, 100, 'name');
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Boxtext(textin: "Send Your Message", onTapFun: () {}),
-            SizedBox(
-              height: 60,
-            ),
-          ],
+              Text(
+                'Last Name',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormGen(
+                hint: 'Last Name',
+                lable: "Enter Your Last Name",
+                iconform: Icon(
+                  Icons.person_pin,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.last,
+                typekey: TextInputType.text,
+                valid: (val) {
+                  return validInput(val!, 2, 100, 'name');
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Email',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormGen(
+                hint: 'Email',
+                lable: "Enter Your Email",
+                iconform: Icon(
+                  Icons.email_rounded,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.email,
+                typekey: TextInputType.emailAddress,
+                valid: (val) {
+                  return validInput(val!, 5, 100, 'email');
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Phone',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormGen(
+                hint: 'Phone',
+                lable: "Enter Your Phone",
+                iconform: Icon(
+                  Icons.phone,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.phone,
+                typekey: TextInputType.number,
+                valid: (val) {
+                  return validInput(val!, 9, 15, 'phone');
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Subject',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormGen(
+                hint: 'Subject',
+                lable: "Enter Your Subject",
+                iconform: Icon(
+                  Icons.subject_rounded,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.subject,
+                typekey: TextInputType.text,
+                valid: (val) {
+                  return validInput(val!, 1, 100, 'name');
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Message',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormGen(
+                hint: 'Message',
+                lable: "Enter Your Message",
+                iconform: Icon(
+                  Iconsax.message_2,
+                  color: Colors.grey.shade500,
+                ),
+                mycontroller: controller.message,
+                typekey: TextInputType.text,
+                valid: (val) {
+                  return validInput(val!, 1, 1000, 'name');
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Boxtext(
+                  textin: "Send Your Message",
+                  onTapFun: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    controller.sendMessage(context);
+                  }),
+              SizedBox(
+                height: 60,
+              ),
+            ],
+          ),
         ),
       ),
     );

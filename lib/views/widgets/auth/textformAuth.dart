@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 
 class TextformAuth extends StatelessWidget {
@@ -10,6 +11,7 @@ class TextformAuth extends StatelessWidget {
   final String? Function(String?) valid;
   final bool? obscureText;
   final void Function()? onTapicon;
+  final Color? color;
 
   const TextformAuth(
       {super.key,
@@ -20,10 +22,12 @@ class TextformAuth extends StatelessWidget {
       required this.typekey,
       required this.valid,
       this.obscureText,
-      this.onTapicon});
+      this.onTapicon,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
+    final storage = GetStorage();
     return TextFormField(
       autofocus: false,
       style: Theme.of(context).textTheme.bodySmall,
@@ -47,7 +51,9 @@ class TextformAuth extends StatelessWidget {
         ),
         focusColor: Appcolor.base,
         filled: true,
-        fillColor: const Color.fromARGB(255, 250, 249, 255),
+        fillColor: storage.read('isDarkMode')
+            ? Colors.grey.shade900
+            : const Color.fromARGB(255, 250, 249, 255),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(color: Appcolor.baselight, width: 2),

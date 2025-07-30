@@ -55,32 +55,15 @@ class Appbarhomepage extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsetsDirectional.only(end: 30),
-          child: Row(
-            children: [
-              InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                onTap: () {
-                  Get.toNamed(AppRoutes.notificationPage);
-                },
-                child: Image.asset(
-                  Appimages.notification,
-                  width: 30,
-                ),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                onTap: () {
-                  Get.toNamed(AppRoutes.searhPage);
-                },
-                child: Image.asset(
-                  Appimages.search,
-                  width: 30,
-                ),
-              ),
-            ],
+          child: InkWell(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            onTap: () {
+              Get.toNamed(AppRoutes.searhPage);
+            },
+            child: Image.asset(
+              Appimages.search,
+              width: 30,
+            ),
           ),
         )
       ],

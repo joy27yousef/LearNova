@@ -71,6 +71,13 @@ class SettingPage extends StatelessWidget {
                   Get.toNamed(AppRoutes.editProfile);
                 },
               ),
+              const SizedBox(height: 10),
+              Listof(
+                title: 'Delete Account',
+                icon1: Iconsax.trash,
+                icon2: Icons.navigate_next_rounded,
+                onTap: () {},
+              ),
               const SizedBox(height: 5),
               Listof(
                 title: '63'.tr,
