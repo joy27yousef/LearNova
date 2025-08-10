@@ -1,117 +1,164 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:learn_nova/core/class/AnimatedListItem.dart';
+import 'package:learn_nova/core/class/animatedListItem.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/favoriteHeart.dart';
+import 'package:learn_nova/core/function/translationData.dart';
 
 class Viewcourseshomepage extends StatelessWidget {
-  const Viewcourseshomepage({super.key});
+  final Axis scrollDirection;
+  final double imageheight;
+  final int num;
+  final List courses;
+  const Viewcourseshomepage(
+      {super.key,
+      required this.scrollDirection,
+      required this.imageheight,
+      required this.courses,
+      required this.num});
 
   @override
   Widget build(BuildContext context) {
     return AnimatedListItem(
-      child: Container(
-        height: 260,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 4,
-            itemBuilder: (context, i) => InkWell(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  onTap: () {
-                    Get.toNamed(AppRoutes.coursePage);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    padding: EdgeInsets.all(10),
-                    width: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Theme.of(context).colorScheme.background,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView.builder(
+        scrollDirection: scrollDirection,
+        itemCount: num,
+        itemBuilder: (context, i) {
+          final course = courses[i];
+          return InkWell(
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
+            onTap: () {
+              Get.toNamed(AppRoutes.coursePage,
+                  arguments: {'ID': course['id'], 'needQuiz': false});
+            },
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                color: Theme.of(context).colorScheme.background,
+              ),
+              child: Stack(children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      'assets/images/testpop1.jpg'))),
+                        // صورة الكورس
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: CachedNetworkImage(
+                            imageUrl: course['thumbnail_url'],
+                            height: imageheight,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                            errorWidget: (context, url, error) => Container(
+                              color: Colors.grey.shade200,
+                              child: Icon(Icons.broken_image,
+                                  size: 40, color: Colors.grey),
+                            ),
+                          ),
                         ),
-                        SizedBox(height: 6),
+
+                        const SizedBox(height: 10),
+
+                        // العنوان
                         Text(
-                          "User Interfase Design",
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          course['title'][translationData()],
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 13),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
+
+                        const SizedBox(height: 5),
+
+                        // اسم المدرس
                         Text(
-                          "Meta",
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold),
+                          "By ${course['teacher']['first_name']} ${course['teacher']['last_name']}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 12, color: Colors.grey),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 5),
+
+                        const SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                Icon(
-                                  Iconsax.book,
-                                  color: Appcolor.base,
-                                ),
-                                SizedBox(width: 3),
                                 Text(
-                                  '24 Lessons',
-                                  style: TextStyle(
-                                      color: Colors.black45,
-                                      fontWeight: FontWeight.bold),
-                                )
+                                  course['difficulty_level'],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(fontSize: 12),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(width: 3),
+                                Icon(Iconsax.level,
+                                    color: Appcolor.base, size: 16),
                               ],
                             ),
                             Row(
                               children: [
-                                Icon(
-                                  Iconsax.star1,
-                                  color: Colors.amber,
-                                ),
-                                SizedBox(width: 3),
                                 Text(
-                                  '3.3',
-                                  style: TextStyle(
-                                      color: Colors.black45,
-                                      fontWeight: FontWeight.bold),
-                                )
+                                  course['duration'][translationData()],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(fontSize: 12),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(width: 3),
+                                Icon(Iconsax.timer,
+                                    color: Appcolor.base, size: 16),
                               ],
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              " 24.00 \$",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Icon(Iconsax.heart_add),
-                            ),
-                          ],
-                        )
                       ],
                     ),
-                  ),
-                )),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            course['price'] == '0.00'
+                                ? 'Free'
+                                : "${course['price']} SPY",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(fontSize: 15, color: Colors.green),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        FavoriteHeart(courseId: course['id']),
+                      ],
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+          );
+        },
       ),
     );
   }

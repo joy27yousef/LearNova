@@ -5,17 +5,20 @@ import 'package:learn_nova/views/screens/MycoursesPage/MyCoursesPage.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/courseLearning.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/quizPage.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/ratinPage.dart';
+import 'package:learn_nova/views/screens/MycoursesPage/resultsPage.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/videoPage.dart';
-import 'package:learn_nova/views/screens/profile%20Page/EditProfile.dart';
+import 'package:learn_nova/views/screens/home/AllFreeCourses.dart';
+import 'package:learn_nova/views/screens/home/allTrendingCourse.dart';
+import 'package:learn_nova/views/screens/profile%20Page/EditProfilePage.dart';
 import 'package:learn_nova/views/screens/home/benefitsPage.dart';
 import 'package:learn_nova/views/screens/home/coursePage.dart';
 import 'package:learn_nova/views/screens/home/mainCategory.dart';
 import 'package:learn_nova/core/middleware/AppMiddleware.dart';
-import 'package:learn_nova/views/screens/Auth/checkEmail.dart';
-import 'package:learn_nova/views/screens/Auth/forgotPassword.dart';
-import 'package:learn_nova/views/screens/Auth/login.dart';
-import 'package:learn_nova/views/screens/Auth/resetpassword.dart';
-import 'package:learn_nova/views/screens/Auth/Signup.dart';
+import 'package:learn_nova/views/screens/Auth/checkEmailPage.dart';
+import 'package:learn_nova/views/screens/Auth/forgotPasswordPage.dart';
+import 'package:learn_nova/views/screens/Auth/loginPage.dart';
+import 'package:learn_nova/views/screens/Auth/resetpasswordPage.dart';
+import 'package:learn_nova/views/screens/Auth/signupPage.dart';
 import 'package:learn_nova/views/screens/home/AllCategoryPage.dart';
 import 'package:learn_nova/views/screens/main_page.dart';
 import 'package:learn_nova/views/screens/home/notificationPage.dart';
@@ -24,6 +27,7 @@ import 'package:learn_nova/views/screens/home/searchPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/aboutLearNova.dart';
 import 'package:learn_nova/views/screens/profile%20Page/favoritesPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/helpCenterPage.dart';
+import 'package:learn_nova/views/screens/profile%20Page/inventFriendsPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/settingPage.dart';
 import 'package:learn_nova/views/screens/test.dart';
 import 'testPage.dart';
@@ -48,13 +52,16 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutes.mainCategory, page: () => MainCategory()),
   GetPage(name: AppRoutes.benefits, page: () => BenefitsPage()),
   GetPage(name: AppRoutes.notificationPage, page: () => NotificationPage()),
+  GetPage(name: AppRoutes.allTrendingCourse, page: () => AllTrendingCourse()),
+  GetPage(name: AppRoutes.allFreeCourses, page: () => AllFreeCourses()),
 
   //profile page
-  GetPage(name: AppRoutes.editProfile, page: () => EditProfile()),
+  GetPage(name: AppRoutes.editProfilePage, page: () => EditProfilePage()),
   GetPage(name: AppRoutes.settingsPage, page: () => SettingPage()),
   GetPage(name: AppRoutes.helpCenterPage, page: () => HelpCenterPage()),
   GetPage(name: AppRoutes.favoritesPage, page: () => FavoritesPage()),
   GetPage(name: AppRoutes.aboutLearnova, page: () => AboutLearnova()),
+  GetPage(name: AppRoutes.inviteFriendsPage, page: () => InviteFriendsPage()),
 
   //courses
   GetPage(name: AppRoutes.coursePage, page: () => CoursePage()),
@@ -63,4 +70,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutes.videoPage, page: () => VideoPage()),
   GetPage(name: AppRoutes.ratingPage, page: () => RatingPage()),
   GetPage(name: AppRoutes.quizPage, page: () => QuizPage()),
+  GetPage(name: AppRoutes.resultsPage, page: () => ResultsPage()),
 ];

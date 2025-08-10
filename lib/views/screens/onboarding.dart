@@ -16,9 +16,8 @@ class Onboarding extends StatelessWidget {
     return GetBuilder<OnboardingcontrollerIMP>(
         builder: (controller) => Scaffold(
               appBar: AppBar(
-                toolbarHeight: -10,
+                toolbarHeight: 0,
               ),
-
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Column(

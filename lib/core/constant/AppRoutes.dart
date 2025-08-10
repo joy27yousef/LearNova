@@ -15,16 +15,20 @@ class AppRoutes {
   static const String benefits = "/benefits";
   static const String coursePage = "/coursePage";
   static const String notificationPage = "/notificationPage";
+  static const String allTrendingCourse = "/allTrendingCourse";
+  static const String allFreeCourses = "/allFreeCourses";
   //profile Page
-  static const String editProfile = "/editProfile";
+  static const String editProfilePage = "/editProfilePage";
   static const String settingsPage = "/settingsPage";
   static const String helpCenterPage = "/helpCenterPage";
   static const String favoritesPage = "/FavoritesPage";
   static const String aboutLearnova = "/AboutLearnova";
+  static const String inviteFriendsPage = "/inviteFriendsPage";
   //courses
   static const String learningCourse = "/learningCourse";
   static const String mycoursespage = "/mycoursespage";
   static const String videoPage = "/videoPage";
   static const String ratingPage = "/ratingPage";
   static const String quizPage = "/quizPage";
+  static const String resultsPage = "/resultsPage";
 }

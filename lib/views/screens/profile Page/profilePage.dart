@@ -8,12 +8,13 @@ import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/alertExitApp.dart';
-import 'package:learn_nova/views/widgets/ConfirmationMessage.dart';
 import 'package:learn_nova/views/widgets/profile/listof.dart';
+import 'package:marquee/marquee.dart';
 
 class ProfilePage extends StatelessWidget {
   final userController = Get.find<UserControllerIMP>();
   EditprofileControllerIMP controller = Get.put(EditprofileControllerIMP());
+  final bioText = Get.find<UserControllerIMP>().user['bio'] ?? '';
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -42,16 +43,41 @@ class ProfilePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        Get.find<UserControllerIMP>().userName.value,
+                        '${Get.find<UserControllerIMP>().user['first_name']} ${Get.find<UserControllerIMP>().user['last_name']}',
                         style: TextStyle(
                             fontFamily: AppFonts.Poppins,
                             fontSize: 23,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        Get.find<UserControllerIMP>().userEmail.value,
+                        Get.find<UserControllerIMP>().user['email'],
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      bioText.length > 100
+                          ? SizedBox(
+                              height: 30,
+                              child: Marquee(
+                                text: bioText,
+                                style: Theme.of(context).textTheme.titleMedium,
+                                scrollAxis: Axis.horizontal,
+                                blankSpace: 50.0,
+                                velocity: 40.0,
+                                pauseAfterRound: Duration(seconds: 1),
+                                startPadding: 10.0,
+                                accelerationDuration: Duration(seconds: 1),
+                                accelerationCurve: Curves.linear,
+                                decelerationDuration:
+                                    Duration(milliseconds: 500),
+                                decelerationCurve: Curves.easeOut,
+                              ),
+                            )
+                          : Text(
+                              Get.find<UserControllerIMP>().user['bio'] ?? '',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                       SizedBox(
                         height: 20,
                       ),
@@ -79,15 +105,6 @@ class ProfilePage extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          // Listof(
-                          //   title: 'Alarts',
-                          //   icon1: Iconsax.alarm,
-                          //   icon2: Icons.navigate_next_rounded,
-                          //   onTap: () {},
-                          // ),
-                          // SizedBox(
-                          //   height: 5,
-                          // ),
                           Listof(
                             title: '56'.tr,
                             icon1: Icons.help_outline_rounded,
@@ -103,7 +120,9 @@ class ProfilePage extends StatelessWidget {
                             title: '57'.tr,
                             icon1: Iconsax.message,
                             icon2: Icons.navigate_next_rounded,
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(AppRoutes.inviteFriendsPage);
+                            },
                           ),
                           SizedBox(
                             height: 5,
@@ -126,21 +145,23 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               Align(
-                  alignment: Alignment.topCenter,
-                  child: Obx(() {
-                    if (userController.profileImagePath.value.isNotEmpty) {
-                      return CircleAvatar(
-                        radius: 60,
-                        backgroundImage: FileImage(
-                            File(userController.profileImagePath.value)),
-                      );
-                    } else {
-                      return CircleAvatar(
-                        radius: 60,
-                        backgroundImage: AssetImage(Appimages.person),
-                      );
-                    }
-                  })),
+                alignment: Alignment.topCenter,
+                child: Obx(() {
+                  final user = userController.user;
+
+                  if (user.isEmpty || user['profile_image'] == null) {
+                    return CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage(Appimages.person),
+                    );
+                  } else {
+                    return CircleAvatar(
+                      radius: 60,
+                      backgroundImage: NetworkImage(user['profile_image']),
+                    );
+                  }
+                }),
+              ),
             ],
           )),
     );

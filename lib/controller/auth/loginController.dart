@@ -44,51 +44,41 @@ class LoginControllerImp extends LoginController {
   @override
   login(BuildContext context) async {
     if (formstate.currentState!.validate()) {
-      if (formstate.currentState!.validate()) {
-        print('valid');
-        showLoadingDialog(context, 'm2'.tr);
-        var response = await loginData.getData(email.text, password.text);
-        statusrequest = handilingData(response);
-        if (Statusrequest.success == statusrequest) {
-          if (Get.isDialogOpen ?? false) {
-            Get.back();
-          }
-          String token = response['token'];
-          final box = GetStorage();
-          await box.write('token', token);
-          String? savedToken = box.read('token');
-          print("Token from storage: $savedToken");
-          var userController = Get.find<UserControllerIMP>();
-          userController.userName.value = response['user']['name'];
-          userController.userEmail.value = response['user']['email'];
-          userController.userId.value = response['user']['id'];
-          await userController.setUserData(
-            name: response['user']['name'],
-            email: response['user']['email'],
-            id: response['user']['id'],
-          );
-          showCustomSnackbar(
-              title: 'm3'.tr,
-              message: 'a3'.tr,
-              icon: Icons.done_rounded,
-              backgroundColor: Colors.green);
-          Get.offAllNamed(AppRoutes.mainPage);
-        } else {
-          if (Get.isDialogOpen ?? false) {
-            Get.back();
-          }
-          showCustomSnackbar(
-              title: 'm4'.tr,
-              message: 'a2'.tr,
-              icon: Icons.error,
-              backgroundColor: Colors.red);
-
-          statusrequest = Statusrequest.failure;
+      print('valid');
+      showLoadingDialog(context, 'm2'.tr);
+      var response = await loginData.getData(email.text, password.text);
+      statusrequest = handilingData(response);
+      if (Statusrequest.success == statusrequest) {
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
         }
-        update();
+        String token = response['token'];
+        final box = GetStorage();
+        await box.write('token', token);
+        String? savedToken = box.read('token');
+        print("Token from storage: $savedToken");
+        Get.find<UserControllerIMP>().getUserData();
+        showCustomSnackbar(
+            title: 'm3'.tr,
+            message: 'a3'.tr,
+            icon: Icons.done_rounded,
+            backgroundColor: Colors.green);
+        Get.offAllNamed(AppRoutes.mainPage);
       } else {
-        print('Not valid');
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
+        showCustomSnackbar(
+            title: 'm4'.tr,
+            message: 'a2'.tr,
+            icon: Icons.error,
+            backgroundColor: Colors.red);
+
+        statusrequest = Statusrequest.failure;
       }
+      update();
+    } else {
+      print('Not valid');
     }
   }
 

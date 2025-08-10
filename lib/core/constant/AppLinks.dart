@@ -1,6 +1,7 @@
 class Applinks {
   static const String server =
       'https://e-learning-server-me-production.up.railway.app/api';
+  // static const String server = 'https://19521f639e11.ngrok-free.app';
   //auth
   static const String signup = '$server/phone-register';
   static const String login = '$server/login';
@@ -11,6 +12,7 @@ class Applinks {
   //homepage
   static const String categories = '$server/v1/categories';
   static const String externalCourses = '$server/v1/courses';
+  static const String trending = '$server/v1/courses/trending';
   //user
   static const String userInformation = '$server/user';
   static const String userCourseEnrollment = '$server/v1/users';
@@ -28,11 +30,15 @@ class Applinks {
   static const String FavCour = '$server/v1/saved-courses'; //send token
   //quizs
   static const String quiz = '$server/v1/courses'; //send token and course id
+  static const String quizResults = '$server/v1/quiz-attempts';
   //notes
   static const String notes = '$server/v1/notes'; //send token and course id
 
   //profilePages
   static const String helpCenter = '$server/v1/contact';
+  static const String editProfile = '$server/v1/profile';
+  //userdata
+  static const String user = '$server/user';
   //ai assistant
   static const String aiAssistant =
       'https://waraqh.buildship.run/quickApi-ccc1f5022b0d';

@@ -1,7 +1,6 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/constant/AppLinks.dart';
-import 'package:learn_nova/views/widgets/homePage/headerLine.dart';
 
 class CourseData {
   Crud? crud;

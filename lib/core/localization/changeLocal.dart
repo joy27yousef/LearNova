@@ -16,6 +16,7 @@ class localController extends GetxController {
     myServices.sharedPreference.setString('lang', langcode);
     language.value = locale;
     Get.updateLocale(locale);
+    update();
   }
 
   @override

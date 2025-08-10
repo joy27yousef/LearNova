@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_nova/core/class/AnimatedListItem.dart';
+import 'package:learn_nova/core/class/animatedListItem.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/data/source/static.dart';

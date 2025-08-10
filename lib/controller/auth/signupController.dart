@@ -16,11 +16,11 @@ class SignupControllerIMP extends SignupController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   SignupData signupData = SignupData(crud: Get.find<Crud>());
   late Statusrequest statusrequest;
-  late String userName;
-  late String userEmail;
+  late TextEditingController firstName;
+  late TextEditingController lastName;
+  late TextEditingController phoneNumber;
   late TextEditingController email;
   late TextEditingController password;
-  late TextEditingController username;
   late TextEditingController confirmPassword;
   RxBool isChecked = false.obs;
 
@@ -28,7 +28,9 @@ class SignupControllerIMP extends SignupController {
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
-    username = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
+    phoneNumber = TextEditingController();
     confirmPassword = TextEditingController();
     super.onInit();
   }
@@ -38,7 +40,9 @@ class SignupControllerIMP extends SignupController {
     confirmPassword.dispose();
     email.dispose();
     password.dispose();
-    username.dispose();
+    firstName.dispose();
+    lastName.dispose();
+    phoneNumber.dispose();
     super.dispose();
   }
 
@@ -47,8 +51,8 @@ class SignupControllerIMP extends SignupController {
     if (formstate.currentState!.validate()) {
       showLoadingDialog(context, 'm7'.tr);
       print('valid');
-      var response = await signupData.getData(
-          username.text, email.text, password.text, confirmPassword.text);
+      var response = await signupData.getData(firstName.text, lastName.text,
+          phoneNumber.text, email.text, password.text, confirmPassword.text);
       statusrequest = handilingData(response);
       if (Statusrequest.success == statusrequest) {
         if (Get.isDialogOpen ?? false) {

@@ -24,7 +24,7 @@ class SettingControllerIMP extends SettingController {
     var status = await logoutData.getData();
     if (status == Statusrequest.success) {
       await GetStorage().erase();
-      Get.find<UserControllerIMP>().clearUserData();
+      // Get.find<UserControllerIMP>().clearUserData();
       if (Get.isDialogOpen ?? false) {
         Get.back();
       }

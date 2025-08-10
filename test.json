@@ -1,0 +1,665 @@
+{
+    "id": 3,
+    "title": {
+        "en": "Flutter Complete Guide",
+        "ar": "دليل Flutter الشامل"
+    },
+    "description": {
+        "en": "Perfect for beginners looking to break into Mobile Development. Lifetime access to course materials and future updates. Taught by industry experts with years of practical experience. This comprehensive course will teach you everything you need to know about Flutter Complete Guide.",
+        "ar": "ضمان استرداد الأموال خلال 30 يومًا إذا لم تكن راضيًا تمامًا. انضم إلى آلاف الطلاب الراضين الذين غيروا مسار حياتهم المهنية. يتم تدريسها من قبل خبراء الصناعة ذوي الخبرة العملية. أتقن المفاهيم من خلال المشاريع العملية والأمثلة الواقعية."
+    },
+    "category_id": 3,
+    "user_id": 7,
+    "duration": {
+        "en": "30 hours",
+        "ar": "30 ساعة"
+    },
+    "difficulty_level": "intermediate",
+    "thumbnail_url": "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1470&auto=format&fit=crop",
+    "price": "6.99",
+    "link": null,
+    "document_url": null,
+    "default_language": "Arabic",
+    "is_sequential": 0,
+    "created_at": "2025-07-30T21:14:51.000000Z",
+    "updated_at": "2025-07-30T21:14:51.000000Z",
+    "category": {
+        "id": 3,
+        "name": {
+            "en": "Mobile Development",
+            "ar": "تطوير الموبايل"
+        },
+        "description": {
+            "en": "Mobile Development courses",
+            "ar": "دورات تطوير الموبايل"
+        },
+        "parent_id": 1,
+        "created_at": "2025-07-30T21:14:36.000000Z",
+        "updated_at": "2025-07-30T21:14:36.000000Z"
+    },
+    "teacher": {
+        "id": 7,
+        "first_name": "Jaron",
+        "last_name": "Mills",
+        "phone_number": "734.249.4470",
+        "email": "shartmann@example.com",
+        "google_id": null,
+        "profile_image": null,
+        "specialization": null,
+        "bio": null,
+        "country": null,
+        "certificate_url": null,
+        "email_verified_at": "2025-07-30T21:14:30.000000Z",
+        "role": "teacher",
+        "created_at": "2025-07-30T21:14:33.000000Z",
+        "updated_at": "2025-07-30T21:14:33.000000Z"
+    },
+    "skills": [
+        {
+            "id": 14,
+            "name": {
+                "en": "Swift"
+            },
+            "created_at": "2025-07-30T21:15:03.000000Z",
+            "updated_at": "2025-07-30T21:15:03.000000Z",
+            "pivot": {
+                "course_id": 3,
+                "skill_id": 14
+            }
+        },
+        {
+            "id": 15,
+            "name": {
+                "en": "Kotlin"
+            },
+            "created_at": "2025-07-30T21:15:04.000000Z",
+            "updated_at": "2025-07-30T21:15:04.000000Z",
+            "pivot": {
+                "course_id": 3,
+                "skill_id": 15
+            }
+        },
+        {
+            "id": 16,
+            "name": {
+                "en": "Flutter"
+            },
+            "created_at": "2025-07-30T21:15:04.000000Z",
+            "updated_at": "2025-07-30T21:15:04.000000Z",
+            "pivot": {
+                "course_id": 3,
+                "skill_id": 16
+            }
+        }
+    ],
+    "sections": [
+        {
+            "id": 15,
+            "title": {
+                "en": "Introduction and Setup",
+                "ar": "المقدمة والإعداد"
+            },
+            "course_id": 3,
+            "order": 1,
+            "created_at": "2025-07-30T21:16:48.000000Z",
+            "updated_at": "2025-07-30T21:16:48.000000Z",
+            "videos": [
+                {
+                    "id": 43,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/kJQP7kiw5Fk",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 15,
+                    "created_at": "2025-07-30T21:19:17.000000Z",
+                    "updated_at": "2025-07-30T21:19:17.000000Z"
+                },
+                {
+                    "id": 44,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/y6120QOlsfU",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 15,
+                    "created_at": "2025-07-30T21:19:18.000000Z",
+                    "updated_at": "2025-07-30T21:19:18.000000Z"
+                },
+                {
+                    "id": 45,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/ZZ5LpwO-An4",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 15,
+                    "created_at": "2025-07-30T21:19:18.000000Z",
+                    "updated_at": "2025-07-30T21:19:18.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "title": {
+                "en": "Core Concepts",
+                "ar": "المفاهيم الأساسية"
+            },
+            "course_id": 3,
+            "order": 2,
+            "created_at": "2025-07-30T21:16:48.000000Z",
+            "updated_at": "2025-07-30T21:16:48.000000Z",
+            "videos": [
+                {
+                    "id": 46,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/fJ9rUzIMcZQ",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 16,
+                    "created_at": "2025-07-30T21:19:20.000000Z",
+                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                },
+                {
+                    "id": 47,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/1Bix44H1v9I",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 16,
+                    "created_at": "2025-07-30T21:19:20.000000Z",
+                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                },
+                {
+                    "id": 48,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/hFZFjoX2cGg",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 16,
+                    "created_at": "2025-07-30T21:19:20.000000Z",
+                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "title": {
+                "en": "Advanced Topics",
+                "ar": "المواضيع المتقدمة"
+            },
+            "course_id": 3,
+            "order": 3,
+            "created_at": "2025-07-30T21:16:49.000000Z",
+            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "videos": [
+                {
+                    "id": 49,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/vjW8wmF5VWc",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 17,
+                    "created_at": "2025-07-30T21:19:22.000000Z",
+                    "updated_at": "2025-07-30T21:19:22.000000Z"
+                },
+                {
+                    "id": 50,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/tgbNymZ7vqY",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 17,
+                    "created_at": "2025-07-30T21:19:23.000000Z",
+                    "updated_at": "2025-07-30T21:19:23.000000Z"
+                },
+                {
+                    "id": 51,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 17,
+                    "created_at": "2025-07-30T21:19:23.000000Z",
+                    "updated_at": "2025-07-30T21:19:23.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "title": {
+                "en": "Practical Projects",
+                "ar": "المشاريع العملية"
+            },
+            "course_id": 3,
+            "order": 4,
+            "created_at": "2025-07-30T21:16:49.000000Z",
+            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "videos": [
+                {
+                    "id": 52,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/9bZkp7q19f0",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 18,
+                    "created_at": "2025-07-30T21:19:25.000000Z",
+                    "updated_at": "2025-07-30T21:19:25.000000Z"
+                },
+                {
+                    "id": 53,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/kJQP7kiw5Fk",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 18,
+                    "created_at": "2025-07-30T21:19:25.000000Z",
+                    "updated_at": "2025-07-30T21:19:25.000000Z"
+                },
+                {
+                    "id": 54,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/y6120QOlsfU",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 18,
+                    "created_at": "2025-07-30T21:19:26.000000Z",
+                    "updated_at": "2025-07-30T21:19:26.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "title": {
+                "en": "Deployment and Next Steps",
+                "ar": "النشر والخطوات التالية"
+            },
+            "course_id": 3,
+            "order": 5,
+            "created_at": "2025-07-30T21:16:49.000000Z",
+            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "videos": [
+                {
+                    "id": 55,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/ZZ5LpwO-An4",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 19,
+                    "created_at": "2025-07-30T21:19:27.000000Z",
+                    "updated_at": "2025-07-30T21:19:27.000000Z"
+                },
+                {
+                    "id": 56,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/fJ9rUzIMcZQ",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 19,
+                    "created_at": "2025-07-30T21:19:28.000000Z",
+                    "updated_at": "2025-07-30T21:19:28.000000Z"
+                },
+                {
+                    "id": 57,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/1Bix44H1v9I",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 19,
+                    "created_at": "2025-07-30T21:19:28.000000Z",
+                    "updated_at": "2025-07-30T21:19:28.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "title": {
+                "en": "Interview Preparation",
+                "ar": "التحضير للمقابلات"
+            },
+            "course_id": 3,
+            "order": 6,
+            "created_at": "2025-07-30T21:16:50.000000Z",
+            "updated_at": "2025-07-30T21:16:50.000000Z",
+            "videos": [
+                {
+                    "id": 58,
+                    "title": {
+                        "en": "Welcome to the Course",
+                        "ar": "مرحباً بك في الدورة"
+                    },
+                    "video_url": "https://www.youtube.com/embed/hFZFjoX2cGg",
+                    "video_file": null,
+                    "duration": 5,
+                    "thumbnail_url": null,
+                    "is_preview": true,
+                    "order": 1,
+                    "section_id": 20,
+                    "created_at": "2025-07-30T21:19:30.000000Z",
+                    "updated_at": "2025-07-30T21:19:30.000000Z"
+                },
+                {
+                    "id": 59,
+                    "title": {
+                        "en": "Setting Up Your Development Environment",
+                        "ar": "إعداد بيئة التطوير الخاصة بك"
+                    },
+                    "video_url": "https://www.youtube.com/embed/vjW8wmF5VWc",
+                    "video_file": null,
+                    "duration": 12,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 2,
+                    "section_id": 20,
+                    "created_at": "2025-07-30T21:19:30.000000Z",
+                    "updated_at": "2025-07-30T21:19:30.000000Z"
+                },
+                {
+                    "id": 60,
+                    "title": {
+                        "en": "Your First Project",
+                        "ar": "مشروعك الأول"
+                    },
+                    "video_url": "https://www.youtube.com/embed/tgbNymZ7vqY",
+                    "video_file": null,
+                    "duration": 25,
+                    "thumbnail_url": null,
+                    "is_preview": false,
+                    "order": 3,
+                    "section_id": 20,
+                    "created_at": "2025-07-30T21:19:31.000000Z",
+                    "updated_at": "2025-07-30T21:19:31.000000Z"
+                }
+            ]
+        }
+    ],
+    "faqs": [
+        {
+            "id": 14,
+            "course_id": 3,
+            "question": {
+                "en": "How long will I have access to the course materials?",
+                "ar": "كم من الوقت سأحصل على الوصول إلى مواد الدورة؟"
+            },
+            "answer": {
+                "en": "You'll have lifetime access to all course materials, including any future updates.",
+                "ar": "ستحصل على وصول مدى الحياة لجميع مواد الدورة، بما في ذلك أي تحديثات مستقبلية."
+            },
+            "created_at": "2025-07-30T21:15:59.000000Z",
+            "updated_at": "2025-07-30T21:15:59.000000Z"
+        },
+        {
+            "id": 15,
+            "course_id": 3,
+            "question": {
+                "en": "Will I receive a certificate upon completion?",
+                "ar": "هل سأحصل على شهادة عند الانتهاء؟"
+            },
+            "answer": {
+                "en": "Yes, you'll receive a certificate of completion that you can add to your resume or LinkedIn profile.",
+                "ar": "نعم، ستحصل على شهادة إتمام يمكنك إضافتها إلى سيرتك الذاتية أو ملفك الشخصي على LinkedIn."
+            },
+            "created_at": "2025-07-30T21:15:59.000000Z",
+            "updated_at": "2025-07-30T21:15:59.000000Z"
+        },
+        {
+            "id": 16,
+            "course_id": 3,
+            "question": {
+                "en": "What if I don't like the course?",
+                "ar": "ماذا لو لم تعجبني الدورة؟"
+            },
+            "answer": {
+                "en": "We offer a 30-day money-back guarantee if you're not satisfied with the course.",
+                "ar": "نقدم ضمان استرداد الأموال خلال 30 يومًا إذا لم تكن راضيًا عن الدورة."
+            },
+            "created_at": "2025-07-30T21:16:00.000000Z",
+            "updated_at": "2025-07-30T21:16:00.000000Z"
+        },
+        {
+            "id": 17,
+            "course_id": 3,
+            "question": {
+                "en": "Will this course help me get a job?",
+                "ar": "هل ستساعدني هذه الدورة في الحصول على وظيفة؟"
+            },
+            "answer": {
+                "en": "While we can't guarantee employment, this course teaches in-demand skills that employers are looking for.",
+                "ar": "على الرغم من أننا لا نستطيع ضمان التوظيف، إلا أن هذه الدورة تعلم مهارات مطلوبة يبحث عنها أصحاب العمل."
+            },
+            "created_at": "2025-07-30T21:16:01.000000Z",
+            "updated_at": "2025-07-30T21:16:01.000000Z"
+        },
+        {
+            "id": 18,
+            "course_id": 3,
+            "question": {
+                "en": "Is there any coding experience required?",
+                "ar": "هل هناك أي خبرة في البرمجة مطلوبة؟"
+            },
+            "answer": {
+                "en": "This course is designed for all levels, with separate learning paths for beginners and experienced coders.",
+                "ar": "تم تصميم هذه الدورة لجميع المستويات، مع مسارات تعليمية منفصلة للمبتدئين والمبرمجين ذوي الخبرة."
+            },
+            "created_at": "2025-07-30T21:16:01.000000Z",
+            "updated_at": "2025-07-30T21:16:01.000000Z"
+        }
+    ],
+    "ratings": [
+        {
+            "id": 7,
+            "course_id": 3,
+            "user_id": 4,
+            "rating": 5,
+            "review": "The best course I've taken on this subject!",
+            "created_at": "2025-07-30T21:16:28.000000Z",
+            "updated_at": "2025-07-30T21:16:28.000000Z"
+        },
+        {
+            "id": 8,
+            "course_id": 3,
+            "user_id": 6,
+            "rating": 4,
+            "review": "The course materials are top-notch and well organized.",
+            "created_at": "2025-07-30T21:16:29.000000Z",
+            "updated_at": "2025-07-30T21:16:29.000000Z"
+        },
+        {
+            "id": 9,
+            "course_id": 3,
+            "user_id": 8,
+            "rating": 1,
+            "review": null,
+            "created_at": "2025-07-30T21:16:29.000000Z",
+            "updated_at": "2025-07-30T21:16:29.000000Z"
+        }
+    ],
+    "benefits": [
+        {
+            "id": 19,
+            "title": {
+                "ar": "وصول مدى الحياة",
+                "en": "Lifetime Access"
+            },
+            "course_id": 3,
+            "order": 1,
+            "created_at": "2025-07-30T21:17:06.000000Z",
+            "updated_at": "2025-07-30T21:17:06.000000Z"
+        },
+        {
+            "id": 20,
+            "title": {
+                "ar": "شهادة إتمام",
+                "en": "Certificate of Completion"
+            },
+            "course_id": 3,
+            "order": 2,
+            "created_at": "2025-07-30T21:17:06.000000Z",
+            "updated_at": "2025-07-30T21:17:06.000000Z"
+        },
+        {
+            "id": 21,
+            "title": {
+                "ar": "دعم الخبراء",
+                "en": "Expert Support"
+            },
+            "course_id": 3,
+            "order": 3,
+            "created_at": "2025-07-30T21:17:07.000000Z",
+            "updated_at": "2025-07-30T21:17:07.000000Z"
+        },
+        {
+            "id": 22,
+            "title": {
+                "ar": "الوصول عبر الهاتف المحمول",
+                "en": "Mobile Access"
+            },
+            "course_id": 3,
+            "order": 4,
+            "created_at": "2025-07-30T21:17:07.000000Z",
+            "updated_at": "2025-07-30T21:17:07.000000Z"
+        },
+        {
+            "id": 23,
+            "title": {
+                "ar": "موارد قابلة للتحميل",
+                "en": "Downloadable Resources"
+            },
+            "course_id": 3,
+            "order": 5,
+            "created_at": "2025-07-30T21:17:08.000000Z",
+            "updated_at": "2025-07-30T21:17:08.000000Z"
+        },
+        {
+            "id": 24,
+            "title": {
+                "ar": "مشاريع واقعية",
+                "en": "Real-World Projects"
+            },
+            "course_id": 3,
+            "order": 6,
+            "created_at": "2025-07-30T21:17:09.000000Z",
+            "updated_at": "2025-07-30T21:17:09.000000Z"
+        },
+        {
+            "id": 25,
+            "title": {
+                "ar": "مراجعة الكود",
+                "en": "Code Reviews"
+            },
+            "course_id": 3,
+            "order": 7,
+            "created_at": "2025-07-30T21:17:09.000000Z",
+            "updated_at": "2025-07-30T21:17:09.000000Z"
+        },
+        {
+            "id": 26,
+            "title": {
+                "ar": "تكامل مع GitHub",
+                "en": "GitHub Integration"
+            },
+            "course_id": 3,
+            "order": 8,
+            "created_at": "2025-07-30T21:17:10.000000Z",
+            "updated_at": "2025-07-30T21:17:10.000000Z"
+        },
+        {
+            "id": 27,
+            "title": {
+                "ar": "مهارات التصحيح",
+                "en": "Debugging Skills"
+            },
+            "course_id": 3,
+            "order": 9,
+            "created_at": "2025-07-30T21:17:10.000000Z",
+            "updated_at": "2025-07-30T21:17:10.000000Z"
+        }
+    ]
+}

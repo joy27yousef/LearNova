@@ -39,7 +39,7 @@ class Bottom extends StatelessWidget {
                     () async {
                       await controller.enroll(context);
                       await myCourseController.getMyCourses(
-                          Get.find<UserControllerIMP>().userId.value);
+                          Get.find<UserControllerIMP>().user['id']);
                       controller.checkEnrollment();
                       // Get.find<MainpagecontrollerIMP>().changePage(1);
                       // Get.offAll(() => MainPage());

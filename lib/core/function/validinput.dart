@@ -24,6 +24,11 @@ String? validInput(String val, int min, int max, String type) {
       return "v6".tr;
     }
   }
+  if (type == "phone") {
+    if (!GetUtils.isPhoneNumber(val)) {
+      return "phone";
+    }
+  }
 
   if (type == "password") {
     if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$').hasMatch(val)) {

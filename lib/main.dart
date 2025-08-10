@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/bindings/initialBinding.dart';
 import 'package:learn_nova/controller/ThemeModeController.dart';
-import 'package:learn_nova/core/constant/themeApp.dart';
+import 'package:learn_nova/core/constant/AppTheme.dart';
 import 'package:learn_nova/core/localization/changeLocal.dart';
 import 'package:learn_nova/core/localization/translation.dart';
 import 'package:learn_nova/core/services/services.dart';
@@ -13,6 +13,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await initialServices();
+// SystemChrome.setEnabledSystemUIMode(
+//     SystemUiMode.manual,
+//     overlays: [SystemUiOverlay.top],
+//   );
+//   SystemChrome.setPreferredOrientations([
+//     DeviceOrientation.portraitUp,
+//   ]);
 
   runApp(const MyApp());
 }

@@ -27,7 +27,7 @@ class ViewNotesData {
   ViewNotesData({this.crud});
   getData(int courseId) async {
     var response = await crud!.getRequest(
-      "${Applinks.notes}?$courseId",
+      "${Applinks.notes}?course_id=$courseId",
       withToken: true,
     );
     return response.fold((l) => l, (r) => r);

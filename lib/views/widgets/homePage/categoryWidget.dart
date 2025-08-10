@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
+import 'package:learn_nova/controller/home/homePageController.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 
@@ -9,7 +10,7 @@ class Categorywidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CategoryControllerIMP>(
+    return GetBuilder<HomepagecontrollerIMP>(
         builder: (controller) => Container(
               padding: EdgeInsets.all(5),
               height: 65,

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:learn_nova/core/class/AnimatedListItem.dart';
-import 'package:learn_nova/core/constant/AppColor.dart';
-import 'package:learn_nova/core/constant/AppFont.dart';
-
+import 'package:learn_nova/core/class/animatedListItem.dart';
 class AboutLearnova extends StatelessWidget {
   AboutLearnova({super.key});
 

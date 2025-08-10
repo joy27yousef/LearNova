@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/controller/myCourses/courseProgressConteroller.dart';
 import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
 import 'package:learn_nova/controller/userController.dart';
@@ -12,6 +13,8 @@ import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/data/source/remote/home/course.dart';
 import 'package:learn_nova/data/source/remote/mycourses/notes.dart';
+import 'package:learn_nova/data/source/remote/mycourses/progressCourse.dart';
+import 'package:learn_nova/data/source/remote/mycourses/quiz.dart';
 
 abstract class CourseController extends GetxController {
   getData();
@@ -36,6 +39,8 @@ class CourseControllerIMP extends CourseController {
   RxList benefits = [].obs;
   RxList sections = [].obs;
   int? idCourse;
+  Map<String, dynamic> checkdata = {};
+
   var isExpanded = false.obs;
   var selectedIndex = 0.obs;
   RxnInt selectedIndexfaq = RxnInt();
@@ -54,14 +59,22 @@ class CourseControllerIMP extends CourseController {
     title = TextEditingController();
     content = TextEditingController();
     idCourse = Get.arguments['ID'];
+
+    // الحالة الافتراضية true يعني دايمًا يجيب Quiz إلا إذا طلبت تعطيله
+    bool needQuiz = Get.arguments['needQuiz'] ?? true;
+
     if (idCourse != null) {
       getData();
 
       Future.delayed(Duration.zero, () async {
-        int uid = Get.find<UserControllerIMP>().userId.value;
+        int uid = Get.find<UserControllerIMP>().user['id'];
         await Get.find<MyCoursesControllerIMP>().getMyCourses(uid);
         checkEnrollment();
       });
+
+      if (needQuiz) {
+        getQuizesData();
+      }
     } else {
       print("⚠️ courseID is null");
     }
@@ -78,7 +91,9 @@ class CourseControllerIMP extends CourseController {
         data.clear();
         data.addAll(response);
         sections.value = data['sections'] ?? [];
-        getAllNotes(idCourse);
+        allNotes.clear();
+        await getAllNotes(idCourse);
+
         if (Get.isRegistered<CoursepProgresscConteroller>()) {
           var progressController = Get.find<CoursepProgresscConteroller>();
           await progressController.loadWatchedVideos();
@@ -171,11 +186,14 @@ class CourseControllerIMP extends CourseController {
   unEnroll(BuildContext context) async {
     statusrequest = Statusrequest.loading;
     update();
-    // showLoadingDialog();
+    showLoadingDialog(context, 'Canceling subscription');
     var response = await courseUnEnroll.getData("$idCourse");
     print(response);
     statusrequest = handilingData(response);
     if (statusrequest == Statusrequest.success) {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       showCustomSnackbar(
         title: "Registration has been successfully canceled ",
         message: "We hope you have benefited from the course",
@@ -183,10 +201,16 @@ class CourseControllerIMP extends CourseController {
         backgroundColor: Colors.green,
       );
       checkEnrollment();
+      Get.back();
+      Get.find<MainpagecontrollerIMP>().changePage(1);
+      Get.offAllNamed(AppRoutes.mainPage);
     } else {
+      if (Get.isDialogOpen ?? false) {
+        Get.back();
+      }
       print("Failed to fetch course data");
       showCustomSnackbar(
-        title: "Successful cancellation of registration failed",
+        title: "cancellation of registration failed",
         message: "Try again",
         icon: Icons.done,
         backgroundColor: Colors.red,
@@ -218,6 +242,7 @@ class CourseControllerIMP extends CourseController {
     update();
     if (Statusrequest.success == statusrequest) {
       allNotes.clear();
+
       if (response['data'] is List) {
         allNotes.addAll(response['data']);
       }
@@ -237,7 +262,8 @@ class CourseControllerIMP extends CourseController {
     statusrequest = handilingData(response);
     update();
     if (Statusrequest.success == statusrequest) {
-      getAllNotes(idCourse);
+      allNotes.clear();
+      await getAllNotes(idCourse);
       if (Get.isDialogOpen ?? false) {
         Get.back();
       }
@@ -275,7 +301,8 @@ class CourseControllerIMP extends CourseController {
     statusrequest = handilingData(response);
     update();
     if (Statusrequest.success == statusrequest) {
-      getAllNotes(idCourse);
+      allNotes.clear();
+      await getAllNotes(idCourse);
       if (Get.isDialogOpen ?? false) {
         Get.back();
       }
@@ -302,6 +329,78 @@ class CourseControllerIMP extends CourseController {
 
       statusrequest = Statusrequest.failure;
     }
+    update();
+  }
+
+  //quize
+  ViewProgress viewProgress = ViewProgress(crud: Get.find<Crud>());
+  CheckQuizAttemptData checkQuizAttemptData =
+      CheckQuizAttemptData(crud: Get.find<Crud>());
+  GetQuizzesData getQuizData = GetQuizzesData();
+
+  bool canTakeQuiz = false;
+  int progress = 0;
+  Map quizData = {};
+
+  void getQuizesData() async {
+    statusrequest = Statusrequest.loading;
+    update();
+
+    final response = await viewProgress.getData(idCourse!);
+    final responsedata = await getQuizData.getData(idCourse!);
+
+    statusrequest = handilingData(response);
+
+    if (statusrequest == Statusrequest.success) {
+      quizData.clear();
+      try {
+        if (responsedata is List && responsedata.isNotEmpty) {
+          quizData = responsedata[0];
+        } else if (responsedata is Map) {
+          quizData = responsedata;
+        } else {
+          print("❌ Unexpected quiz data format: $responsedata");
+          quizData = {};
+        }
+
+        canTakeQuiz = response['canTakeQuiz'] ?? false;
+        progress = response['progress'] ?? 0;
+        if (quizData.containsKey('id') && quizData['id'] != null) {
+          CheckQuizAttempt(); // ✅ تم نقله بعد تحميل البيانات
+        } else {
+          print("⚠️ quizData does not contain a valid ID.");
+        }
+
+        print('✅ Loaded quiz data successfully');
+      } catch (e) {
+        print("❌ Error parsing quiz data: $e");
+        statusrequest = Statusrequest.failure;
+      }
+    } else {
+      print("❌ Failed to load quiz data");
+    }
+
+    update();
+  }
+
+  bool hasAttempt = false;
+
+  void CheckQuizAttempt() async {
+    statusrequest = Statusrequest.loading;
+    update();
+    final response =
+        await checkQuizAttemptData.getData(idCourse!, quizData['id']);
+    statusrequest = handilingData(response);
+
+    if (statusrequest == Statusrequest.success) {
+      checkdata.clear();
+      checkdata = response;
+      hasAttempt = response['has_attempted'];
+      print('✅ success to check  quiz');
+    } else {
+      print("❌ Failed to load check quiz");
+    }
+
     update();
   }
 }

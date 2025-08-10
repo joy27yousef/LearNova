@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_nova/controller/home/categoryController.dart';
-import 'package:learn_nova/controller/home/courseController.dart';
+import 'package:learn_nova/controller/home/homePageController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
-import 'package:learn_nova/core/constant/AppFont.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 
 class RolinMainCat extends StatelessWidget {
-  final CategoryControllerIMP controller = Get.put(CategoryControllerIMP());
+  final HomepagecontrollerIMP controller = Get.put(HomepagecontrollerIMP());
 
   late final List subcategoriesWithAll;
   final List subcategories = Get.arguments['subcategories'];

@@ -1,80 +1,76 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learn_nova/controller/userController.dart';
+import 'package:learn_nova/core/class/crud.dart';
+import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
-import 'package:learn_nova/core/constant/AppImages.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:learn_nova/core/function/customSnackBar.dart';
+import 'package:learn_nova/core/function/handilingData.dart';
+import 'package:learn_nova/core/function/loadindDialog.dart';
+import 'package:learn_nova/data/source/remote/profile/editProfileData.dart';
 
 abstract class EditprofileController extends GetxController {
-  late TextEditingController name;
-  late TextEditingController Email;
-  void pickImage(ImageSource gallery) {}
+  late Statusrequest statusrequest;
+  EditProfileData editProfileData = EditProfileData(crud: Get.find<Crud>());
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
+
+  late TextEditingController firstname;
+  late TextEditingController lastname;
+  late TextEditingController email;
+  late TextEditingController phone;
+  late TextEditingController country;
+  late TextEditingController specialization;
+  late TextEditingController bio;
+
+  void pickImage(ImageSource source) {}
+  Widget buildProfileImage();
 }
 
 class EditprofileControllerIMP extends EditprofileController {
-  Rx<File?> imageFile = Rx<File?>(null);
   final ImagePicker _picker = ImagePicker();
 
-  static const _imageKey = 'profile_image_path';
+  Rx<File?> imageFile = Rx<File?>(null);
+  String? imageBase64;
 
   @override
   void onInit() {
-    name = TextEditingController();
-    Email = TextEditingController();
     super.onInit();
-    _loadSavedImage();
+
+    firstname = TextEditingController();
+    lastname = TextEditingController();
+    phone = TextEditingController();
+    email = TextEditingController();
+    specialization = TextEditingController();
+    country = TextEditingController();
+    bio = TextEditingController();
   }
 
-  Future<void> _loadSavedImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final imagePath = prefs.getString(_imageKey);
-    if (imagePath != null && File(imagePath).existsSync()) {
-      imageFile.value = File(imagePath);
-
-      final userController = Get.find<UserControllerIMP>();
-      userController.updateProfileImage(imagePath);
-    }
+  @override
+  void onClose() {
+    firstname.dispose();
+    lastname.dispose();
+    phone.dispose();
+    email.dispose();
+    specialization.dispose();
+    country.dispose();
+    bio.dispose();
+    super.onClose();
   }
 
-  Future<void> clearImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final imagePath = prefs.getString(_imageKey);
-
-    if (imagePath != null) {
-      final file = File(imagePath);
-      if (file.existsSync()) {
-        await file.delete();
-      }
-
-      final userController = Get.find<UserControllerIMP>();
-      userController.clearUserData();
-    }
-
-    imageFile.value = null;
-    await prefs.remove(_imageKey);
-  }
-
+  @override
   Future<void> pickImage(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-
-    if (pickedFile != null) {
-      final directory = await getApplicationDocumentsDirectory();
-      final fileName = basename(pickedFile.path);
-      final savedImage =
-          await File(pickedFile.path).copy('${directory.path}/$fileName');
-
-      imageFile.value = savedImage;
-
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_imageKey, savedImage.path);
-
-      final userController = Get.find<UserControllerIMP>();
-      userController.updateProfileImage(savedImage.path);
+    try {
+      final pickedFile = await _picker.pickImage(source: source);
+      if (pickedFile != null) {
+        final file = File(pickedFile.path);
+        imageFile.value = file;
+      }
+    } catch (e) {
+      print("Error picking image: $e");
     }
   }
 
@@ -85,12 +81,9 @@ class EditprofileControllerIMP extends EditprofileController {
       builder: (_) => Wrap(
         children: [
           ListTile(
-            leading: Icon(
-              Icons.photo_library,
-              color: Colors.grey,
-            ),
+            leading: const Icon(Icons.photo_library, color: Colors.grey),
             title: Text(
-              'gallery',
+              'Gallery',
               style: TextStyle(
                 color: Colors.grey.shade700,
                 fontFamily: AppFonts.Poppins,
@@ -102,12 +95,9 @@ class EditprofileControllerIMP extends EditprofileController {
             },
           ),
           ListTile(
-            leading: Icon(
-              Icons.camera_alt_rounded,
-              color: Colors.grey,
-            ),
+            leading: const Icon(Icons.camera_alt_rounded, color: Colors.grey),
             title: Text(
-              'take a picture',
+              'Take a picture',
               style: TextStyle(
                 color: Colors.grey.shade700,
                 fontFamily: AppFonts.Poppins,
@@ -118,59 +108,24 @@ class EditprofileControllerIMP extends EditprofileController {
               pickImage(ImageSource.camera);
             },
           ),
-          if (imageFile.value != null)
-            ListTile(
-              leading: Icon(
-                Icons.delete,
-                color: Colors.grey,
-              ),
-              title: Text(
-                'delete the image',
-                style: TextStyle(
-                  color: Colors.grey.shade700,
-                  fontFamily: AppFonts.Poppins,
-                ),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Get.defaultDialog(
-                  contentPadding: EdgeInsets.all(10),
-                  backgroundColor: Appcolor.backgroundLight,
-                  title: "Confirmation",
-                  titleStyle: TextStyle(
-                    fontFamily: AppFonts.Poppins,
-                  ),
-                  middleText: "Do you want to erase the profile picture ?",
-                  middleTextStyle: TextStyle(
-                      color: Colors.grey.shade800,
-                      fontFamily: AppFonts.Poppins,
-                      fontSize: 15),
-                  textConfirm: "delete",
-                  textCancel: "cancel",
-                  confirmTextColor: Colors.white,
-                  onConfirm: () {
-                    clearImage();
-                    Get.back();
-                  },
-                  onCancel: () {},
-                );
-              },
-            ),
         ],
       ),
     );
   }
 
+  @override
   Widget buildProfileImage() {
     return Obx(() {
       return GestureDetector(
         onTap: () => showImagePickerOptions(Get.context!),
         child: CircleAvatar(
-          backgroundColor: Appcolor.backgroundLight,
           radius: 60,
-          backgroundImage: imageFile.value != null
-              ? FileImage(imageFile.value!)
-              : AssetImage(Appimages.person) as ImageProvider,
+          backgroundColor: Appcolor.backgroundLight,
+          backgroundImage:
+              Get.find<UserControllerIMP>().user['profile_image'] == null
+                  ? NetworkImage(
+                      Get.find<UserControllerIMP>().user['profile_image'])
+                  : AssetImage('assets/images/person.png') as ImageProvider,
           child: Align(
             alignment: Alignment.bottomRight,
             child: CircleAvatar(
@@ -186,5 +141,85 @@ class EditprofileControllerIMP extends EditprofileController {
         ),
       );
     });
+  }
+
+  Future<void> editProfile(BuildContext context) async {
+    if (firstname.text.isEmpty &&
+        lastname.text.isEmpty &&
+        phone.text.isEmpty &&
+        email.text.isEmpty &&
+        country.text.isEmpty &&
+        specialization.text.isEmpty &&
+        bio.text.isEmpty &&
+        imageFile.value == null) {
+      showCustomSnackbar(
+        title: 'Validation Error',
+        message: 'Please fill at least one field or select an image to update.',
+        icon: Icons.error,
+        backgroundColor: Colors.red,
+      );
+      return; // ممنوع الإرسال
+    }
+
+    if (!validatePartial()) {
+      showCustomSnackbar(
+        title: 'Validation Error',
+        message: 'Please fill the fields correctly.',
+        icon: Icons.error,
+        backgroundColor: Colors.red,
+      );
+      return;
+    }
+
+    showLoadingDialog(context, 'm2'.tr);
+
+    var response = await editProfileData.getData(
+      firstName: firstname.text,
+      lastName: lastname.text,
+      phone: phone.text,
+      imageFile: imageFile.value, // أرسل ملف الصورة مباشرة
+      bio: bio.text,
+      specialization: specialization.text,
+      country: country.text,
+    );
+
+    statusrequest = handilingData(response);
+
+    if (statusrequest == Statusrequest.success) {
+      if (Get.isDialogOpen ?? false) Get.back();
+
+      Get.find<UserControllerIMP>().getUserData();
+
+      showCustomSnackbar(
+        title: 'The operation was successful'.tr,
+        message: 'User data has been successfully modified'.tr,
+        icon: Icons.done_rounded,
+        backgroundColor: Colors.green,
+      );
+    } else {
+      if (Get.isDialogOpen ?? false) Get.back();
+
+      showCustomSnackbar(
+        title: 'Failed to modify user data'.tr,
+        message: 'a2'.tr,
+        icon: Icons.error,
+        backgroundColor: Colors.red,
+      );
+
+      statusrequest = Statusrequest.failure;
+    }
+
+    update();
+  }
+
+  bool validatePartial() {
+    return firstname.text.isNotEmpty ||
+        lastname.text.isNotEmpty ||
+        phone.text.isNotEmpty ||
+        email.text.isNotEmpty ||
+        country.text.isNotEmpty ||
+        specialization.text.isNotEmpty ||
+        bio.text.isNotEmpty ||
+        imageFile.value != null;
   }
 }

@@ -124,7 +124,7 @@ class CurriculcumInCourse extends StatelessWidget {
                   "Section ${selectedIndex + 1} : ",
                   style: Theme.of(context)
                       .textTheme
-                      .bodyLarge!
+                      .titleLarge!
                       .copyWith(fontSize: 15),
                 ),
                 Text(

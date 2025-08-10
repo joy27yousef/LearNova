@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/profile/settingController.dart';
-import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/confirmationAlert.dart';
@@ -68,15 +67,8 @@ class SettingPage extends StatelessWidget {
                 icon1: Iconsax.edit,
                 icon2: Icons.navigate_next_rounded,
                 onTap: () {
-                  Get.toNamed(AppRoutes.editProfile);
+                  Get.toNamed(AppRoutes.editProfilePage);
                 },
-              ),
-              const SizedBox(height: 10),
-              Listof(
-                title: 'Delete Account',
-                icon1: Iconsax.trash,
-                icon2: Icons.navigate_next_rounded,
-                onTap: () {},
               ),
               const SizedBox(height: 5),
               Listof(

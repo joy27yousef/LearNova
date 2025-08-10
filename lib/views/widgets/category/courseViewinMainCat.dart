@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/categoryController.dart';
-import 'package:learn_nova/core/class/AnimatedListItem.dart';
+import 'package:learn_nova/controller/home/homePageController.dart';
+import 'package:learn_nova/core/class/animatedListItem.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/favoriteHeart.dart';
@@ -15,7 +16,7 @@ class CourseViewinMainCat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CategoryControllerIMP controller = Get.put(CategoryControllerIMP());
+    final HomepagecontrollerIMP controller = Get.put(HomepagecontrollerIMP());
     return Expanded(child: AnimatedListItem(
       child: Obx(() {
         final filteredCourses = controller.selectedCategoryId.value == 0
@@ -58,6 +59,7 @@ class CourseViewinMainCat extends StatelessWidget {
               onTap: () {
                 Get.toNamed(AppRoutes.coursePage, arguments: {
                   'ID': filteredCourses[i]['id'],
+                  'needQuiz': false
                 });
               },
               child: Container(
@@ -114,7 +116,7 @@ class CourseViewinMainCat extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "By ${course['teacher']['name']}",
+                                    "By ${course['teacher']['first_name']} ${course['teacher']['last_name']}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium!
@@ -184,12 +186,13 @@ class CourseViewinMainCat extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    " 24.00 \$",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
+                                  child: Text("${course['price']} SYP",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .copyWith(
+                                              color: Colors.green,
+                                              fontSize: 16)),
                                 ),
                                 FavoriteHeart(
                                   courseId: course['id'],

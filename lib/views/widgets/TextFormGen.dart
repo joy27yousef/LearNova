@@ -26,6 +26,7 @@ class TextFormGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: typekey,
       style: Theme.of(context).textTheme.bodyMedium,
       controller: mycontroller,
       obscureText: obscureText == null || obscureText == false ? false : true,
@@ -47,7 +48,8 @@ class TextFormGen extends StatelessWidget {
         ),
         focusColor: Appcolor.baselight,
         filled: true,
-        fillColor: const Color.fromARGB(255, 250, 249, 255),
+        fillColor: Theme.of(context).colorScheme.background,
+        // const Color.fromARGB(255, 250, 249, 255),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(color: Colors.grey.shade200, width: 3),

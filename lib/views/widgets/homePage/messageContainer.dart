@@ -57,12 +57,17 @@ class Messagecontainer extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      homeScrol[i].content!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge,
+                                    Expanded(
+                                      child: Text(
+                                        homeScrol[i].content!,
+                                        softWrap: true,
+                                        overflow: TextOverflow.visible,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge,
+                                      ),
                                     ),
+                                    SizedBox(width: 10),
                                     Center(
                                       child: Image.asset(
                                         homeScrol[i].image!,

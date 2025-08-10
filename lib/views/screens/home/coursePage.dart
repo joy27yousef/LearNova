@@ -129,20 +129,16 @@ class _CoursePageState extends State<CoursePage> {
                                       .copyWith(fontSize: 20),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.monetization_on,
-                                    color: Appcolor.base,
-                                  ),
-                                  Text(
-                                    "52",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(color: Appcolor.base),
-                                  )
-                                ],
+                              Text(
+                                controller.data['price'] == '0.00'
+                                    ? 'Free'
+                                    : "${controller.data['price']} SPY",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(color: Colors.green),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),

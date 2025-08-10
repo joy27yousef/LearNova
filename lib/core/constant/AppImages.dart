@@ -48,6 +48,9 @@ class Appimages {
   static const String teamwork = "assets/images/teamwork.png";
   static const String enroll = "assets/images/enroll.png";
   static const String addNotes = "assets/images/add-note.png";
+  static const String submit = "assets/images/file-upload.png";
+  static const String graduation = "assets/images/graduation.gif";
+  static const String graduationdark = "assets/images/graduationdark.gif";
   // category
   static const String cat1 = "assets/images/app-development.png";
   static const String cat2 = "assets/images/business.png";
@@ -70,7 +73,7 @@ class Appimages {
   static const String offline = "assets/lottie/offline.json";
   //system
   static const String success = "assets/images/success.png";
-  static const String failure = "assets/images/cancel.png";
+  static const String cancel = "assets/images/cancel.png";
   static const String exitApp = "assets/images/exit.png";
   //ai
   static const String backgrounddark = "assets/backgroundark.png";

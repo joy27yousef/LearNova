@@ -17,14 +17,12 @@ class MyCoursesControllerIMP extends MyCoursesController {
       UserEnrollmentsData(crud: Get.find<Crud>());
   List data = [];
   late double progress;
-
   @override
   getMyCourses(int userID) async {
     statusrequest = Statusrequest.loading;
     update();
 
-    var response = await userEnrollmentsData
-        .getData(Get.find<UserControllerIMP>().userId.value);
+    var response = await userEnrollmentsData.getData(userID);
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {
@@ -44,13 +42,20 @@ class MyCoursesControllerIMP extends MyCoursesController {
     super.onInit();
 
     Future.delayed(Duration.zero, () async {
-      await Future.delayed(Duration(milliseconds: 300));
-      int uid = Get.find<UserControllerIMP>().userId.value;
-      print("✅ Loaded userId after delay: $uid");
+      var userController = Get.find<UserControllerIMP>();
+
+      // انتظار تحميل بيانات المستخدم
+      while (userController.user.isEmpty || userController.user['id'] == null) {
+        print("Waiting for user data...");
+        await Future.delayed(Duration(milliseconds: 100));
+      }
+
+      int uid = userController.user['id'];
+      print("✅ Loaded userId after wait: $uid");
       if (uid != 0) {
         getMyCourses(uid);
       } else {
-        print("❗️userId is still 0 after delay");
+        print("❗️userId is 0");
       }
     });
   }
@@ -72,7 +77,7 @@ class MyCoursesControllerIMP extends MyCoursesController {
     update();
     data.clear();
     var response = await userEnrollmentsData
-        .getData(Get.find<UserControllerIMP>().userId.value);
+        .getData(Get.find<UserControllerIMP>().user['id']);
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {

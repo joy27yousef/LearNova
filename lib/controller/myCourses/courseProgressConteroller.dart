@@ -74,6 +74,7 @@ class CoursepProgresscConteroller extends GetxController {
       completedVideos = response['videosCompleted'] == true ? 1 : 0;
 
       canTakeQuiz = response['canTakeQuiz'] ?? false;
+
       print(
           "📥📥📥 Loaded progress from server: $progress ($completedVideos videos)");
     }
@@ -88,10 +89,10 @@ class CoursepProgresscConteroller extends GetxController {
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {
-      if (!watchedVideoIds.contains(videoId)) {
+      if (!watchedVideoIds.contains(videoId)) { 
         await loadWatchedVideos();
         await updateCourseProgress();
-
+        courseDataController.getQuizesData();
         showCustomSnackbar(
           title: "Well done",
           message: "The video has been successfully completed",

@@ -16,10 +16,12 @@ class TeacherDetails extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 25,
-          backgroundImage: AssetImage(Appimages.person),
+          backgroundImage: controller.data['teacher']['profile_image'] == null
+              ? AssetImage(Appimages.person)
+              : NetworkImage(controller.data['teacher']['profile_image']),
         ),
         title: Text(
-          controller.data['teacher']['name'],
+          "${controller.data['teacher']['first_name']} ${controller.data['teacher']['last_name']}",
           style: Theme.of(context).textTheme.titleLarge,
         ),
         subtitle: Text(

@@ -84,6 +84,10 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   percent_indicator: ^4.2.5
   like_button: ^2.1.0
+  url_launcher: ^6.3.2
+  dio: ^5.9.0
+  marquee: ^2.3.0
+  share_plus: ^11.0.0
 
 flutter_native_splash:
   color: "#6d28d9"
@@ -200,6 +204,9 @@ flutter:
     - assets/images/social.png
     #courses
     - assets/images/enroll.png
+    - assets/images/file-upload.png
+    - assets/images/graduation.gif
+    - assets/images/graduationdark.gif
 
 
 

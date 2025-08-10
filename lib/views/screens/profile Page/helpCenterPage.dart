@@ -177,18 +177,17 @@ class HelpCenterPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Boxtext(
-                  textin: "Send Your Message",
-                  onTapFun: () {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                    controller.sendMessage(context);
-                  }),
-              SizedBox(
-                height: 60,
-              ),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+        child: Boxtext(
+            textin: "Send Your Message",
+            onTapFun: () {
+              controller.sendMessage(context);
+            }),
       ),
     );
   }

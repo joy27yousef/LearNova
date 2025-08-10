@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:learn_nova/core/constant/AppColor.dart';
 
 void showRegisterConfirmation(BuildContext context, VoidCallback onConfirm,
     String title, String desc, String cancel, String confirm) {

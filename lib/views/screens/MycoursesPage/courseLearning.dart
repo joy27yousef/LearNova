@@ -1,23 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
+import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/controller/myCourses/courseProgressConteroller.dart';
 import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
+
 import 'package:learn_nova/core/class/handilingDataView.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/curriculcumInCourse.dart';
+import 'package:learn_nova/views/screens/MycoursesPage/gradesDone.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/gradesPage.dart';
-import 'package:learn_nova/views/widgets/course/descriptionPart.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/notesPage.dart';
+import 'package:learn_nova/views/widgets/course/descriptionPart.dart';
 
-class CourseLearning extends StatelessWidget {
+class CourseLearning extends StatefulWidget {
+  const CourseLearning({super.key});
+
+  @override
+  State<CourseLearning> createState() => _CourseLearningState();
+}
+
+class _CourseLearningState extends State<CourseLearning>
+    with TickerProviderStateMixin {
   final MyCoursesControllerIMP myCoursesController = Get.find();
 
-  CourseLearning({super.key});
-
   final List<String> titleScroll = ['Home', 'Grades', 'Notes', 'Info'];
+
+  late TabController tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    int initialTabIndex = Get.arguments?['tabIndex'] ?? 0;
+    tabController = TabController(
+      length: titleScroll.length,
+      vsync: this,
+      initialIndex: initialTabIndex,
+    );
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +58,16 @@ class CourseLearning extends StatelessWidget {
         Get.delete<CoursepProgresscConteroller>();
         return true;
       },
-      child: GetBuilder<CourseControllerIMP>(
-        init: CourseControllerIMP(),
-        builder: (controller) {
-          return DefaultTabController(
-            length: titleScroll.length,
-            child: Container(
+      child: WillPopScope(
+        onWillPop: () async {
+          Get.find<MainpagecontrollerIMP>().changePage(1);
+          Get.offAllNamed(AppRoutes.mainPage);
+          return false;
+        },
+        child: GetBuilder<CourseControllerIMP>(
+          init: CourseControllerIMP(),
+          builder: (controller) {
+            return Container(
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Scaffold(
                 appBar: AppBar(
@@ -50,7 +85,15 @@ class CourseLearning extends StatelessWidget {
                                   [translationData()],
                             });
                           } else if (value == 1) {
-                            controller.unEnroll(context);
+                            confirmationAelrt(
+                                context,
+                                Appimages.cancel,
+                                'Do you really want to cancel the course registration??\n you will lose your subscription to the course',
+                                'No, keep the record',
+                                'Unenroll',
+                                Colors.red, () {
+                              controller.unEnroll(context);
+                            });
                           }
                         },
                         icon: const Icon(Icons.more_vert),
@@ -74,7 +117,7 @@ class CourseLearning extends StatelessWidget {
                             value: 1,
                             child: Row(
                               children: [
-                                Icon(Icons.logout_rounded, color: Colors.red),
+                                Icon(Iconsax.trash, color: Colors.red),
                                 SizedBox(width: 10),
                                 Text("Unenroll"),
                               ],
@@ -90,7 +133,10 @@ class CourseLearning extends StatelessWidget {
                       Icons.arrow_back_ios_new_rounded,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
-                    onPressed: () => Get.back(),
+                    onPressed: () {
+                      Get.find<MainpagecontrollerIMP>().changePage(1);
+                      Get.offAllNamed(AppRoutes.mainPage);
+                    },
                   ),
                   title: Text(
                     controller.data['title']?[translationData()] ?? 'Loading..',
@@ -120,6 +166,7 @@ class CourseLearning extends StatelessWidget {
                           ),
                         ),
                         child: TabBar(
+                          controller: tabController,
                           indicatorColor: Appcolor.base,
                           labelColor: Appcolor.base,
                           unselectedLabelColor: Colors.grey,
@@ -142,9 +189,10 @@ class CourseLearning extends StatelessWidget {
                 body: Handilingdataview(
                   statusrequest: controller.statusrequest,
                   widget: TabBarView(
+                    controller: tabController,
                     children: [
                       CurriculcumInCourse(),
-                      Grades(),
+                      controller.hasAttempt ? GradesDone() : Grades(),
                       AllNotesPage(),
                       Padding(
                         padding: const EdgeInsets.all(15),
@@ -158,9 +206,9 @@ class CourseLearning extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

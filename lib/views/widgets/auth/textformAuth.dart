@@ -9,41 +9,48 @@ class TextformAuth extends StatelessWidget {
   final TextEditingController mycontroller;
   final TextInputType typekey;
   final String? Function(String?) valid;
-  final bool? obscureText;
+  final bool obscureText; // ✅ أصبح غير nullable
   final void Function()? onTapicon;
   final Color? color;
 
-  const TextformAuth(
-      {super.key,
-      required this.hint,
-      required this.lable,
-      required this.iconform,
-      required this.mycontroller,
-      required this.typekey,
-      required this.valid,
-      this.obscureText,
-      this.onTapicon,
-      this.color});
+  const TextformAuth({
+    super.key,
+    required this.hint,
+    required this.lable,
+    required this.iconform,
+    required this.mycontroller,
+    required this.typekey,
+    required this.valid,
+    this.obscureText = false, // ✅ قيمة افتراضية
+    this.onTapicon,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
     final storage = GetStorage();
     return TextFormField(
+      keyboardType: typekey,
+
       autofocus: false,
       style: Theme.of(context).textTheme.bodySmall,
       controller: mycontroller,
-      obscureText: obscureText == null || obscureText == false ? false : true,
+      obscureText: obscureText, // ✅ لا حاجة للفحص
       validator: valid,
       cursorColor: Appcolor.base,
       decoration: InputDecoration(
         errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: const Color.fromARGB(255, 170, 0, 71),
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 170, 0, 71),
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ),
         hintText: hint,
         hintStyle: TextStyle(
-            color: Colors.grey, fontWeight: FontWeight.w300, fontSize: 15),
+          color: Colors.grey,
+          fontWeight: FontWeight.w300,
+          fontSize: 15,
+        ),
         suffixIcon: InkWell(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           onTap: onTapicon,
@@ -51,7 +58,7 @@ class TextformAuth extends StatelessWidget {
         ),
         focusColor: Appcolor.base,
         filled: true,
-        fillColor: storage.read('isDarkMode')
+        fillColor: storage.read('isDarkMode') == true
             ? Colors.grey.shade900
             : const Color.fromARGB(255, 250, 249, 255),
         enabledBorder: OutlineInputBorder(
@@ -70,7 +77,10 @@ class TextformAuth extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Text(
             lable,
-            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ),

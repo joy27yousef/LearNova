@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/function/ckeckInternet.dart';
@@ -175,6 +177,54 @@ class Crud {
       }
     } catch (e) {
       print("❌ Exception during PUT request: $e");
+      return Left(Statusrequest.serverException);
+    }
+  }
+
+  Future<Either<Statusrequest, Map>> postRequestWithFileDio({
+    required String url,
+    required Map<String, dynamic> data,
+    File? file,
+    String? fileFieldName,
+    bool withToken = false,
+  }) async {
+    try {
+      Dio dio = Dio();
+
+      // تجهيز الـ headers
+      Map<String, String> headers = {
+        "Accept": "application/json",
+      };
+
+      if (withToken) {
+        final box = GetStorage();
+        String? token = box.read('token');
+        if (token != null && token.isNotEmpty) {
+          headers['Authorization'] = 'Bearer $token';
+        }
+      }
+
+      dio.options.headers = headers;
+
+      // تجهيز الـ FormData
+      FormData formData = FormData.fromMap(data);
+
+      if (file != null && fileFieldName != null) {
+        formData.files.add(MapEntry(
+          fileFieldName,
+          await MultipartFile.fromFile(file.path),
+        ));
+      }
+
+      var response = await dio.post(url, data: formData);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(response.data);
+      } else {
+        return Left(Statusrequest.serverfailure);
+      }
+    } catch (e) {
+      print("❌ Exception during DIO multipart POST request: $e");
       return Left(Statusrequest.serverException);
     }
   }
