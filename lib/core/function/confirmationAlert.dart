@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future confirmationAelrt(image, String content,
-    String cancel, String confirmation, Color color, Function()? onTap) {
+Future confirmationAelrt(image, String content, String cancel,
+    String confirmation, Color color, Function()? onTap) {
   Get.defaultDialog(
     backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
     title: '',
@@ -28,20 +28,18 @@ Future confirmationAelrt(image, String content,
           children: [
             InkWell(
               onTap: onTap,
-              child: Flexible(
-                child: Container(
-                  height: 40,
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Center(
-                    child: Text(confirmation,
-                        style: Theme.of(Get.context!)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(color: Colors.white)),
-                  ),
+              child: Container(
+                height: 40,
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Center(
+                  child: Text(confirmation,
+                      style: Theme.of(Get.context!)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(color: Colors.white)),
                 ),
               ),
             ),
