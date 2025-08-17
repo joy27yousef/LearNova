@@ -19,7 +19,7 @@ class SettingControllerIMP extends SettingController {
   localController controllerLang = Get.put(localController());
 
   logout(BuildContext context) async {
-    showLoadingDialog(context, 'Logging out is underway..');
+    showLoadingDialog('Logging out is underway..');
     LogoutData logoutData = LogoutData(crud: Get.find<Crud>());
     var status = await logoutData.getData();
     if (status == Statusrequest.success) {

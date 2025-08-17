@@ -38,12 +38,16 @@ class OnbpardingHeader extends GetView<OnboardingcontrollerIMP> {
             },
             child: Text(
               "1".tr,
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontSize: screenWidth * 0.06, //23
-                fontWeight: FontWeight.w500,
-                fontFamily: AppFonts.WorkSans,
-              ),
+              // style: TextStyle(
+              //   color: Colors.grey.shade700,
+              //   fontSize: screenWidth * 0.06, //23
+              //   fontWeight: FontWeight.w500,
+              //   fontFamily: AppFonts.WorkSans,
+              // ),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontSize: 20, fontWeight: FontWeight.normal),
             ),
           ),
         ],

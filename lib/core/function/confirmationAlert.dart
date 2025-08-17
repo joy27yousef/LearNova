@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Future confirmationAelrt(BuildContext context, image, String content,
+Future confirmationAelrt(image, String content,
     String cancel, String confirmation, Color color, Function()? onTap) {
   Get.defaultDialog(
-    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    backgroundColor: Theme.of(Get.context!).scaffoldBackgroundColor,
     title: '',
     titlePadding: EdgeInsets.zero,
     contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -21,7 +21,7 @@ Future confirmationAelrt(BuildContext context, image, String content,
             softWrap: true,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleMedium),
+            style: Theme.of(Get.context!).textTheme.titleMedium),
         SizedBox(height: 30),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -37,7 +37,7 @@ Future confirmationAelrt(BuildContext context, image, String content,
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Center(
                     child: Text(confirmation,
-                        style: Theme.of(context)
+                        style: Theme.of(Get.context!)
                             .textTheme
                             .titleLarge!
                             .copyWith(color: Colors.white)),
@@ -50,7 +50,7 @@ Future confirmationAelrt(BuildContext context, image, String content,
                 Get.back();
               },
               child: Text(cancel,
-                  style: Theme.of(context)
+                  style: Theme.of(Get.context!)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: color, fontSize: 17)),

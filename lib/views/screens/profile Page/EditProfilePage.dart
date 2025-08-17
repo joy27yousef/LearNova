@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/profile/EditprofileController.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
+import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/core/function/validinput.dart';
 import 'package:learn_nova/views/widgets/TextFormGen.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
@@ -79,20 +81,6 @@ class EditProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Email
-              TextFormGen(
-                hint: 'Email',
-                lable: 'Email',
-                iconform: Icon(Icons.email, color: Colors.grey.shade400),
-                mycontroller: controller.email,
-                typekey: TextInputType.emailAddress,
-                valid: (val) {
-                  if (val == null || val.isEmpty) return null;
-                  return validInput(val, 2, 100, 'email');
-                },
-              ),
-              const SizedBox(height: 20),
-
               // Country
               TextFormGen(
                 hint: 'Country',
@@ -114,8 +102,14 @@ class EditProfilePage extends StatelessWidget {
                 iconform: Icon(Icons.work, color: Colors.grey.shade400),
                 mycontroller: controller.specialization,
                 typekey: TextInputType.text,
+                // valid: (val) {
+                //   if (val == null || val.isEmpty) return null;
+                //   return validInput(val, 2, 100, 'name');
+                // },
                 valid: (val) {
-                  if (val == null || val.isEmpty) return null;
+                  if (val == null || val.isEmpty) {
+                    return 'This field cannot be empty'; // رسالة لمنع الفراغ
+                  }
                   return validInput(val, 2, 100, 'name');
                 },
               ),
@@ -139,11 +133,19 @@ class EditProfilePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 15),
         child: Boxtext(
           textin: "Update",
           onTapFun: () {
-            controller.editProfile(context);
+            confirmationAelrt(
+         
+                Appimages.editProfile,
+                'Do you really want to edit your data??',
+                'No, leave it',
+                'Yes, edit it',
+                Colors.blueAccent, () {
+              controller.editProfile();
+            });
           },
         ),
       ),

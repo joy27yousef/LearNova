@@ -45,7 +45,7 @@ class LoginControllerImp extends LoginController {
   login(BuildContext context) async {
     if (formstate.currentState!.validate()) {
       print('valid');
-      showLoadingDialog(context, 'm2'.tr);
+      showLoadingDialog( 'm2'.tr);
       var response = await loginData.getData(email.text, password.text);
       statusrequest = handilingData(response);
       if (Statusrequest.success == statusrequest) {

@@ -29,8 +29,25 @@ class CoursepProgresscConteroller extends GetxController {
 
   double progress = 0.0;
   int completedVideos = 0;
-  bool canTakeQuiz = false;
 
+  // @override
+  // void onInit() {
+  //   super.onInit();
+
+  //   // مراقبة التغييرات في الأقسام وتحويلها إلى كائنات CourseSection
+  //   ever(courseDataController.sections, (newSections) {
+  //     if (newSections != null) {
+  //       sections.value = (newSections as List)
+  //           .map((e) => CourseSection.fromJson(e))
+  //           .toList();
+  //     }
+  //   });
+
+  //   ever(sections, (_) {
+  //     loadWatchedVideos();
+  //     loadCourseProgress();
+  //   });
+  // }
   @override
   void onInit() {
     super.onInit();
@@ -44,11 +61,25 @@ class CoursepProgresscConteroller extends GetxController {
       }
     });
 
-    // عند تغيير الأقسام يتم تحميل الفيديوهات المشاهدة وتقدم الكورس
-    ever(sections, (_) {
-      loadWatchedVideos();
-      loadCourseProgress();
+    ever(sections, (_) async {
+      await loadWatchedVideos();
+
+      // تحديث التقدم محلياً بناءً على الفيديوهات المشاهدة
+      progress = calculateProgress();
+      print(
+          "📊 Initial progress calculatedddddddddddddddddddddddddddddddddddddddddddddddddddd: $progress%");
+      await updateCourseProgress();
+      await loadCourseProgress(); // إذا أردت تحديثه من السيرفر لاحقاً
     });
+  }
+
+// دالة لحساب التقدم محلياً
+  double calculateProgress() {
+    int totalVideos = getTotalVideos();
+    if (totalVideos == 0) return 0.0;
+
+    int completedCount = getCompletedVideosCount();
+    return (completedCount / totalVideos) * 100;
   }
 
   Future<void> loadWatchedVideos() async {
@@ -72,9 +103,6 @@ class CoursepProgresscConteroller extends GetxController {
     if (statusrequest == Statusrequest.success) {
       progress = double.tryParse(response['progress'].toString()) ?? 0.0;
       completedVideos = response['videosCompleted'] == true ? 1 : 0;
-
-      canTakeQuiz = response['canTakeQuiz'] ?? false;
-
       print(
           "📥📥📥 Loaded progress from server: $progress ($completedVideos videos)");
     }
@@ -89,9 +117,13 @@ class CoursepProgresscConteroller extends GetxController {
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {
-      if (!watchedVideoIds.contains(videoId)) { 
-        await loadWatchedVideos();
+      if (!watchedVideoIds.contains(videoId)) {
+        // تحديث محلي لقائمة الفيديوهات
+        watchedVideoIds.add(videoId);
+
+        // تحديث نسبة التقدم محلياً
         await updateCourseProgress();
+
         courseDataController.getQuizesData();
         showCustomSnackbar(
           title: "Well done",
@@ -101,14 +133,18 @@ class CoursepProgresscConteroller extends GetxController {
         );
 
         Get.find<MyCoursesControllerIMP>().refreshCourses();
+
         goToNextVideo(videoId);
       } else {
+        // إذا الفيديو مشاهد من قبل
         showCustomSnackbar(
           title: "Info",
-          message: "Video already marked as watched",
-          icon: Icons.info,
+          message: "Video already watched, moving to next",
+          icon: Icons.fast_forward,
           backgroundColor: Colors.blue,
         );
+
+        goToNextVideo(videoId);
       }
     } else {
       showCustomSnackbar(
@@ -123,45 +159,61 @@ class CoursepProgresscConteroller extends GetxController {
 
   bool canOpenVideo(
       int videoId, int sectionIndex, List<CourseVideo> videoList) {
-    return true; // يمكنك تعديل المنطق حسب الحاجة
+    if (courseDataController.data['is_sequential'] == 1) {
+      int index = videoList.indexWhere((v) => v.id == videoId);
+      if (index == 0) {
+        if (sectionIndex == 0) return true;
+        var previousVideos = sections[sectionIndex - 1].videos;
+        return previousVideos.every((v) => watchedVideoIds.contains(v.id));
+      }
+      return watchedVideoIds.contains(videoList[index - 1].id);
+    } else {
+      return true;
+    }
   }
 
   bool canOpenSection(int sectionIndex) {
-    return true; // يمكنك تعديل المنطق حسب الحاجة
+    if (courseDataController.data['is_sequential'] == 1) {
+      if (sectionIndex == 0) return true;
+      var previousVideos = sections[sectionIndex - 1].videos;
+      return previousVideos.every((v) => watchedVideoIds.contains(v.id));
+    } else {
+      return true;
+    }
   }
 
   void goToNextVideo(int currentVideoId) {
+    bool foundCurrent = false;
+
     for (int s = 0; s < sections.length; s++) {
       var section = sections[s];
       for (int i = 0; i < section.videos.length; i++) {
         if (section.videos[i].id == currentVideoId) {
-          if (i + 1 < section.videos.length) {
-            var nextVideo = section.videos[i + 1];
-            Get.offNamed(AppRoutes.videoPage, arguments: {
-              "videoId": nextVideo.id,
-              "title": nextVideo.title,
-              "videoUrl": nextVideo.videoUrl,
-            });
-            return;
-          } else if (s + 1 < sections.length) {
-            var nextSection = sections[s + 1];
-            if (nextSection.videos.isNotEmpty) {
-              var nextVideo = nextSection.videos[0];
-              Get.offNamed(AppRoutes.videoPage, arguments: {
-                "videoId": nextVideo.id,
-                "title": nextVideo.title,
-                "videoUrl": nextVideo.videoUrl,
-              });
-              return;
-            }
+          foundCurrent = true;
+          continue;
+        }
+
+        if (foundCurrent) {
+          // نتخطى الفيديوهات المشاهدة
+          if (watchedVideoIds.contains(section.videos[i].id)) {
+            continue;
           }
+
+          // نفتح أول فيديو جديد
+          Get.offNamed(AppRoutes.videoPage, arguments: {
+            "videoId": section.videos[i].id,
+            "title": section.videos[i].title,
+            "videoUrl": section.videos[i].videoUrl,
+          });
+          return;
         }
       }
     }
 
+    // إذا ما في أي فيديو جديد
     showCustomSnackbar(
       title: "🎉 Congratulations",
-      message: "you finished all the videos!",
+      message: "You finished all the videos!",
       icon: Icons.celebration,
       backgroundColor: Appcolor.base,
     );
@@ -213,21 +265,3 @@ class CoursepProgresscConteroller extends GetxController {
     return count;
   }
 }
-  // bool canOpenVideo(
-  //     int videoId, int sectionIndex, List<CourseVideo> videoList) {
-  //   int index = videoList.indexWhere((v) => v.id == videoId);
-
-  //   if (index == 0) {
-  //     if (sectionIndex == 0) return true;
-  //     var previousVideos = sections[sectionIndex - 1].videos;
-  //     return previousVideos.every((v) => watchedVideoIds.contains(v.id));
-  //   }
-
-  //   return watchedVideoIds.contains(videoList[index - 1].id);
-  // }
-
-    // bool canOpenSection(int sectionIndex) {
-  //   if (sectionIndex == 0) return true;
-  //   var previousVideos = sections[sectionIndex - 1].videos;
-  //   return previousVideos.every((v) => watchedVideoIds.contains(v.id));
-  // }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
@@ -21,25 +22,29 @@ class Appbarhomepage extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.only(start: 20, top: 8),
-                  child: Obx(() {
-                    final user = userController.user;
-                    if (user.isEmpty || user['profile_image'] == null) {
-                      return CircleAvatar(
-                        radius: 25,
-                        backgroundImage: AssetImage(Appimages.person),
-                      );
-                    } else {
-                      return CircleAvatar(
-                        radius: 25,
-                        backgroundImage: NetworkImage(user['profile_image']),
-                      );
-                    }
-                  }),
+                  padding: const EdgeInsetsDirectional.only(start: 20, top: 8),
+                  child: InkWell(
+                    onTap: () {
+                      Get.find<MainpagecontrollerIMP>().changePage(3);
+                      Get.offAllNamed(AppRoutes.mainPage);
+                    },
+                    child: Obx(() {
+                      final user = userController.user;
+                      if (user.isEmpty || user['profile_image'] == null) {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundImage: AssetImage(Appimages.person),
+                        );
+                      } else {
+                        return CircleAvatar(
+                          radius: 25,
+                          backgroundImage: NetworkImage(user['profile_image']),
+                        );
+                      }
+                    }),
+                  ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 RichText(
                   text: TextSpan(
                     children: [
@@ -57,9 +62,9 @@ class Appbarhomepage extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(end: 30),
+              padding: const EdgeInsetsDirectional.only(end: 30),
               child: InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
                 onTap: () {
                   Get.toNamed(AppRoutes.searhPage);
                 },
@@ -71,29 +76,33 @@ class Appbarhomepage extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(
-          height: 5,
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          height: 25,
-          child: Marquee(
-            text: userController.user['bio'] ?? '',
-            style: Theme.of(context).textTheme.titleMedium,
-            scrollAxis: Axis.horizontal,
-            blankSpace: 50.0,
-            velocity: 40.0,
-            pauseAfterRound: Duration(seconds: 1),
-            startPadding: 10.0,
-            accelerationDuration: Duration(seconds: 1),
-            accelerationCurve: Curves.linear,
-            decelerationDuration: Duration(milliseconds: 500),
-            decelerationCurve: Curves.easeOut,
-          ),
-        )
+        const SizedBox(height: 5),
+        Obx(() {
+          final bio = (userController.user['bio'] ?? '').toString();
+          if (bio.trim().isEmpty) {
+            return const SizedBox(height: 25);
+          }
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            height: 25,
+            child: Marquee(
+              text: bio,
+              style: Theme.of(context).textTheme.titleMedium,
+              scrollAxis: Axis.horizontal,
+              blankSpace: 50.0,
+              velocity: 40.0,
+              pauseAfterRound: const Duration(seconds: 1),
+              startPadding: 10.0,
+              accelerationDuration: const Duration(seconds: 1),
+              accelerationCurve: Curves.linear,
+              decelerationDuration: const Duration(milliseconds: 500),
+              decelerationCurve: Curves.easeOut,
+            ),
+          );
+        }),
       ],
     );
   }

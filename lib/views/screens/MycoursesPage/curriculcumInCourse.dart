@@ -174,6 +174,7 @@ class CurriculcumInCourse extends StatelessWidget {
                         'videoId': videoId,
                         'videoUrl': video['video_url'],
                         'title': title,
+                        'courseId': courseController.idCourse,
                       });
                     },
                     child: Container(

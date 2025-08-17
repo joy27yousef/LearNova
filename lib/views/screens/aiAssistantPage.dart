@@ -12,6 +12,7 @@ class AiAssistantPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final storage = GetStorage();
+    final bool isDark = storage.read('isDarkMode') ?? false; // ✅ حل مشكلة null
     AiAssistantController controller = Get.put(AiAssistantController());
 
     return Form(
@@ -31,12 +32,14 @@ class AiAssistantPage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: storage.read('isDarkMode')
+                    image: isDark
                         ? AssetImage(Appimages.backgrounddark)
                         : AssetImage(Appimages.background),
                     fit: BoxFit.cover,
                   ),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(25),
+                  ),
                 ),
                 padding: const EdgeInsets.all(16),
                 child: GetBuilder<AiAssistantController>(
@@ -65,12 +68,12 @@ class AiAssistantPage extends StatelessWidget {
                                         vertical: 6, horizontal: 12),
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: storage.read('isDarkMode')
+                                      color: isDark
                                           ? Colors.grey[700]
                                           : Colors.grey[200],
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Text("typing..."),
+                                    child: const Text("typing..."),
                                   ),
                                 );
                               }
@@ -85,7 +88,7 @@ class AiAssistantPage extends StatelessWidget {
                                       vertical: 6, horizontal: 12),
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
-                                    color: storage.read('isDarkMode') == true
+                                    color: isDark
                                         ? (msg.isUser
                                             ? Appcolor.base
                                             : Colors.grey[700])
@@ -95,7 +98,8 @@ class AiAssistantPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Text(
-                                      msg.isUser ? msg.question : msg.answer),
+                                    msg.isUser ? msg.question : msg.answer,
+                                  ),
                                 ),
                               );
                             },
@@ -110,7 +114,7 @@ class AiAssistantPage extends StatelessWidget {
                           lable: 'Send Message',
                           iconform: Icon(
                             Icons.send,
-                            color: Appcolor.baselight2,
+                            color: Appcolor.baselight3,
                           ),
                           mycontroller: controller.messageSend,
                           typekey: TextInputType.text,

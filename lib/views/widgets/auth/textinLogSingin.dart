@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+
 class Textinlogsingin extends StatelessWidget {
   final String text1;
   final String text2;
@@ -15,8 +16,10 @@ class Textinlogsingin extends StatelessWidget {
               color: Appcolor.base, fontSize: 30, fontWeight: FontWeight.bold)),
       TextSpan(
           text: text2,
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: Colors.black54, fontSize: 17, fontWeight: FontWeight.w400))
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(fontSize: 17, fontWeight: FontWeight.w400))
     ]));
   }
 }

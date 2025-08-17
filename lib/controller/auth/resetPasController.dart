@@ -8,7 +8,7 @@ import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/data/source/remote/auth/resetPassword.dart';
 
 abstract class Resetpascontroller extends GetxController {
-  savePass(BuildContext context);
+  savePass();
 }
 
 class ResetpascontrollerIMP extends Resetpascontroller {
@@ -21,12 +21,14 @@ class ResetpascontrollerIMP extends Resetpascontroller {
   late TextEditingController confirmPassword;
   late Statusrequest statusrequest;
   bool isShowPassword = true;
+  late String page;
 
   @override
   void onInit() {
     password = TextEditingController();
     confirmPassword = TextEditingController();
     userId = Get.arguments['user_id'];
+    page = Get.arguments['page'];
     super.onInit();
   }
 
@@ -38,8 +40,8 @@ class ResetpascontrollerIMP extends Resetpascontroller {
   }
 
   @override
-  savePass(BuildContext context) async {
-    showLoadingDialog(context, 'm5'.tr);
+  savePass() async {
+    showLoadingDialog('m5'.tr);
     var response = await resetpassword.getData(
         userId, code, password.text, confirmPassword.text);
     response.fold(
@@ -64,7 +66,11 @@ class ResetpascontrollerIMP extends Resetpascontroller {
               backgroundColor: Colors.green);
 
           update();
-          Get.offAllNamed(AppRoutes.login);
+          if (page == 'login') {
+            Get.offAllNamed(AppRoutes.login);
+          } else {
+            Get.offAllNamed(AppRoutes.settingsPage);
+          }
         } else {
           if (Get.isDialogOpen ?? false) {
             Get.back();

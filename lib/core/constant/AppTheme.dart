@@ -67,6 +67,7 @@ ThemeData lightThemeEN = ThemeData(
         fontWeight: FontWeight.normal),
   ),
   colorScheme: ColorScheme.light(
+      onBackground: Colors.grey.shade400,
       primary: Appcolor.base,
       secondary: Colors.black,
       background: Colors.grey.shade100),
@@ -84,6 +85,7 @@ ThemeData darkThemeEN = ThemeData(
         fontWeight: FontWeight.bold),
     backgroundColor: Appcolor.backgroundDark,
     foregroundColor: Colors.white,
+    scrolledUnderElevation: 0,
     elevation: 0,
   ),
   textTheme: TextTheme(
@@ -137,6 +139,7 @@ ThemeData darkThemeEN = ThemeData(
         fontWeight: FontWeight.normal),
   ),
   colorScheme: ColorScheme.dark(
+      onBackground: Colors.grey.shade600,
       primary: Appcolor.base,
       secondary: Colors.white,
       // background: Colors.grey.shade700
@@ -149,6 +152,7 @@ ThemeData lightThemeAR = ThemeData(
   primaryColor: Appcolor.base,
   scaffoldBackgroundColor: Appcolor.backgroundLight,
   appBarTheme: AppBarTheme(
+    scrolledUnderElevation: 0,
     titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
@@ -202,6 +206,7 @@ ThemeData lightThemeAR = ThemeData(
         fontWeight: FontWeight.normal),
   ),
   colorScheme: ColorScheme.light(
+    onBackground: Colors.grey.shade400,
     primary: Appcolor.base,
     secondary: Colors.black,
     background: Colors.grey.shade100,
@@ -221,6 +226,7 @@ ThemeData darkThemeAR = ThemeData(
     backgroundColor: Appcolor.backgroundDark,
     foregroundColor: Colors.white,
     elevation: 0,
+    scrolledUnderElevation: 0,
   ),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
@@ -267,6 +273,7 @@ ThemeData darkThemeAR = ThemeData(
         fontWeight: FontWeight.normal),
   ),
   colorScheme: ColorScheme.dark(
+      onBackground: Colors.grey.shade600,
       primary: Appcolor.base,
       secondary: Colors.white,
       background: Color.fromARGB(255, 65, 57, 86)),

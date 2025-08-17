@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
+import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/customSnackBar.dart';
@@ -20,8 +21,10 @@ class Grades extends StatelessWidget {
       if (controller.statusrequest == Statusrequest.failure) {
         return Center(child: Text("❌ Failed to load data"));
       }
-
       final bool canTakeQuiz = controller.canTakeQuiz;
+
+      int sequential = controller.data["is_sequential"];
+      int reqprogress = sequential == 1 ? 100 : 80;
 
       return ListView(
         children: [
@@ -79,7 +82,7 @@ class Grades extends StatelessWidget {
                         Text(
                           canTakeQuiz
                               ? 'Take Quiz'
-                              : 'Complete ${100 - controller.progress}% to unlock',
+                              : 'Complete ${reqprogress - controller.progress}% to unlock',
                           style: canTakeQuiz
                               ? Theme.of(context)
                                   .textTheme
@@ -90,30 +93,38 @@ class Grades extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 20),
-                    Text(
-                      controller.quizData['title'] ?? 'No Title',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      controller.quizData['description'] ?? '',
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontSize: 15, fontWeight: FontWeight.normal),
-                    ),
-                    SizedBox(height: 20),
                     if (canTakeQuiz) ...[
-                      Row(
+                      Column(
                         children: [
-                          Icon(Icons.timer, color: Colors.orange),
-                          SizedBox(width: 5),
+                          SizedBox(height: 20),
                           Text(
-                            "Time Limit: ${controller.quizData['time_limit'] ?? '-'}",
+                            controller.quizData['title'] ?? '',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            controller.quizData['description'] ?? '',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
                                 .copyWith(
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal),
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.timer, color: Colors.orange),
+                              SizedBox(width: 5),
+                              Text(
+                                "Time Limit: ${controller.quizData['time_limit'] ?? '-'}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.normal),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -132,8 +143,30 @@ class Grades extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ] else ...[
+                      Column(
+                        children: [
+                          LinearProgressIndicator(
+                            value: controller.progress / 100,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            backgroundColor: Colors.grey[300],
+                            color: Appcolor.base,
+                            minHeight: 12,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '${controller.progress} / $reqprogress completed',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(fontSize: 12),
+                          )
+                        ],
+                      ),
                     ]
-                  ],
+                  ], //
                 ),
               ),
             ),

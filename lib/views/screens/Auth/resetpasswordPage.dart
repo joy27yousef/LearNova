@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/auth/resetPasController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
@@ -34,7 +36,9 @@ class Resetpassword extends StatelessWidget {
                 Expanded(
                     flex: 1,
                     child: Image.asset(
-                      Appimages.resetpassword,
+                      Get.find<ThemeController>().isDarkMode.value
+                          ? Appimages.resetpasswordDark
+                          : Appimages.resetpassword,
                       width: 300,
                     )),
                 SizedBox(
@@ -46,7 +50,11 @@ class Resetpassword extends StatelessWidget {
                       children: [
                         Text(
                           "Please enter the 6-digit code sent to your email.",
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 20),
@@ -64,10 +72,14 @@ class Resetpassword extends StatelessWidget {
                         Text(
                           '34'.tr,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         GetBuilder<ResetpascontrollerIMP>(
                           builder: (controller) => TextformAuth(
@@ -81,7 +93,9 @@ class Resetpassword extends StatelessWidget {
                             hint: '16'.tr,
                             lable: '17'.tr,
                             iconform: Icon(
-                              Icons.lock_outline_rounded,
+                              controller.isShowPassword
+                                  ? FontAwesomeIcons.solidEyeSlash
+                                  : FontAwesomeIcons.solidEye,
                               color: Appcolor.baselight2,
                             ),
                             mycontroller: controller.password,
@@ -99,13 +113,19 @@ class Resetpassword extends StatelessWidget {
                             onTapicon: () {
                               controller.showPassword();
                             },
-                            valid: (val) {
-                              return validInput(val!, 8, 100, 'password');
-                            },
+                            valid: (val) => validInput(
+                              val ?? "",
+                              6,
+                              30,
+                              "confirmPassword",
+                              compareWith: controller.password.text,
+                            ),
                             hint: '25'.tr,
                             lable: '26'.tr,
                             iconform: Icon(
-                              Icons.lock_outline_rounded,
+                              controller.isShowPassword
+                                  ? FontAwesomeIcons.solidEyeSlash
+                                  : FontAwesomeIcons.solidEye,
                               color: Appcolor.baselight2,
                             ),
                             mycontroller: controller.confirmPassword,
@@ -118,7 +138,7 @@ class Resetpassword extends StatelessWidget {
                         Boxtext(
                           textin: '33'.tr,
                           onTapFun: () {
-                            controller.savePass(context);
+                            controller.savePass();
                           },
                         ),
                       ],

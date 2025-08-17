@@ -58,7 +58,7 @@ class MainCategory extends StatelessWidget {
       ),
       body: SafeArea(
           child: Handilingdataview(
-        statusrequest: controller.statusrequest,
+        statusrequests: [controller.categoryStatusrequest],
         widget: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

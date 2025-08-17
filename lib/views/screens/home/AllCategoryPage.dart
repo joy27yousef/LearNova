@@ -63,7 +63,10 @@ class AllCategoryPage extends StatelessWidget {
                             controller.maincategories[i]['name']
                                 [translationData()],
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleLarge),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(fontSize: 16)),
                       ],
                     ),
                   ),

@@ -21,9 +21,15 @@ abstract class CourseController extends GetxController {
 }
 
 class CourseControllerIMP extends CourseController {
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
   late TextEditingController title;
+  late TextEditingController noteTitle;
 
   late TextEditingController content;
+  ViewVideoNotesData viewVideoNotesData =
+      ViewVideoNotesData(crud: Get.find<Crud>());
+
+  RxList allVideoNotes = <Map<String, dynamic>>[].obs;
   CourseData courseData = CourseData(crud: Get.find<Crud>());
   CourseEnrollData courseEnroll = CourseEnrollData(crud: Get.find<Crud>());
   DeleteNotesData deleteNotesData = DeleteNotesData(crud: Get.find<Crud>());
@@ -33,7 +39,10 @@ class CourseControllerIMP extends CourseController {
   Statusrequest statusrequest = Statusrequest.none;
   ViewNotesData viewNotesData = ViewNotesData(crud: Get.find<Crud>());
   AddNotesData addNotesData = AddNotesData(crud: Get.find<Crud>());
+  EditNotesData editNotesData = EditNotesData(crud: Get.find<Crud>());
+
   RxList allNotes = [].obs;
+
   Map<String, dynamic> data = {};
   RxList skills = [].obs;
   RxList benefits = [].obs;
@@ -54,10 +63,11 @@ class CourseControllerIMP extends CourseController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     title = TextEditingController();
     content = TextEditingController();
+    noteTitle = TextEditingController();
     idCourse = Get.arguments['ID'];
 
     // الحالة الافتراضية true يعني دايمًا يجيب Quiz إلا إذا طلبت تعطيله
@@ -98,6 +108,7 @@ class CourseControllerIMP extends CourseController {
           var progressController = Get.find<CoursepProgresscConteroller>();
           await progressController.loadWatchedVideos();
           await progressController.loadCourseProgress();
+          await progressController.updateCourseProgress();
         }
         checkEnrollment();
         try {
@@ -144,17 +155,17 @@ class CourseControllerIMP extends CourseController {
     }).toList();
   }
 
-  @override
-  enroll(BuildContext context) async {
+  enroll() async {
     statusrequest = Statusrequest.loading;
-    showLoadingDialog(context, 'm12'.tr);
+    showLoadingDialog('m12'.tr);
     update();
+
     var response = await courseEnroll.getData("$idCourse");
     statusrequest = handilingData(response);
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
     if (statusrequest == Statusrequest.success) {
-      if (Get.isDialogOpen ?? false) {
-        Get.back();
-      }
       checkEnrollment();
       showCustomSnackbar(
         title: "Registration has been successfully completed",
@@ -162,18 +173,26 @@ class CourseControllerIMP extends CourseController {
         icon: Icons.done,
         backgroundColor: Colors.green,
       );
-      Future.delayed(Duration(milliseconds: 300), () {
-        Get.toNamed(AppRoutes.learningCourse, arguments: {
-          'ID': idCourse,
-        });
-      });
-    } else {
-      if (Get.isDialogOpen ?? false) {
-        Get.back();
+      await getData();
+      if (data['price'] == '0.00') {
+        // Get.toNamed(AppRoutes.learningCourse, arguments: {
+        //   'ID': idCourse,
+        // });
+        // Get.find<MyCoursesControllerIMP>().getMyCourses(idCourse!);
+        // Get.find<MyCoursesControllerIMP>().refreshCourses();
+        await getData();
+        Get.find<MainpagecontrollerIMP>().changePage(1);
+        Get.offAllNamed(AppRoutes.mainPage);
+      } else {
+        print(
+            'toooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo');
+        Get.find<MainpagecontrollerIMP>().changePage(1);
+        Get.offAllNamed(AppRoutes.mainPage);
       }
+    } else {
       showCustomSnackbar(
-        title: "Failed course registration",
-        message: "Try again..",
+        title: "Registration failed",
+        message: "Please try again.",
         icon: Icons.error,
         backgroundColor: Colors.red,
       );
@@ -186,7 +205,7 @@ class CourseControllerIMP extends CourseController {
   unEnroll(BuildContext context) async {
     statusrequest = Statusrequest.loading;
     update();
-    showLoadingDialog(context, 'Canceling subscription');
+    showLoadingDialog('Canceling subscription');
     var response = await courseUnEnroll.getData("$idCourse");
     print(response);
     statusrequest = handilingData(response);
@@ -223,6 +242,7 @@ class CourseControllerIMP extends CourseController {
     final userCourses = Get.find<MyCoursesControllerIMP>().data;
     isEnrolled.value =
         userCourses.any((course) => course['courseId'] == idCourse);
+    print('✅checkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
   }
 
   void changeTab(int index) {
@@ -254,48 +274,77 @@ class CourseControllerIMP extends CourseController {
     update();
   }
 
-  addNote(BuildContext context) async {
-    statusrequest = Statusrequest.loading;
-    showLoadingDialog(context, 'adding the not..');
-    update();
-    var response = await addNotesData.getData(idCourse!, content.text, null);
-    statusrequest = handilingData(response);
-    update();
-    if (Statusrequest.success == statusrequest) {
-      allNotes.clear();
-      await getAllNotes(idCourse);
-      if (Get.isDialogOpen ?? false) {
-        Get.back();
-      }
-      print("✅ success to add notes");
-      content.clear();
-      Get.back();
-      showCustomSnackbar(
-        title: "The note has been successfully added",
-        message: "You can edit and delete it",
-        icon: Icons.done,
-        backgroundColor: Colors.green,
-      );
-    } else {
-      if (Get.isDialogOpen ?? false) {
-        Get.back();
-      }
-      print("❌ Failed to add notes");
-      showCustomSnackbar(
-        title: "Failed to add a note",
-        message: "tray again !",
-        icon: Icons.done,
-        backgroundColor: Colors.red,
-      );
+  addNote([int? videoID]) async {
+    if (formstate.currentState!.validate()) {
+      statusrequest = Statusrequest.loading;
+      showLoadingDialog('adding the note..');
+      update();
+      var noteTitleText =
+          noteTitle.text.trim().isEmpty ? null : noteTitle.text.trim();
+      var response = await addNotesData.getData(
+          idCourse!, content.text, videoID, noteTitleText);
 
+      statusrequest = handilingData(response);
+      update();
+      if (Statusrequest.success == statusrequest) {
+        allNotes.clear();
+        await getAllNotes(idCourse);
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
+        print("✅ success to add notes");
+        content.clear();
+        Get.back();
+        showCustomSnackbar(
+          title: "The note has been successfully added",
+          message: "You can edit and delete it",
+          icon: Icons.done,
+          backgroundColor: Colors.green,
+        );
+      } else {
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
+        print("❌ Failed to add notes");
+        showCustomSnackbar(
+          title: "Failed to add a note",
+          message: "tray again !",
+          icon: Icons.done,
+          backgroundColor: Colors.red,
+        );
+
+        statusrequest = Statusrequest.failure;
+      }
+      update();
+    }
+    noteTitle.clear();
+  }
+
+  Future<void> getAllVideoNotes(int idCourse, int idvideo) async {
+    statusrequest = Statusrequest.loading;
+    update();
+
+    var response = await viewVideoNotesData.getData(idCourse, idvideo);
+    statusrequest = handilingData(response);
+
+    if (statusrequest == Statusrequest.success) {
+      allVideoNotes.clear();
+
+      if (response is Map && response['data'] is List) {
+        allVideoNotes.addAll(response['data']);
+      }
+
+      print("✅ success to get video notes");
+    } else {
+      print("❌ Failed to get video notes: $response");
       statusrequest = Statusrequest.failure;
     }
     update();
   }
 
-  deleteNote(BuildContext context, int noteId) async {
+  deleteNote(int noteId) async {
     statusrequest = Statusrequest.loading;
-    showLoadingDialog(context, 'seleting the note..');
+    showLoadingDialog('seleting the note..');
     update();
     var response = await deleteNotesData.getData(noteId);
     statusrequest = handilingData(response);
@@ -332,52 +381,66 @@ class CourseControllerIMP extends CourseController {
     update();
   }
 
-  //quize
   ViewProgress viewProgress = ViewProgress(crud: Get.find<Crud>());
   CheckQuizAttemptData checkQuizAttemptData =
       CheckQuizAttemptData(crud: Get.find<Crud>());
   GetQuizzesData getQuizData = GetQuizzesData();
 
   bool canTakeQuiz = false;
+
   int progress = 0;
   Map quizData = {};
 
   void getQuizesData() async {
     statusrequest = Statusrequest.loading;
     update();
+    try {
+      final response = await viewProgress.getData(idCourse!);
+      final responsequiz = await getQuizData.getData(idCourse!);
 
-    final response = await viewProgress.getData(idCourse!);
-    final responsedata = await getQuizData.getData(idCourse!);
+      statusrequest = handilingData(response);
 
-    statusrequest = handilingData(response);
+      if (statusrequest == Statusrequest.success) {
+        quizData.clear();
 
-    if (statusrequest == Statusrequest.success) {
-      quizData.clear();
-      try {
-        if (responsedata is List && responsedata.isNotEmpty) {
-          quizData = responsedata[0];
-        } else if (responsedata is Map) {
-          quizData = responsedata;
-        } else {
-          print("❌ Unexpected quiz data format: $responsedata");
+        // التعامل مع استجابة الكويز
+        if (responsequiz is Map && responsequiz.containsKey('error')) {
+          // حالة 403 أو عدم السماح بفتح الكويز
+          canTakeQuiz = false;
+          progress = responsequiz['progress'] ?? 0;
           quizData = {};
+          print("⚠️ Cannot take quiz: ${responsequiz['error']}");
+        } else if (responsequiz is List && responsequiz.isNotEmpty) {
+          quizData = responsequiz[0];
+        } else if (responsequiz is Map) {
+          quizData = responsequiz;
+        } else {
+          quizData = {};
+          print("❌ Unexpected quiz data format: $responsequiz");
         }
 
-        canTakeQuiz = response['canTakeQuiz'] ?? false;
+        // تحديث التقدم
         progress = response['progress'] ?? 0;
+
+        // تحديد القدرة على فتح الكويز
+        int isSequential = data['is_sequential'] ?? 0;
+        int requiredProgress = isSequential == 1 ? 100 : 80;
+        canTakeQuiz = progress >= requiredProgress;
+
+        // استدعاء التحقق من المحاولة فقط إذا الكويز موجود
         if (quizData.containsKey('id') && quizData['id'] != null) {
-          CheckQuizAttempt(); // ✅ تم نقله بعد تحميل البيانات
+          CheckQuizAttempt();
         } else {
           print("⚠️ quizData does not contain a valid ID.");
         }
 
         print('✅ Loaded quiz data successfully');
-      } catch (e) {
-        print("❌ Error parsing quiz data: $e");
-        statusrequest = Statusrequest.failure;
+      } else {
+        print("❌ Failed to load quiz data");
       }
-    } else {
-      print("❌ Failed to load quiz data");
+    } catch (e) {
+      print("❌ Error fetching quiz data: $e");
+      statusrequest = Statusrequest.failure;
     }
 
     update();
@@ -403,4 +466,6 @@ class CourseControllerIMP extends CourseController {
 
     update();
   }
+
+  getMyCourses(user) {}
 }

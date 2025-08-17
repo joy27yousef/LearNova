@@ -43,14 +43,14 @@ class ProfilePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        '${Get.find<UserControllerIMP>().user['first_name']} ${Get.find<UserControllerIMP>().user['last_name']}',
+                        '${Get.find<UserControllerIMP>().user['first_name'] ?? ''} ${Get.find<UserControllerIMP>().user['last_name'] ?? ''}',
                         style: TextStyle(
                             fontFamily: AppFonts.Poppins,
                             fontSize: 23,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        Get.find<UserControllerIMP>().user['email'],
+                        Get.find<UserControllerIMP>().user['email'] ?? '',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       SizedBox(

@@ -13,10 +13,9 @@ class Googlelogin extends StatelessWidget {
         width: 300,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          boxShadow: [BoxShadow(blurRadius: 10, color: Colors.grey.shade400)],
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.grey.shade200,
-        ),
+            boxShadow: [BoxShadow(blurRadius: 10, color: Colors.grey.shade400)],
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: Theme.of(context).colorScheme.background),
         child: Image.asset(Appimages.googleLogo, width: 50),
       ),
     );

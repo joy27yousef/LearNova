@@ -16,10 +16,10 @@ class Footertext extends StatelessWidget {
     return Column(
       children: [
         Text(text1,
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.black54,
-                fontSize: 17,
-                fontWeight: FontWeight.w300)),
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(fontSize: 17, fontWeight: FontWeight.w300)),
         InkWell(
           onTap: () {
             Get.offNamed((i == 'login') ? AppRoutes.signup : AppRoutes.login);

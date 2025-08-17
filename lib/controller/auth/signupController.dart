@@ -49,7 +49,7 @@ class SignupControllerIMP extends SignupController {
   @override
   Register(context) async {
     if (formstate.currentState!.validate()) {
-      showLoadingDialog(context, 'm7'.tr);
+      showLoadingDialog( 'm7'.tr);
       print('valid');
       var response = await signupData.getData(firstName.text, lastName.text,
           phoneNumber.text, email.text, password.text, confirmPassword.text);

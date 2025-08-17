@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/views/widgets/course/courseBenefits.dart';
 import 'package:learn_nova/views/widgets/course/courseDetailsInfo.dart';
 import 'package:learn_nova/views/widgets/course/courseFAQ.dart';
@@ -71,11 +72,13 @@ class DescriptionPart extends StatelessWidget {
         Headerline(
           hint1: '87'.tr,
           hint2: '45'.tr,
-          onTapHeader: () {},
+          onTapHeader: () {
+            Get.toNamed(AppRoutes.allReviewinCourse);
+          },
         ),
         CourseReviews(),
         SizedBox(
-          height: 200,
+          height: 100,
         ),
       ],
     );

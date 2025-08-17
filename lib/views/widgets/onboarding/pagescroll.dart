@@ -27,10 +27,10 @@ class Pagescroll extends GetView<OnboardingcontrollerIMP> {
                 Text(
                   textAlign: TextAlign.center,
                   onboardingList[i].title!,
-                  style: TextStyle(
-                    fontSize: screenWidth * 0.07, //23
-                    fontFamily: AppFonts.Poppins,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: 26, fontWeight: FontWeight.normal),
                 ),
                 Spacer(),
                 Image.asset(
@@ -41,12 +41,10 @@ class Pagescroll extends GetView<OnboardingcontrollerIMP> {
                 Text(
                   textAlign: TextAlign.center,
                   onboardingList[i].body!,
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontWeight: FontWeight.w300,
-                    fontSize: screenWidth * 0.05, //18
-                    fontFamily: AppFonts.Poppins,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontWeight: FontWeight.normal, fontSize: 18),
                 ),
               ],
             );

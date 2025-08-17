@@ -5,24 +5,26 @@
         "ar": "دليل Flutter الشامل"
     },
     "description": {
-        "en": "Perfect for beginners looking to break into Mobile Development. Lifetime access to course materials and future updates. Taught by industry experts with years of practical experience. This comprehensive course will teach you everything you need to know about Flutter Complete Guide.",
-        "ar": "ضمان استرداد الأموال خلال 30 يومًا إذا لم تكن راضيًا تمامًا. انضم إلى آلاف الطلاب الراضين الذين غيروا مسار حياتهم المهنية. يتم تدريسها من قبل خبراء الصناعة ذوي الخبرة العملية. أتقن المفاهيم من خلال المشاريع العملية والأمثلة الواقعية."
+        "en": "Get certified upon completion and add this valuable skill to your resume. Join thousands of satisfied students who have transformed their careers. This comprehensive course will teach you everything you need to know about Flutter Complete Guide. Includes downloadable resources, exercises, and practical assignments.",
+        "ar": "مثالية للمبتدئين الذين يتطلعون إلى الدخول في مجال Mobile Development. ستعلمك هذه الدورة الشاملة كل ما تحتاج معرفته عن دليل Flutter الشامل. أتقن المفاهيم من خلال المشاريع العملية والأمثلة الواقعية. يتم تدريسها من قبل خبراء الصناعة ذوي الخبرة العملية."
     },
     "category_id": 3,
-    "user_id": 7,
+    "user_id": 8,
     "duration": {
         "en": "30 hours",
         "ar": "30 ساعة"
     },
     "difficulty_level": "intermediate",
     "thumbnail_url": "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1470&auto=format&fit=crop",
-    "price": "6.99",
+    "price": "7.99",
     "link": null,
     "document_url": null,
     "default_language": "Arabic",
     "is_sequential": 0,
-    "created_at": "2025-07-30T21:14:51.000000Z",
-    "updated_at": "2025-07-30T21:14:51.000000Z",
+    "accepts_mtn": 0,
+    "accepts_syriatel": 0,
+    "created_at": "2025-08-11T08:12:48.000000Z",
+    "updated_at": "2025-08-11T08:12:48.000000Z",
     "category": {
         "id": 3,
         "name": {
@@ -34,25 +36,25 @@
             "ar": "دورات تطوير الموبايل"
         },
         "parent_id": 1,
-        "created_at": "2025-07-30T21:14:36.000000Z",
-        "updated_at": "2025-07-30T21:14:36.000000Z"
+        "created_at": "2025-08-11T08:12:24.000000Z",
+        "updated_at": "2025-08-11T08:12:24.000000Z"
     },
     "teacher": {
-        "id": 7,
-        "first_name": "Jaron",
-        "last_name": "Mills",
-        "phone_number": "734.249.4470",
-        "email": "shartmann@example.com",
+        "id": 8,
+        "first_name": "Susanna",
+        "last_name": "Howe",
+        "phone_number": "+12834564435",
+        "email": "darrell.jakubowski@example.com",
         "google_id": null,
         "profile_image": null,
         "specialization": null,
         "bio": null,
         "country": null,
         "certificate_url": null,
-        "email_verified_at": "2025-07-30T21:14:30.000000Z",
+        "email_verified_at": "2025-08-11T08:12:09.000000Z",
         "role": "teacher",
-        "created_at": "2025-07-30T21:14:33.000000Z",
-        "updated_at": "2025-07-30T21:14:33.000000Z"
+        "created_at": "2025-08-11T08:12:20.000000Z",
+        "updated_at": "2025-08-11T08:12:20.000000Z"
     },
     "skills": [
         {
@@ -60,8 +62,8 @@
             "name": {
                 "en": "Swift"
             },
-            "created_at": "2025-07-30T21:15:03.000000Z",
-            "updated_at": "2025-07-30T21:15:03.000000Z",
+            "created_at": "2025-08-11T08:13:05.000000Z",
+            "updated_at": "2025-08-11T08:13:05.000000Z",
             "pivot": {
                 "course_id": 3,
                 "skill_id": 14
@@ -72,8 +74,8 @@
             "name": {
                 "en": "Kotlin"
             },
-            "created_at": "2025-07-30T21:15:04.000000Z",
-            "updated_at": "2025-07-30T21:15:04.000000Z",
+            "created_at": "2025-08-11T08:13:06.000000Z",
+            "updated_at": "2025-08-11T08:13:06.000000Z",
             "pivot": {
                 "course_id": 3,
                 "skill_id": 15
@@ -84,11 +86,23 @@
             "name": {
                 "en": "Flutter"
             },
-            "created_at": "2025-07-30T21:15:04.000000Z",
-            "updated_at": "2025-07-30T21:15:04.000000Z",
+            "created_at": "2025-08-11T08:13:06.000000Z",
+            "updated_at": "2025-08-11T08:13:06.000000Z",
             "pivot": {
                 "course_id": 3,
                 "skill_id": 16
+            }
+        },
+        {
+            "id": 17,
+            "name": {
+                "en": "React Native"
+            },
+            "created_at": "2025-08-11T08:13:07.000000Z",
+            "updated_at": "2025-08-11T08:13:07.000000Z",
+            "pivot": {
+                "course_id": 3,
+                "skill_id": 17
             }
         }
     ],
@@ -101,8 +115,8 @@
             },
             "course_id": 3,
             "order": 1,
-            "created_at": "2025-07-30T21:16:48.000000Z",
-            "updated_at": "2025-07-30T21:16:48.000000Z",
+            "created_at": "2025-08-11T08:16:02.000000Z",
+            "updated_at": "2025-08-11T08:16:02.000000Z",
             "videos": [
                 {
                     "id": 43,
@@ -117,8 +131,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 15,
-                    "created_at": "2025-07-30T21:19:17.000000Z",
-                    "updated_at": "2025-07-30T21:19:17.000000Z"
+                    "created_at": "2025-08-11T08:18:18.000000Z",
+                    "updated_at": "2025-08-11T08:18:18.000000Z"
                 },
                 {
                     "id": 44,
@@ -133,8 +147,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 15,
-                    "created_at": "2025-07-30T21:19:18.000000Z",
-                    "updated_at": "2025-07-30T21:19:18.000000Z"
+                    "created_at": "2025-08-11T08:18:19.000000Z",
+                    "updated_at": "2025-08-11T08:18:19.000000Z"
                 },
                 {
                     "id": 45,
@@ -149,8 +163,8 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 15,
-                    "created_at": "2025-07-30T21:19:18.000000Z",
-                    "updated_at": "2025-07-30T21:19:18.000000Z"
+                    "created_at": "2025-08-11T08:18:19.000000Z",
+                    "updated_at": "2025-08-11T08:18:19.000000Z"
                 }
             ]
         },
@@ -162,8 +176,8 @@
             },
             "course_id": 3,
             "order": 2,
-            "created_at": "2025-07-30T21:16:48.000000Z",
-            "updated_at": "2025-07-30T21:16:48.000000Z",
+            "created_at": "2025-08-11T08:16:03.000000Z",
+            "updated_at": "2025-08-11T08:16:03.000000Z",
             "videos": [
                 {
                     "id": 46,
@@ -178,8 +192,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 16,
-                    "created_at": "2025-07-30T21:19:20.000000Z",
-                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                    "created_at": "2025-08-11T08:18:22.000000Z",
+                    "updated_at": "2025-08-11T08:18:22.000000Z"
                 },
                 {
                     "id": 47,
@@ -194,8 +208,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 16,
-                    "created_at": "2025-07-30T21:19:20.000000Z",
-                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                    "created_at": "2025-08-11T08:18:25.000000Z",
+                    "updated_at": "2025-08-11T08:18:25.000000Z"
                 },
                 {
                     "id": 48,
@@ -210,8 +224,8 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 16,
-                    "created_at": "2025-07-30T21:19:20.000000Z",
-                    "updated_at": "2025-07-30T21:19:20.000000Z"
+                    "created_at": "2025-08-11T08:18:26.000000Z",
+                    "updated_at": "2025-08-11T08:18:26.000000Z"
                 }
             ]
         },
@@ -223,8 +237,8 @@
             },
             "course_id": 3,
             "order": 3,
-            "created_at": "2025-07-30T21:16:49.000000Z",
-            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "created_at": "2025-08-11T08:16:03.000000Z",
+            "updated_at": "2025-08-11T08:16:03.000000Z",
             "videos": [
                 {
                     "id": 49,
@@ -239,8 +253,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 17,
-                    "created_at": "2025-07-30T21:19:22.000000Z",
-                    "updated_at": "2025-07-30T21:19:22.000000Z"
+                    "created_at": "2025-08-11T08:18:28.000000Z",
+                    "updated_at": "2025-08-11T08:18:28.000000Z"
                 },
                 {
                     "id": 50,
@@ -255,8 +269,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 17,
-                    "created_at": "2025-07-30T21:19:23.000000Z",
-                    "updated_at": "2025-07-30T21:19:23.000000Z"
+                    "created_at": "2025-08-11T08:18:29.000000Z",
+                    "updated_at": "2025-08-11T08:18:29.000000Z"
                 },
                 {
                     "id": 51,
@@ -271,8 +285,8 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 17,
-                    "created_at": "2025-07-30T21:19:23.000000Z",
-                    "updated_at": "2025-07-30T21:19:23.000000Z"
+                    "created_at": "2025-08-11T08:18:29.000000Z",
+                    "updated_at": "2025-08-11T08:18:29.000000Z"
                 }
             ]
         },
@@ -284,8 +298,8 @@
             },
             "course_id": 3,
             "order": 4,
-            "created_at": "2025-07-30T21:16:49.000000Z",
-            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "created_at": "2025-08-11T08:16:04.000000Z",
+            "updated_at": "2025-08-11T08:16:04.000000Z",
             "videos": [
                 {
                     "id": 52,
@@ -300,8 +314,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 18,
-                    "created_at": "2025-07-30T21:19:25.000000Z",
-                    "updated_at": "2025-07-30T21:19:25.000000Z"
+                    "created_at": "2025-08-11T08:18:32.000000Z",
+                    "updated_at": "2025-08-11T08:18:32.000000Z"
                 },
                 {
                     "id": 53,
@@ -316,8 +330,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 18,
-                    "created_at": "2025-07-30T21:19:25.000000Z",
-                    "updated_at": "2025-07-30T21:19:25.000000Z"
+                    "created_at": "2025-08-11T08:18:32.000000Z",
+                    "updated_at": "2025-08-11T08:18:32.000000Z"
                 },
                 {
                     "id": 54,
@@ -332,8 +346,8 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 18,
-                    "created_at": "2025-07-30T21:19:26.000000Z",
-                    "updated_at": "2025-07-30T21:19:26.000000Z"
+                    "created_at": "2025-08-11T08:18:33.000000Z",
+                    "updated_at": "2025-08-11T08:18:33.000000Z"
                 }
             ]
         },
@@ -345,8 +359,8 @@
             },
             "course_id": 3,
             "order": 5,
-            "created_at": "2025-07-30T21:16:49.000000Z",
-            "updated_at": "2025-07-30T21:16:49.000000Z",
+            "created_at": "2025-08-11T08:16:04.000000Z",
+            "updated_at": "2025-08-11T08:16:04.000000Z",
             "videos": [
                 {
                     "id": 55,
@@ -361,8 +375,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 19,
-                    "created_at": "2025-07-30T21:19:27.000000Z",
-                    "updated_at": "2025-07-30T21:19:27.000000Z"
+                    "created_at": "2025-08-11T08:18:36.000000Z",
+                    "updated_at": "2025-08-11T08:18:36.000000Z"
                 },
                 {
                     "id": 56,
@@ -377,8 +391,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 19,
-                    "created_at": "2025-07-30T21:19:28.000000Z",
-                    "updated_at": "2025-07-30T21:19:28.000000Z"
+                    "created_at": "2025-08-11T08:18:37.000000Z",
+                    "updated_at": "2025-08-11T08:18:37.000000Z"
                 },
                 {
                     "id": 57,
@@ -393,8 +407,8 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 19,
-                    "created_at": "2025-07-30T21:19:28.000000Z",
-                    "updated_at": "2025-07-30T21:19:28.000000Z"
+                    "created_at": "2025-08-11T08:18:37.000000Z",
+                    "updated_at": "2025-08-11T08:18:37.000000Z"
                 }
             ]
         },
@@ -406,8 +420,8 @@
             },
             "course_id": 3,
             "order": 6,
-            "created_at": "2025-07-30T21:16:50.000000Z",
-            "updated_at": "2025-07-30T21:16:50.000000Z",
+            "created_at": "2025-08-11T08:16:05.000000Z",
+            "updated_at": "2025-08-11T08:16:05.000000Z",
             "videos": [
                 {
                     "id": 58,
@@ -422,8 +436,8 @@
                     "is_preview": true,
                     "order": 1,
                     "section_id": 20,
-                    "created_at": "2025-07-30T21:19:30.000000Z",
-                    "updated_at": "2025-07-30T21:19:30.000000Z"
+                    "created_at": "2025-08-11T08:18:40.000000Z",
+                    "updated_at": "2025-08-11T08:18:40.000000Z"
                 },
                 {
                     "id": 59,
@@ -438,8 +452,8 @@
                     "is_preview": false,
                     "order": 2,
                     "section_id": 20,
-                    "created_at": "2025-07-30T21:19:30.000000Z",
-                    "updated_at": "2025-07-30T21:19:30.000000Z"
+                    "created_at": "2025-08-11T08:18:41.000000Z",
+                    "updated_at": "2025-08-11T08:18:41.000000Z"
                 },
                 {
                     "id": 60,
@@ -454,15 +468,15 @@
                     "is_preview": false,
                     "order": 3,
                     "section_id": 20,
-                    "created_at": "2025-07-30T21:19:31.000000Z",
-                    "updated_at": "2025-07-30T21:19:31.000000Z"
+                    "created_at": "2025-08-11T08:18:41.000000Z",
+                    "updated_at": "2025-08-11T08:18:41.000000Z"
                 }
             ]
         }
     ],
     "faqs": [
         {
-            "id": 14,
+            "id": 11,
             "course_id": 3,
             "question": {
                 "en": "How long will I have access to the course materials?",
@@ -472,25 +486,11 @@
                 "en": "You'll have lifetime access to all course materials, including any future updates.",
                 "ar": "ستحصل على وصول مدى الحياة لجميع مواد الدورة، بما في ذلك أي تحديثات مستقبلية."
             },
-            "created_at": "2025-07-30T21:15:59.000000Z",
-            "updated_at": "2025-07-30T21:15:59.000000Z"
+            "created_at": "2025-08-11T08:14:38.000000Z",
+            "updated_at": "2025-08-11T08:14:38.000000Z"
         },
         {
-            "id": 15,
-            "course_id": 3,
-            "question": {
-                "en": "Will I receive a certificate upon completion?",
-                "ar": "هل سأحصل على شهادة عند الانتهاء؟"
-            },
-            "answer": {
-                "en": "Yes, you'll receive a certificate of completion that you can add to your resume or LinkedIn profile.",
-                "ar": "نعم، ستحصل على شهادة إتمام يمكنك إضافتها إلى سيرتك الذاتية أو ملفك الشخصي على LinkedIn."
-            },
-            "created_at": "2025-07-30T21:15:59.000000Z",
-            "updated_at": "2025-07-30T21:15:59.000000Z"
-        },
-        {
-            "id": 16,
+            "id": 12,
             "course_id": 3,
             "question": {
                 "en": "What if I don't like the course?",
@@ -500,11 +500,25 @@
                 "en": "We offer a 30-day money-back guarantee if you're not satisfied with the course.",
                 "ar": "نقدم ضمان استرداد الأموال خلال 30 يومًا إذا لم تكن راضيًا عن الدورة."
             },
-            "created_at": "2025-07-30T21:16:00.000000Z",
-            "updated_at": "2025-07-30T21:16:00.000000Z"
+            "created_at": "2025-08-11T08:14:38.000000Z",
+            "updated_at": "2025-08-11T08:14:38.000000Z"
         },
         {
-            "id": 17,
+            "id": 13,
+            "course_id": 3,
+            "question": {
+                "en": "How much time should I dedicate to this course each week?",
+                "ar": "كم من الوقت يجب أن أخصص لهذه الدورة كل أسبوع؟"
+            },
+            "answer": {
+                "en": "We recommend dedicating 3-5 hours per week to complete the course in the suggested timeframe.",
+                "ar": "نوصي بتخصيص 3-5 ساعات أسبوعيًا لإكمال الدورة في الإطار الزمني المقترح."
+            },
+            "created_at": "2025-08-11T08:14:39.000000Z",
+            "updated_at": "2025-08-11T08:14:39.000000Z"
+        },
+        {
+            "id": 14,
             "course_id": 3,
             "question": {
                 "en": "Will this course help me get a job?",
@@ -514,11 +528,11 @@
                 "en": "While we can't guarantee employment, this course teaches in-demand skills that employers are looking for.",
                 "ar": "على الرغم من أننا لا نستطيع ضمان التوظيف، إلا أن هذه الدورة تعلم مهارات مطلوبة يبحث عنها أصحاب العمل."
             },
-            "created_at": "2025-07-30T21:16:01.000000Z",
-            "updated_at": "2025-07-30T21:16:01.000000Z"
+            "created_at": "2025-08-11T08:14:41.000000Z",
+            "updated_at": "2025-08-11T08:14:41.000000Z"
         },
         {
-            "id": 18,
+            "id": 15,
             "course_id": 3,
             "question": {
                 "en": "Is there any coding experience required?",
@@ -528,37 +542,66 @@
                 "en": "This course is designed for all levels, with separate learning paths for beginners and experienced coders.",
                 "ar": "تم تصميم هذه الدورة لجميع المستويات، مع مسارات تعليمية منفصلة للمبتدئين والمبرمجين ذوي الخبرة."
             },
-            "created_at": "2025-07-30T21:16:01.000000Z",
-            "updated_at": "2025-07-30T21:16:01.000000Z"
+            "created_at": "2025-08-11T08:14:41.000000Z",
+            "updated_at": "2025-08-11T08:14:41.000000Z"
         }
     ],
     "ratings": [
         {
-            "id": 7,
-            "course_id": 3,
-            "user_id": 4,
-            "rating": 5,
-            "review": "The best course I've taken on this subject!",
-            "created_at": "2025-07-30T21:16:28.000000Z",
-            "updated_at": "2025-07-30T21:16:28.000000Z"
-        },
-        {
-            "id": 8,
-            "course_id": 3,
-            "user_id": 6,
-            "rating": 4,
-            "review": "The course materials are top-notch and well organized.",
-            "created_at": "2025-07-30T21:16:29.000000Z",
-            "updated_at": "2025-07-30T21:16:29.000000Z"
-        },
-        {
             "id": 9,
             "course_id": 3,
-            "user_id": 8,
-            "rating": 1,
+            "user_id": 3,
+            "rating": 2,
             "review": null,
-            "created_at": "2025-07-30T21:16:29.000000Z",
-            "updated_at": "2025-07-30T21:16:29.000000Z"
+            "created_at": "2025-08-11T08:15:25.000000Z",
+            "updated_at": "2025-08-11T08:15:25.000000Z",
+            "user": {
+                "id": 3,
+                "first_name": "Nicholaus",
+                "last_name": "Emard"
+            }
+        },
+        {
+            "id": 10,
+            "course_id": 3,
+            "user_id": 4,
+            "rating": 3,
+            "review": "Good course overall, but room for improvement.",
+            "created_at": "2025-08-11T08:15:25.000000Z",
+            "updated_at": "2025-08-11T08:15:25.000000Z",
+            "user": {
+                "id": 4,
+                "first_name": "Annabell",
+                "last_name": "Turner"
+            }
+        },
+        {
+            "id": 11,
+            "course_id": 3,
+            "user_id": 7,
+            "rating": 5,
+            "review": "This course exceeded my expectations!",
+            "created_at": "2025-08-11T08:15:26.000000Z",
+            "updated_at": "2025-08-11T08:15:26.000000Z",
+            "user": {
+                "id": 7,
+                "first_name": "Benny",
+                "last_name": "Hauck"
+            }
+        },
+        {
+            "id": 12,
+            "course_id": 3,
+            "user_id": 10,
+            "rating": 3,
+            "review": "Average course - nothing special but not bad either.",
+            "created_at": "2025-08-11T08:15:26.000000Z",
+            "updated_at": "2025-08-11T08:15:26.000000Z",
+            "user": {
+                "id": 10,
+                "first_name": "Norris",
+                "last_name": "Larson"
+            }
         }
     ],
     "benefits": [
@@ -570,8 +613,8 @@
             },
             "course_id": 3,
             "order": 1,
-            "created_at": "2025-07-30T21:17:06.000000Z",
-            "updated_at": "2025-07-30T21:17:06.000000Z"
+            "created_at": "2025-08-11T08:16:28.000000Z",
+            "updated_at": "2025-08-11T08:16:28.000000Z"
         },
         {
             "id": 20,
@@ -581,8 +624,8 @@
             },
             "course_id": 3,
             "order": 2,
-            "created_at": "2025-07-30T21:17:06.000000Z",
-            "updated_at": "2025-07-30T21:17:06.000000Z"
+            "created_at": "2025-08-11T08:16:29.000000Z",
+            "updated_at": "2025-08-11T08:16:29.000000Z"
         },
         {
             "id": 21,
@@ -592,8 +635,8 @@
             },
             "course_id": 3,
             "order": 3,
-            "created_at": "2025-07-30T21:17:07.000000Z",
-            "updated_at": "2025-07-30T21:17:07.000000Z"
+            "created_at": "2025-08-11T08:16:30.000000Z",
+            "updated_at": "2025-08-11T08:16:30.000000Z"
         },
         {
             "id": 22,
@@ -603,8 +646,8 @@
             },
             "course_id": 3,
             "order": 4,
-            "created_at": "2025-07-30T21:17:07.000000Z",
-            "updated_at": "2025-07-30T21:17:07.000000Z"
+            "created_at": "2025-08-11T08:16:31.000000Z",
+            "updated_at": "2025-08-11T08:16:31.000000Z"
         },
         {
             "id": 23,
@@ -614,8 +657,8 @@
             },
             "course_id": 3,
             "order": 5,
-            "created_at": "2025-07-30T21:17:08.000000Z",
-            "updated_at": "2025-07-30T21:17:08.000000Z"
+            "created_at": "2025-08-11T08:16:31.000000Z",
+            "updated_at": "2025-08-11T08:16:31.000000Z"
         },
         {
             "id": 24,
@@ -625,8 +668,8 @@
             },
             "course_id": 3,
             "order": 6,
-            "created_at": "2025-07-30T21:17:09.000000Z",
-            "updated_at": "2025-07-30T21:17:09.000000Z"
+            "created_at": "2025-08-11T08:16:34.000000Z",
+            "updated_at": "2025-08-11T08:16:34.000000Z"
         },
         {
             "id": 25,
@@ -636,8 +679,8 @@
             },
             "course_id": 3,
             "order": 7,
-            "created_at": "2025-07-30T21:17:09.000000Z",
-            "updated_at": "2025-07-30T21:17:09.000000Z"
+            "created_at": "2025-08-11T08:16:35.000000Z",
+            "updated_at": "2025-08-11T08:16:35.000000Z"
         },
         {
             "id": 26,
@@ -647,8 +690,8 @@
             },
             "course_id": 3,
             "order": 8,
-            "created_at": "2025-07-30T21:17:10.000000Z",
-            "updated_at": "2025-07-30T21:17:10.000000Z"
+            "created_at": "2025-08-11T08:16:36.000000Z",
+            "updated_at": "2025-08-11T08:16:36.000000Z"
         },
         {
             "id": 27,
@@ -658,8 +701,8 @@
             },
             "course_id": 3,
             "order": 9,
-            "created_at": "2025-07-30T21:17:10.000000Z",
-            "updated_at": "2025-07-30T21:17:10.000000Z"
+            "created_at": "2025-08-11T08:16:36.000000Z",
+            "updated_at": "2025-08-11T08:16:36.000000Z"
         }
     ]
 }

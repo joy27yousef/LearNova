@@ -7,7 +7,7 @@ import 'package:learn_nova/core/function/alertExitApp.dart';
 import 'package:learn_nova/views/screens/MycoursesPage/MyCoursesPage.dart';
 import 'package:learn_nova/views/screens/aiAssistantPage.dart';
 import 'package:learn_nova/views/screens/home/homePage.dart';
-import 'package:learn_nova/views/screens/home/notificationPage.dart';
+import 'package:learn_nova/views/screens/notificationPage.dart';
 import 'package:learn_nova/views/screens/profile%20Page/profilePage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
   final pages = [
     HomePage(),
     Mycoursespage(),
-    NotificationPage(),
+    NotificationsPage(),
     ProfilePage(),
   ];
   @override

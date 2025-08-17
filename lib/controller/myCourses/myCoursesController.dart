@@ -1,10 +1,13 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/function/handilingData.dart';
+import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/data/source/remote/home/course.dart';
 import 'package:learn_nova/data/source/remote/mycourses/progressCourse.dart';
+import 'package:path/path.dart';
 
 abstract class MyCoursesController extends GetxController {
   getMyCourses(int userID);
@@ -13,28 +16,54 @@ abstract class MyCoursesController extends GetxController {
 class MyCoursesControllerIMP extends MyCoursesController {
   late Statusrequest statusrequest;
   ViewProgress viewProgress = ViewProgress(crud: Get.find<Crud>());
+  PaymentStatusData paymentStatusData =
+      PaymentStatusData(crud: Get.find<Crud>());
   UserEnrollmentsData userEnrollmentsData =
       UserEnrollmentsData(crud: Get.find<Crud>());
   List data = [];
   late double progress;
-  @override
+
   getMyCourses(int userID) async {
     statusrequest = Statusrequest.loading;
     update();
-
     var response = await userEnrollmentsData.getData(userID);
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {
       data.clear();
       data.addAll(response['data']);
-      print('✅ Courses loaded:');
+      print('✅ Courses loadeddddddddddddddddddddddddddddddddddddddddddddd:');
       print(data);
     } else {
       print("❌ Failed to fetch course data");
     }
 
     update();
+  }
+
+  Future<String> paymentStatus(BuildContext context, int userID) async {
+    statusrequest = Statusrequest.loading;
+    update();
+
+    showLoadingDialog('m2'.tr);
+
+    var response = await paymentStatusData.getData(userID);
+    statusrequest = handilingData(response);
+
+    String statusResult = 'unknown';
+
+    if (statusrequest == Statusrequest.success && response is Map) {
+      statusResult = response['paymentStatus'] ?? 'unknown';
+    } else {
+      print("❌ Failed to fetch course data: $response");
+    }
+
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+
+    update();
+    return statusResult;
   }
 
   @override
@@ -72,7 +101,7 @@ class MyCoursesControllerIMP extends MyCoursesController {
     return 0.0; // في حال فشل الطلب
   }
 
-  void refreshCourses() async {
+  Future<void> refreshCourses() async {
     statusrequest = Statusrequest.loading;
     update();
     data.clear();

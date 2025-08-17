@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 
 class TextformAuth extends StatelessWidget {
@@ -58,8 +61,8 @@ class TextformAuth extends StatelessWidget {
         ),
         focusColor: Appcolor.base,
         filled: true,
-        fillColor: storage.read('isDarkMode') == true
-            ? Colors.grey.shade900
+        fillColor: Get.find<ThemeController>().isDarkMode.value
+            ? Theme.of(context).colorScheme.background
             : const Color.fromARGB(255, 250, 249, 255),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

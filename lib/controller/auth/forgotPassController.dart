@@ -8,7 +8,7 @@ import 'package:learn_nova/core/function/loadindDialog.dart';
 import 'package:learn_nova/data/source/remote/auth/resetPassword.dart';
 
 abstract class Forgotpasscontroller extends GetxController {
-  sendEmailOTP(BuildContext context);
+  sendEmailOTP(BuildContext context, String page);
 }
 
 class ForgotpassControllerIMP extends Forgotpasscontroller {
@@ -34,12 +34,12 @@ class ForgotpassControllerIMP extends Forgotpasscontroller {
 
 //function to send Email to the user to verification
   @override
-  sendEmailOTP(BuildContext context) async {
+  sendEmailOTP(BuildContext context, String page) async {
     if (!formstate.currentState!.validate()) {
       return;
     }
     statusrequest = Statusrequest.loading;
-    showLoadingDialog(context, 'm1'.tr);
+    showLoadingDialog('m1'.tr);
     update();
     var result = await sendEmail.getData(email.text);
     result.fold(
@@ -58,7 +58,7 @@ class ForgotpassControllerIMP extends Forgotpasscontroller {
         statusrequest = Statusrequest.success;
         if (Get.isDialogOpen ?? false) Get.back();
         Get.offAllNamed(AppRoutes.resetpassword,
-            arguments: {"user_id": response["user_id"]});
+            arguments: {"user_id": response["user_id"], 'page': page});
         update();
       },
     );

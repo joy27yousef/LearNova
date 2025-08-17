@@ -65,6 +65,7 @@ class InviteFriendsPage extends StatelessWidget {
             ),
             SizedBox(height: 15),
             InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
               onTap: shareLink,
               child: Container(
                 height: 60,
@@ -105,11 +106,12 @@ class InviteFriendsPage extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Text(
-              'Share Invite Via',
+              'copy link',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: 15),
             InkWell(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
               onTap: () => copyLink(context),
               child: Container(
                 height: 60,

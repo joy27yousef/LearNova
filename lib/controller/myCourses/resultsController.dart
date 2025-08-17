@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
@@ -18,6 +19,7 @@ class ResultsController extends GetxController {
   CheckQuizAttemptData checkQuizAttemptData =
       CheckQuizAttemptData(crud: Get.find<Crud>());
   GetQuizzesData getQuizData = GetQuizzesData();
+  late bool isdark;
   late int idCourse;
   late int idquiz;
   late String url;
@@ -29,6 +31,7 @@ class ResultsController extends GetxController {
     getResults();
     getCertificate();
     quizdata = courseController.quizData;
+    isdark = Get.find<ThemeController>().isDarkMode.value;
     super.onInit();
   }
 
@@ -77,7 +80,7 @@ class ResultsController extends GetxController {
     var response = await getCertificateData.getData(idCourse, idquiz);
     statusrequest = handilingData(response);
     if (statusrequest == Statusrequest.success) {
-      url = response['certificateUrl'];
+      url = response['data']['certificateUrl'];
       print('✅success to get Certificate');
     } else {
       print('❌ field to get Certificate');

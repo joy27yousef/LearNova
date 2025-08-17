@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +16,10 @@ abstract class EditprofileController extends GetxController {
   late Statusrequest statusrequest;
   EditProfileData editProfileData = EditProfileData(crud: Get.find<Crud>());
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  UserControllerIMP user = Get.find<UserControllerIMP>();
 
   late TextEditingController firstname;
   late TextEditingController lastname;
-  late TextEditingController email;
   late TextEditingController phone;
   late TextEditingController country;
   late TextEditingController specialization;
@@ -40,26 +39,24 @@ class EditprofileControllerIMP extends EditprofileController {
   void onInit() {
     super.onInit();
 
-    firstname = TextEditingController();
-    lastname = TextEditingController();
-    phone = TextEditingController();
-    email = TextEditingController();
-    specialization = TextEditingController();
-    country = TextEditingController();
-    bio = TextEditingController();
+    firstname = TextEditingController(text: user.user['first_name']);
+    lastname = TextEditingController(text: user.user['last_name']);
+    phone = TextEditingController(text: user.user['phone_number']);
+    specialization = TextEditingController(text: user.user['specialization']);
+    country = TextEditingController(text: user.user['country']);
+    bio = TextEditingController(text: user.user['bio']);
   }
 
-  @override
-  void onClose() {
-    firstname.dispose();
-    lastname.dispose();
-    phone.dispose();
-    email.dispose();
-    specialization.dispose();
-    country.dispose();
-    bio.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   firstname.dispose();
+  //   lastname.dispose();
+  //   phone.dispose();
+  //   specialization.dispose();
+  //   country.dispose();
+  //   bio.dispose();
+  //   super.onClose();
+  // }
 
   @override
   Future<void> pickImage(ImageSource source) async {
@@ -114,6 +111,29 @@ class EditprofileControllerIMP extends EditprofileController {
   }
 
   @override
+  void onReady() {
+    super.onReady();
+
+    // تحديث النصوص أول مرة إذا فيه بيانات
+    firstname.text = user.user['first_name'] ?? '';
+    lastname.text = user.user['last_name'] ?? '';
+    phone.text = user.user['phone_number'] ?? '';
+    specialization.text = user.user['specialization'] ?? '';
+    country.text = user.user['country'] ?? '';
+    bio.text = user.user['bio'] ?? '';
+
+    ever(user.user, (_) {
+      firstname.text = user.user['first_name'] ?? '';
+      lastname.text = user.user['last_name'] ?? '';
+      phone.text = user.user['phone_number'] ?? '';
+
+      specialization.text = user.user['specialization'] ?? '';
+      country.text = user.user['country'] ?? '';
+      bio.text = user.user['bio'] ?? '';
+    });
+  }
+
+  @override
   Widget buildProfileImage() {
     return Obx(() {
       return GestureDetector(
@@ -122,10 +142,10 @@ class EditprofileControllerIMP extends EditprofileController {
           radius: 60,
           backgroundColor: Appcolor.backgroundLight,
           backgroundImage:
-              Get.find<UserControllerIMP>().user['profile_image'] == null
+              Get.find<UserControllerIMP>().user['profile_image'] != null
                   ? NetworkImage(
                       Get.find<UserControllerIMP>().user['profile_image'])
-                  : AssetImage('assets/images/person.png') as ImageProvider,
+                  : AssetImage('assets/images/person.png'),
           child: Align(
             alignment: Alignment.bottomRight,
             child: CircleAvatar(
@@ -143,24 +163,7 @@ class EditprofileControllerIMP extends EditprofileController {
     });
   }
 
-  Future<void> editProfile(BuildContext context) async {
-    if (firstname.text.isEmpty &&
-        lastname.text.isEmpty &&
-        phone.text.isEmpty &&
-        email.text.isEmpty &&
-        country.text.isEmpty &&
-        specialization.text.isEmpty &&
-        bio.text.isEmpty &&
-        imageFile.value == null) {
-      showCustomSnackbar(
-        title: 'Validation Error',
-        message: 'Please fill at least one field or select an image to update.',
-        icon: Icons.error,
-        backgroundColor: Colors.red,
-      );
-      return; // ممنوع الإرسال
-    }
-
+  Future<void> editProfile() async {
     if (!validatePartial()) {
       showCustomSnackbar(
         title: 'Validation Error',
@@ -171,25 +174,54 @@ class EditprofileControllerIMP extends EditprofileController {
       return;
     }
 
-    showLoadingDialog(context, 'm2'.tr);
+    showLoadingDialog('m2'.tr);
+
+    Map<String, dynamic> data = {};
+
+    if (firstname.text != (user.user['first_name'] ?? '') &&
+        firstname.text.trim().isNotEmpty) {
+      data['first_name'] = firstname.text.trim();
+    }
+    if (lastname.text != (user.user['last_name'] ?? '') &&
+        lastname.text.trim().isNotEmpty) {
+      data['last_name'] = lastname.text.trim();
+    }
+    if (phone.text != (user.user['phone_number'] ?? '') &&
+        phone.text.trim().isNotEmpty) {
+      data['phone_number'] = phone.text.trim();
+    }
+
+    if (specialization.text != (user.user['specialization'] ?? '') &&
+        specialization.text.trim().isNotEmpty) {
+      data['specialization'] = specialization.text.trim();
+    }
+    if (country.text != (user.user['country'] ?? '') &&
+        country.text.trim().isNotEmpty) {
+      data['country'] = country.text.trim();
+    }
+    if (bio.text != (user.user['bio'] ?? '') && bio.text.trim().isNotEmpty) {
+      data['bio'] = bio.text.trim();
+    }
+    if (imageFile.value != null) {
+      data['imageFile'] = imageFile.value;
+    }
 
     var response = await editProfileData.getData(
-      firstName: firstname.text,
-      lastName: lastname.text,
-      phone: phone.text,
-      imageFile: imageFile.value, // أرسل ملف الصورة مباشرة
-      bio: bio.text,
-      specialization: specialization.text,
-      country: country.text,
+      firstName: data['first_name'],
+      lastName: data['last_name'],
+      phone: data['phone_number'],
+      specialization: data['specialization'],
+      country: data['country'],
+      bio: data['bio'],
+      imageFile: data['imageFile'],
     );
 
     statusrequest = handilingData(response);
 
     if (statusrequest == Statusrequest.success) {
       if (Get.isDialogOpen ?? false) Get.back();
-
-      Get.find<UserControllerIMP>().getUserData();
-
+      await Get.find<UserControllerIMP>().getUserData();
+      Get.back();
       showCustomSnackbar(
         title: 'The operation was successful'.tr,
         message: 'User data has been successfully modified'.tr,
@@ -213,13 +245,25 @@ class EditprofileControllerIMP extends EditprofileController {
   }
 
   bool validatePartial() {
-    return firstname.text.isNotEmpty ||
-        lastname.text.isNotEmpty ||
-        phone.text.isNotEmpty ||
-        email.text.isNotEmpty ||
-        country.text.isNotEmpty ||
-        specialization.text.isNotEmpty ||
-        bio.text.isNotEmpty ||
+    bool isChanged = firstname.text != (user.user['first_name'] ?? '') ||
+        lastname.text != (user.user['last_name'] ?? '') ||
+        phone.text != (user.user['phone_number'] ?? '') ||
+        specialization.text != (user.user['specialization'] ?? '') ||
+        country.text != (user.user['country'] ?? '') ||
+        bio.text != (user.user['bio'] ?? '') ||
         imageFile.value != null;
+
+    if (!isChanged) return false;
+
+    if (firstname.text != (user.user['first_name'] ?? '') &&
+        firstname.text.trim().isEmpty) return false;
+
+    if (lastname.text != (user.user['last_name'] ?? '') &&
+        lastname.text.trim().isEmpty) return false;
+
+    if (phone.text != (user.user['phone_number'] ?? '') &&
+        phone.text.trim().isEmpty) return false;
+
+    return true;
   }
 }

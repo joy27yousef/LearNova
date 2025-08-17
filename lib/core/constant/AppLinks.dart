@@ -18,8 +18,8 @@ class Applinks {
   static const String userCourseEnrollment = '$server/v1/users';
   static const String courseEnroll = '$externalCourses';
   //ratings
-  static const String addRating = '$server/v1/courses';
-  static const String deleteRating = '$server/v1/courses';
+  static const String rating = '$server/v1/courses';
+ 
   //ProgressCourses
   static const String progress = '$server/v1/courses'; //send course Id & token
   static const String videoProgress =

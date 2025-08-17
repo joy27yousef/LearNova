@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/auth/loginController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/function/alertExitApp.dart';
@@ -18,97 +20,97 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginControllerImp controller = Get.put(LoginControllerImp());
     return Scaffold(
-        backgroundColor: Appcolor.backgroundLight,
         body: WillPopScope(
-          onWillPop: () => alerExitApp(context),
-          child: Form(
-            key: controller.formstate,
-            child: Stack(
-              children: [
-                Circle(),
-                SingleChildScrollView(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(right: 20, left: 20, top: 100),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Textinlogsingin(text1: '12'.tr, text2: '13'.tr),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        TextformAuth(
-                          hint: '14'.tr,
-                          lable: '15'.tr,
-                          iconform: Icon(
-                            Icons.email_outlined,
-                            color: Appcolor.baselight2,
-                          ),
-                          mycontroller: controller.email,
-                          typekey: TextInputType.emailAddress,
-                          valid: (val) {
-                            return validInput(val!, 5, 100, 'email');
-                          },
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        GetBuilder<LoginControllerImp>(
-                          builder: (controller) => TextformAuth(
-                            valid: (val) {
-                              return validInput(val!, 8, 100, 'password');
-                            },
-                            hint: '16'.tr,
-                            lable: '17'.tr,
-                            iconform: Icon(
-                              Icons.lock_outline_rounded,
-                              color: Appcolor.baselight2,
-                            ),
-                            mycontroller: controller.password,
-                            typekey: TextInputType.name,
-                            obscureText:
-                                controller.isShowPassword, // ✅ هنا تمرر القيمة
-                            onTapicon: () {
-                              controller.showPassword();
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Forgerpasstext(),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Boxtext(
-                          textin: '18'.tr,
-                          onTapFun: () {
-                            controller.login(context);
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Orloginwith(textin: '18'.tr),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Googlelogin(),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Footertext(
-                          text1: '19'.tr,
-                          text2: '20'.tr,
-                          i: "login",
-                        ),
-                      ],
+      onWillPop: () => alerExitApp(context),
+      child: Form(
+        key: controller.formstate,
+        child: Stack(
+          children: [
+            Circle(),
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20, top: 100),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Textinlogsingin(text1: '12'.tr, text2: '13'.tr),
+                    SizedBox(
+                      height: 35,
                     ),
-                  ),
+                    TextformAuth(
+                      hint: '14'.tr,
+                      lable: '15'.tr,
+                      iconform: Icon(
+                        Icons.email_outlined,
+                        color: Appcolor.baselight2,
+                      ),
+                      mycontroller: controller.email,
+                      typekey: TextInputType.emailAddress,
+                      valid: (val) {
+                        return validInput(val!, 5, 100, 'email');
+                      },
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    GetBuilder<LoginControllerImp>(
+                      builder: (controller) => TextformAuth(
+                        valid: (val) {
+                          return validInput(val!, 8, 100, 'password');
+                        },
+                        hint: '16'.tr,
+                        lable: '17'.tr,
+                        iconform: Icon(
+                          controller.isShowPassword
+                              ? FontAwesomeIcons.solidEyeSlash
+                              : FontAwesomeIcons.solidEye,
+                          color: Appcolor.baselight2,
+                        ),
+                        mycontroller: controller.password,
+                        typekey: TextInputType.name,
+                        obscureText:
+                            controller.isShowPassword, // ✅ هنا تمرر القيمة
+                        onTapicon: () {
+                          controller.showPassword();
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Forgerpasstext(),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Boxtext(
+                      textin: '18'.tr,
+                      onTapFun: () {
+                        controller.login(context);
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Orloginwith(textin: '18'.tr),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Googlelogin(),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Footertext(
+                      text1: '19'.tr,
+                      text2: '20'.tr,
+                      i: "login",
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }

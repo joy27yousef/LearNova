@@ -8,7 +8,6 @@ import 'package:learn_nova/core/function/ckeckInternet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {
-  //post Request
   Future<Either<Statusrequest, Map>> postRequest(
     String linkUrl,
     Map data, {
@@ -25,6 +24,7 @@ class Crud {
         if (withToken) {
           final box = GetStorage();
           String? token = box.read('token');
+          print('👩‍💻The token is :$token');
           if (token != null && token.isNotEmpty) {
             defaultHeaders['Authorization'] = 'Bearer $token';
           }
@@ -45,8 +45,15 @@ class Crud {
         print("📥 Status Code: ${response.statusCode}");
         print("📥 Response Body: ${response.body}");
 
+        Map responseBody = {};
+        try {
+          responseBody = jsonDecode(response.body);
+        } catch (_) {}
+
         if (response.statusCode == 200 || response.statusCode == 201) {
-          Map responseBody = jsonDecode(response.body);
+          return Right(responseBody);
+        } else if (response.statusCode == 402) {
+          responseBody['statusCode'] = 402;
           return Right(responseBody);
         } else {
           return Left(Statusrequest.serverfailure);
@@ -71,6 +78,7 @@ class Crud {
         if (withToken) {
           final box = GetStorage();
           String? token = box.read('token');
+          print('👩‍💻The token is :$token');
           headers = {
             'Authorization': 'Bearer $token',
             'Accept': 'application/json',
@@ -107,6 +115,7 @@ class Crud {
       if (await checkInternet()) {
         final box = GetStorage();
         String? token = box.read('token');
+        print('👩‍💻The token is :$token');
         var response = await http.delete(
           Uri.parse(linkUrl),
           headers: {
@@ -150,6 +159,7 @@ class Crud {
         if (withToken) {
           final box = GetStorage();
           String? token = box.read('token');
+          print('👩‍💻The token is :$token');
           if (token != null && token.isNotEmpty) {
             defaultHeaders['Authorization'] = 'Bearer $token';
           }
@@ -199,6 +209,7 @@ class Crud {
       if (withToken) {
         final box = GetStorage();
         String? token = box.read('token');
+        print('👩‍💻The token is :$token');
         if (token != null && token.isNotEmpty) {
           headers['Authorization'] = 'Bearer $token';
         }

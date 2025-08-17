@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/myCourses/quizController.dart';
-import 'package:learn_nova/controller/myCourses/resultsController.dart';
+
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
-import 'package:learn_nova/core/constant/AppRoutes.dart';
+
 import 'package:learn_nova/core/function/alertExitApp.dart';
 import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
@@ -200,7 +200,7 @@ class QuizPage extends StatelessWidget {
                           if (controller.currentPage.value ==
                               controller.questions.length - 1) {
                             confirmationAelrt(
-                              context,
+                          
                               Appimages.submit,
                               'Are you sure you want to send the test ?? You can never take it back',
                               'No, go back',

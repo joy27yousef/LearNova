@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
-import 'package:learn_nova/controller/myCourses/resultsController.dart';
 import 'package:learn_nova/core/class/crud.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
@@ -42,6 +39,7 @@ class QuizController extends GetxController {
     super.onInit();
   }
 
+
   void initController(BuildContext ctx) {
     context = ctx;
     loadQuizData();
@@ -60,6 +58,7 @@ class QuizController extends GetxController {
     final response = await getQuizData.getData(courseId!);
     statusrequest = handilingData(response);
     if (statusrequest == Statusrequest.success) {
+      quizData.clear();
       try {
         if (response is List && response.isNotEmpty) {
           quizData = response[0];
@@ -129,7 +128,7 @@ class QuizController extends GetxController {
     isSubmitted.value = true;
 
     timer?.cancel();
-    showLoadingDialog(context, 'Transmitting..');
+    showLoadingDialog('Transmitting..');
     statusrequest = Statusrequest.loading;
     update();
     Map<String, int> convertedAnswers = {};

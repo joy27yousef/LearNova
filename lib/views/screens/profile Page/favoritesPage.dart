@@ -29,12 +29,14 @@ class FavoritesPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10),
+                      Image.asset(Appimages.noData, height: 200),
                       Text(
                         "No favorites yet.",
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),

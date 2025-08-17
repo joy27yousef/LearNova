@@ -86,7 +86,6 @@ class _CourseLearningState extends State<CourseLearning>
                             });
                           } else if (value == 1) {
                             confirmationAelrt(
-                                context,
                                 Appimages.cancel,
                                 'Do you really want to cancel the course registration??\n you will lose your subscription to the course',
                                 'No, keep the record',
@@ -103,23 +102,41 @@ class _CourseLearningState extends State<CourseLearning>
                         color: Theme.of(context).colorScheme.background,
                         elevation: 8,
                         itemBuilder: (context) => [
-                          const PopupMenuItem(
+                          PopupMenuItem(
                             value: 0,
                             child: Row(
                               children: [
-                                Icon(Icons.star, color: Colors.amber),
+                                Icon(
+                                  Iconsax.star,
+                                ),
                                 SizedBox(width: 10),
-                                Text("Course evaluation"),
+                                Text(
+                                  "Rating",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.normal),
+                                ),
                               ],
                             ),
                           ),
-                          const PopupMenuItem(
+                          PopupMenuItem(
                             value: 1,
                             child: Row(
                               children: [
-                                Icon(Iconsax.trash, color: Colors.red),
+                                Icon(Iconsax.trash),
                                 SizedBox(width: 10),
-                                Text("Unenroll"),
+                                Text(
+                                  "Un Enroll",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.normal),
+                                ),
                               ],
                             ),
                           ),
@@ -187,7 +204,7 @@ class _CourseLearningState extends State<CourseLearning>
                   ),
                 ),
                 body: Handilingdataview(
-                  statusrequest: controller.statusrequest,
+                    statusrequests: [controller.statusrequest],
                   widget: TabBarView(
                     controller: tabController,
                     children: [

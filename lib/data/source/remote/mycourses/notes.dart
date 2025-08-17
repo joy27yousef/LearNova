@@ -4,12 +4,15 @@ import 'package:learn_nova/core/constant/AppLinks.dart';
 class AddNotesData {
   Crud? crud;
   AddNotesData({this.crud});
-  getData(int courseId, String content, int? videoId) async {
+  getData(int courseId, String content, int? videoId, String? title) async {
     Map<String, dynamic> data = {
       "course_id": courseId,
       "content": content,
     };
 
+    if (title != null) {
+      data["title"] = title;
+    }
     if (videoId != null) {
       data["video_id"] = videoId;
     }
@@ -34,6 +37,18 @@ class ViewNotesData {
   }
 }
 
+class ViewVideoNotesData {
+  Crud? crud;
+  ViewVideoNotesData({this.crud});
+  getData(int courseId, int videoId) async {
+    var response = await crud!.getRequest(
+      "${Applinks.notes}?course_id=$courseId&video_id=$videoId",
+      withToken: true,
+    );
+    return response.fold((l) => l, (r) => r);
+  }
+}
+
 class DeleteNotesData {
   Crud? crud;
   DeleteNotesData({this.crud});
@@ -46,12 +61,21 @@ class DeleteNotesData {
 class EditNotesData {
   Crud? crud;
   EditNotesData({this.crud});
-  getData(int noteId, String content) async {
+  getData(int noteId, String content, String? title) async {
+    Map<String, dynamic> data = {
+      "content": content,
+    };
+
+    if (title != null) {
+      data["title"] = title;
+    }
+
     var response = await crud!.putRequest(
       "${Applinks.notes}/$noteId",
-      {"content": content},
+      data,
       withToken: true,
     );
+
     return response.fold((l) => l, (r) => r);
   }
 }

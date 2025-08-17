@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/home/SearchController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 
@@ -17,7 +18,9 @@ class FilterTab extends StatelessWidget {
         InputDecoration buildDecoration(String label) {
           return InputDecoration(
             filled: true,
-            fillColor: const Color.fromARGB(255, 250, 249, 255),
+            fillColor: Get.find<ThemeController>().isDarkMode.value
+                ? Theme.of(context).colorScheme.background
+                : const Color.fromARGB(255, 250, 249, 255),
             label: Container(
               margin: EdgeInsets.all(10),
               child: Text(

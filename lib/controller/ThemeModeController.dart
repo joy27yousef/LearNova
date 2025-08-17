@@ -4,22 +4,38 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 
-class ThemeController extends GetxController {
-  final _storage = GetStorage();
+class ThemeController extends GetxController with WidgetsBindingObserver {
+  final storage = GetStorage();
   final isDarkMode = false.obs;
+  bool followSystem = true;
 
   @override
   void onInit() {
-    isDarkMode.value = _storage.read('isDarkMode') ?? false;
+    super.onInit();
+
+    WidgetsBinding.instance.addObserver(this);
+    var storedTheme = storage.read('isDarkMode');
+    if (storedTheme != null) {
+      isDarkMode.value = storedTheme;
+      followSystem = false;
+    } else {
+      _updateSystemBrightness();
+    }
 
     _applyTheme();
-    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.onClose();
   }
 
   void toggleTheme() {
     isDarkMode.value = !isDarkMode.value;
+    followSystem = false; // بعد التغيير اليدوي لن يتبع النظام
     _applyTheme();
-    _storage.write('isDarkMode', isDarkMode.value);
+    storage.write('isDarkMode', isDarkMode.value);
   }
 
   void _applyTheme() {
@@ -31,5 +47,20 @@ class ThemeController extends GetxController {
             isDarkMode.value ? Appcolor.backgroundDark : Colors.white,
       ),
     );
+  }
+
+  // هذا يستدعى تلقائياً عند تغيير إعدادات النظام
+  @override
+  void didChangePlatformBrightness() {
+    super.didChangePlatformBrightness();
+    if (followSystem) {
+      _updateSystemBrightness();
+      _applyTheme();
+    }
+  }
+
+  void _updateSystemBrightness() {
+    var brightness = WidgetsBinding.instance.window.platformBrightness;
+    isDarkMode.value = (brightness == Brightness.dark);
   }
 }

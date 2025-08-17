@@ -8,6 +8,7 @@ import 'package:learn_nova/core/localization/changeLocal.dart';
 import 'package:learn_nova/core/localization/translation.dart';
 import 'package:learn_nova/core/services/services.dart';
 import 'package:learn_nova/routes.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +27,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
+
     final localCtrl = Get.put(localController());
     final themeCtrl = Get.put(ThemeController());
 

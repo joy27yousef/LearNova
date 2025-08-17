@@ -26,6 +26,7 @@ class AiAssistantController extends GetxController {
     if (formstate.currentState!.validate()) {
       isTyping = true;
       update();
+
       messages.add(
         AiChatModel(
           question: messageSend.text,
@@ -49,7 +50,6 @@ class AiAssistantController extends GetxController {
             isUser: false,
           ),
         );
-        messageSend.clear();
       } else if (response.containsKey("error")) {
         showCustomSnackbar(
           title: 'Connection failure',
@@ -61,11 +61,11 @@ class AiAssistantController extends GetxController {
 
       isTyping = false;
       update();
-      await Future.delayed(
-          Duration(milliseconds: 100)); // تأخير بسيط للسماح بالرسم
+
+      await Future.delayed(const Duration(milliseconds: 100));
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
     } else {

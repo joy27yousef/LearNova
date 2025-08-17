@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/auth/forgotPassController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppFont.dart';
@@ -11,7 +12,11 @@ import 'package:learn_nova/views/widgets/auth/textformAuth.dart';
 import 'package:learn_nova/views/widgets/boxText.dart';
 
 class Forgotpassword extends StatelessWidget {
-  const Forgotpassword({super.key});
+  final String page;
+  const Forgotpassword({
+    super.key,
+    required this.page,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,6 @@ class Forgotpassword extends StatelessWidget {
     ForgotpassControllerIMP controller = Get.put(ForgotpassControllerIMP());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Appcolor.backgroundLight,
         title: Text(
           '30'.tr,
         ),
@@ -31,7 +35,6 @@ class Forgotpassword extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
       ),
-      backgroundColor: Appcolor.backgroundLight,
       body: WillPopScope(
         onWillPop: () => alerExitApp(context),
         child: Form(
@@ -43,7 +46,9 @@ class Forgotpassword extends StatelessWidget {
                 Flexible(
                     flex: 3,
                     child: Image.asset(
-                      Appimages.forgotpassword,
+                      Get.find<ThemeController>().isDarkMode.value
+                          ? Appimages.forgotpassworddark
+                          : Appimages.forgotpassword,
                     )),
                 Flexible(
                     flex: 3,
@@ -52,11 +57,10 @@ class Forgotpassword extends StatelessWidget {
                         Text(
                           '31'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 17,
-                              fontFamily: AppFonts.Poppins,
-                              fontWeight: FontWeight.w400),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(fontSize: 17),
                         ),
                         SizedBox(
                           height: 40,
@@ -80,7 +84,7 @@ class Forgotpassword extends StatelessWidget {
                         Boxtext(
                           textin: '32'.tr,
                           onTapFun: () {
-                            controller.sendEmailOTP(context);
+                            controller.sendEmailOTP(context, page);
                           },
                         ),
                       ],

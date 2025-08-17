@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/myCourses/resultsController.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
@@ -9,7 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+  ResultsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +33,12 @@ class ResultsPage extends StatelessWidget {
 
         final String quiztitle = quizData['title'] ?? 'title';
         final String quizdescription = quizData['description'] ?? 'description';
-        final int score = resultData['score'];
+        final int score = int.tryParse("${resultData['score'] ?? 0}") ?? 0;
+        final int correctAnswers =
+            int.tryParse("${resultData['correct_answers'] ?? 0}") ?? 0;
+        final int totalQuestions =
+            int.tryParse("${resultData['total_questions'] ?? 0}") ?? 0;
 
-        final int correctAnswers = resultData['correct_answers'];
-        final int totalQuestions = resultData['total_questions'];
         final List analysis = resultData['answer_analysis'];
 
         return Scaffold(
@@ -50,7 +53,9 @@ class ResultsPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Image.asset(Appimages.graduation),
+                  child: Image.asset(controller.isdark
+                      ? Appimages.graduationdark
+                      : Appimages.graduation),
                 ),
                 Text(
                   'Congratulations\non completing the course',

@@ -2,10 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
+import 'package:learn_nova/controller/mainPageController.dart';
+import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
+import 'package:learn_nova/controller/userController.dart';
 import 'package:learn_nova/core/class/handilingDataView.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
+import 'package:learn_nova/core/constant/AppImages.dart';
+import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/core/function/confirmationAlert.dart';
 import 'package:learn_nova/core/function/favoriteHeart.dart';
 import 'package:learn_nova/core/function/translationData.dart';
+import 'package:learn_nova/views/screens/main_page.dart';
 import 'package:learn_nova/views/widgets/course/SomInfCours.dart';
 import 'package:learn_nova/views/widgets/course/bottom.dart';
 import 'package:learn_nova/views/widgets/course/descriptionPart.dart';
@@ -22,6 +29,7 @@ class CoursePage extends StatefulWidget {
 class _CoursePageState extends State<CoursePage> {
   final CourseControllerIMP controller = Get.put(CourseControllerIMP());
   final ScrollController _scrollController = ScrollController();
+  final MyCoursesControllerIMP myCourseController = Get.find();
   double scrollOffset = 0.0;
 
   @override
@@ -48,7 +56,7 @@ class _CoursePageState extends State<CoursePage> {
     return GetBuilder<CourseControllerIMP>(builder: (controller) {
       return Scaffold(
         body: Handilingdataview(
-          statusrequest: controller.statusrequest,
+          statusrequests: [controller.statusrequest],
           widget: GetBuilder<CourseControllerIMP>(builder: (controller) {
             return Stack(
               children: [
@@ -179,7 +187,72 @@ class _CoursePageState extends State<CoursePage> {
                     ),
                   ],
                 ),
-                Bottom(),
+                // Bottom(),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    padding:
+                        const EdgeInsets.only(left: 8, bottom: 10, right: 8),
+                    child: Obx(() => InkWell(
+                          onTap: () {
+                            if (controller.isEnrolled.value) {
+                              Get.find<MainpagecontrollerIMP>().changePage(1);
+                              Get.offAll(() => MainPage());
+                            } else {
+                              if (controller.data['price'] == "0.00") {
+                                confirmationAelrt(
+                                  Appimages.enroll,
+                                  'Would you really like to enroll in this course ??',
+                                  "No, I don't want",
+                                  'Yes, Enroll',
+                                  Appcolor.base,
+                                  () async {
+                                    await myCourseController.getMyCourses(
+                                        Get.find<UserControllerIMP>()
+                                            .user['id']);
+                                    controller.checkEnrollment();
+                                    await controller.enroll();
+                                  },
+                                );
+                              } else {
+                                Get.toNamed(AppRoutes.paymentPage, arguments: {
+                                  'id': controller.data['id'],
+                                  'title': controller.data['title']
+                                      [translationData()],
+                                  'image': controller.data['thumbnail_url'],
+                                  'price': controller.data['price'],
+                                  'duration': controller.data['duration']
+                                      [translationData()],
+                                  'difficulty_level':
+                                      controller.data['difficulty_level'],
+                                });
+                              }
+                            }
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
+                              color: Appcolor.base,
+                            ),
+                            child: Center(
+                              child: Text(
+                                controller.isEnrolled.value
+                                    ? 'Go to course'
+                                    : 'Enroll Now',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
+                ),
               ],
             );
           }),

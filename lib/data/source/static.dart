@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/data/model/TestimonialsTest.dart';
 import 'package:learn_nova/data/model/benefitsModel.dart';
@@ -7,10 +8,30 @@ import 'package:learn_nova/data/model/homeScrolMesModel.dart';
 import 'package:learn_nova/data/model/onboardingModel.dart';
 
 List<Onboardingmodel> onboardingList = [
-  Onboardingmodel(title: "2".tr, image: Appimages.onboadring1, body: "3".tr),
-  Onboardingmodel(title: "4".tr, image: Appimages.onboadring2, body: "5".tr),
-  Onboardingmodel(title: "6".tr, image: Appimages.onboadring3, body: "7".tr),
-  Onboardingmodel(title: "8".tr, image: Appimages.onboadring4, body: "9".tr),
+  Onboardingmodel(
+      title: "2".tr,
+      image: Get.find<ThemeController>().isDarkMode.value
+          ? Appimages.onboadring1d
+          : Appimages.onboadring1,
+      body: "3".tr),
+  Onboardingmodel(
+      title: "4".tr,
+      image: Get.find<ThemeController>().isDarkMode.value
+          ? Appimages.onboadring3d
+          : Appimages.onboadring2,
+      body: "5".tr),
+  Onboardingmodel(
+      title: "6".tr,
+      image: Get.find<ThemeController>().isDarkMode.value
+          ? Appimages.onboadring3d
+          : Appimages.onboadring3,
+      body: "7".tr),
+  Onboardingmodel(
+      title: "8".tr,
+      image: Get.find<ThemeController>().isDarkMode.value
+          ? Appimages.onboadring4d
+          : Appimages.onboadring4,
+      body: "9".tr),
 ];
 
 List<Homescrolmesmodel> get homeScrol => [

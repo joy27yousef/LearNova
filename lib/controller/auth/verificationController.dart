@@ -29,7 +29,7 @@ class VerificationControllerIMP extends VerificationController {
   }
 
   chechCode(context) async {
-    showLoadingDialog(context, 'm9'.tr);
+    showLoadingDialog( 'm9'.tr);
     var response = await verify.getData(id, code);
 
     response.fold(

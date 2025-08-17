@@ -25,122 +25,131 @@ class HomePage extends StatelessWidget {
       onWillPop: () => alerExitApp(context),
       child: GetBuilder<HomepagecontrollerIMP>(builder: (controller) {
         return Handilingdataview(
-          statusrequest: controller.statusrequest,
+          statusrequests: [
+            controller.trendingStatusrequest,
+            controller.categoryStatusrequest,
+            controller.coursesStatusrequest
+          ],
           widget: Scaffold(
             appBar: AppBar(
               toolbarHeight: 10,
             ),
-            body: ListView(
-              children: [
-                Appbarhomepage(),
-                Messagecontainer(),
-                // category
-                Headerline(
-                  hint1: '44'.tr,
-                  hint2: '45'.tr,
-                  onTapHeader: () {
-                    Get.toNamed(AppRoutes.categoryPage);
-                  },
-                ),
-                Categorywidget(),
-                SizedBox(height: 20),
-                //trending Courses
-                Headerline(
-                  hint1: '46'.tr,
-                  hint2: '45'.tr,
-                  onTapHeader: () {
-                    Get.toNamed(AppRoutes.allTrendingCourse);
-                  },
-                ),
-                SizedBox(
-                  height: 270,
-                  child: TrandingCourses(
-                    num: 3,
-                    scrollDirection: Axis.horizontal,
-                    imageheight: 100,
+            body: RefreshIndicator(
+              onRefresh: () async {
+                controller.refreshHomeData();
+              },
+              child: ListView(
+                children: [
+                  Appbarhomepage(),
+                  Messagecontainer(),
+                  // category
+                  Headerline(
+                    hint1: '44'.tr,
+                    hint2: '45'.tr,
+                    onTapHeader: () {
+                      Get.toNamed(AppRoutes.categoryPage);
+                    },
                   ),
-                ),
-                SizedBox(height: 30),
-                //New Courses
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                  child: Text(
-                    '47'.tr,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Categorywidget(),
+                  SizedBox(height: 20),
+                  //trending Courses
+                  Headerline(
+                    hint1: '46'.tr,
+                    hint2: '45'.tr,
+                    onTapHeader: () {
+                      Get.toNamed(AppRoutes.allTrendingCourse);
+                    },
                   ),
-                ),
-                SizedBox(
+                  SizedBox(
+                    height: 270,
+                    child: TrandingCourses(
+                      num: 3,
+                      scrollDirection: Axis.horizontal,
+                      imageheight: 100,
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  //New Courses
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                    child: Text(
+                      '47'.tr,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                  SizedBox(
+                      height: 270,
+                      child: Viewcourseshomepage(
+                        scrollDirection: Axis.horizontal,
+                        num: controller.newCourses.length,
+                        courses: controller.newCourses,
+                        imageheight: 100,
+                      )),
+                  SizedBox(height: 30),
+                  //Benefits
+                  Headerline(
+                    hint1: '48'.tr,
+                    hint2: '49'.tr,
+                    onTapHeader: () {
+                      Get.toNamed(AppRoutes.benefits);
+                    },
+                  ),
+                  // Expanded(
+                  //   child: Container(
+                  //       padding: EdgeInsets.all(10),
+                  //       child: Benefitsgen(
+                  //         x: 3,
+                  //         physics: NeverScrollableScrollPhysics(),
+                  //         y: 8,
+                  //       )),
+                  // ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Benefitsgen(
+                      x: 3,
+                      physics: NeverScrollableScrollPhysics(),
+                      y: 8,
+                    ),
+                  ),
+
+                  SizedBox(height: 30),
+                  //free courses
+                  Headerline(
+                    hint1: '50'.tr,
+                    hint2: '45'.tr,
+                    onTapHeader: () {
+                      Get.toNamed(AppRoutes.allFreeCourses);
+                    },
+                  ),
+                  SizedBox(
                     height: 270,
                     child: Viewcourseshomepage(
                       scrollDirection: Axis.horizontal,
-                      num: controller.newCourses.length,
-                      courses: controller.newCourses,
                       imageheight: 100,
-                    )),
-                SizedBox(height: 30),
-                //Benefits
-                Headerline(
-                  hint1: '48'.tr,
-                  hint2: '49'.tr,
-                  onTapHeader: () {
-                    Get.toNamed(AppRoutes.benefits);
-                  },
-                ),
-                // Expanded(
-                //   child: Container(
-                //       padding: EdgeInsets.all(10),
-                //       child: Benefitsgen(
-                //         x: 3,
-                //         physics: NeverScrollableScrollPhysics(),
-                //         y: 8,
-                //       )),
-                // ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: Benefitsgen(
-                    x: 3,
-                    physics: NeverScrollableScrollPhysics(),
-                    y: 8,
+                      courses: controller.freeCourses,
+                      num: controller.freeCourses.length,
+                    ),
                   ),
-                ),
-
-                SizedBox(height: 30),
-                //free courses
-                Headerline(
-                  hint1: '50'.tr,
-                  hint2: '45'.tr,
-                  onTapHeader: () {
-                    Get.toNamed(AppRoutes.allFreeCourses);
-                  },
-                ),
-                SizedBox(
-                  height: 270,
-                  child: Viewcourseshomepage(
-                    scrollDirection: Axis.horizontal,
-                    imageheight: 100,
-                    courses: controller.freeCourses,
-                    num: controller.freeCourses.length,
+                  //Testrimonials
+                  SizedBox(height: 30),
+                  Headerline(
+                    hint1: '52'.tr,
+                    hint2: ''.tr,
+                    onTapHeader: () {},
                   ),
-                ),
-                //Testrimonials
-                SizedBox(height: 30),
-                Headerline(
-                  hint1: '52'.tr,
-                  hint2: ''.tr,
-                  onTapHeader: () {},
-                ),
-                Testrimonialshome(),
-                SizedBox(height: 15),
-                //FAQ
-                Headerline(
-                  hint1: '86'.tr,
-                  hint2: ''.tr,
-                  onTapHeader: () {},
-                ),
-                FAQHomePage(),
-                SizedBox(height: 30),
-              ],
+                  Testrimonialshome(),
+                  SizedBox(height: 15),
+                  //FAQ
+                  Headerline(
+                    hint1: '86'.tr,
+                    hint2: ''.tr,
+                    onTapHeader: () {},
+                  ),
+                  FAQHomePage(),
+                  SizedBox(height: 30),
+                ],
+              ),
             ),
           ),
         );

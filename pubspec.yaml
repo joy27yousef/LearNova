@@ -63,6 +63,7 @@ dependencies:
   firebase_core: ^3.12.1
   flutter_local_notifications: ^18.0.1
   cloud_firestore: ^5.6.5
+
   # Google Auth
   google_sign_in: ^5.3.1  
   responsive_builder: ^0.4.2
@@ -88,6 +89,7 @@ dependencies:
   dio: ^5.9.0
   marquee: ^2.3.0
   share_plus: ^11.0.0
+
 
 flutter_native_splash:
   color: "#6d28d9"
@@ -131,23 +133,28 @@ flutter:
     - assets/logo.png
     - assets/logoWhite.png
     - assets/logoimage.png
+    #onboarding
     - assets/images/Certification.gif
-    - assets/images/Course1.gif
-    - assets/images/Course2.gif
+    - assets/images/CertificationDark.gif
     - assets/images/UI-UX team.gif
+    # - assets/images/UI-UXDark.png
     - assets/images/verification.gif
+    - assets/images/verificationDark.gif
     - assets/images/Learning.gif
+    - assets/images/LearningDark.gif
     - assets/images/Courseapp.gif
+    - assets/images/CourseappDark.gif
     - assets/images/teamwork.png
     - assets/images/google.png
     - assets/images/Forgot password.gif
+    - assets/images/ForgotpasswordDark.gif
     - assets/images/Reset password.gif
+    - assets/images/resetpassDark.gif
     - assets/images/exit.png
     - assets/images/success.png
     - assets/images/cancel.png
     - assets/images/person.png
     - assets/images/Email campaign.gif
-    - assets/images/testpop1.jpg
     - assets/images/TT4.jpg
     - assets/images/TT3.jpg
     - assets/images/TT2.jpg
@@ -156,7 +163,6 @@ flutter:
     - assets/lottie/loading.json
     - assets/lottie/loading2.json
    # icons
-    - assets/icons/settings.png
     - assets/icons/notification.png
     - assets/icons/search.png
     - assets/icons/home.png
@@ -164,7 +170,6 @@ flutter:
     - assets/icons/my-profile.png
     - assets/icons/chat.png
     - assets/icons/chatgpt.png
-    - assets/icons/bell.png
     - assets/lottie/time.json
     - assets/lottie/Advantage.json
     - assets/lottie/Individual.json
@@ -185,6 +190,11 @@ flutter:
     - assets/images/online-education.png
     - assets/images/chapter.png
     - assets/images/add-note.png
+    - assets/images/addnotes.png
+    - assets/images/edit.png
+    - assets/images/syriatel.jpg
+    - assets/images/mtn.jpg
+    - assets/images/Notebook-bro.png
     # categorg
     - assets/images/languages.png
     - assets/images/mark.png
@@ -193,7 +203,7 @@ flutter:
     - assets/images/app-development.png
     - assets/images/self-confidence.png
     - assets/images/information-technology.png
-    - assets/images/Nodata.png
+    - assets/images/misplaced.png
 
     # Benefits
     - assets/images/hand.png
@@ -207,6 +217,10 @@ flutter:
     - assets/images/file-upload.png
     - assets/images/graduation.gif
     - assets/images/graduationdark.gif
+    - assets/images/delete-file.png
+    #frofile
+    - assets/images/editProfile.png
+
 
 
 

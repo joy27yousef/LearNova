@@ -30,7 +30,7 @@ class TrandingCourses extends StatelessWidget {
         scrollDirection: scrollDirection,
         itemCount: num,
         itemBuilder: (context, i) {
-          final course = controller.treanding[i];
+          final course = controller.treanding[i] ?? [];
           return InkWell(
             borderRadius: const BorderRadius.all(Radius.circular(30)),
             onTap: () {
@@ -42,9 +42,14 @@ class TrandingCourses extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               width: 200,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                color: Theme.of(context).colorScheme.background,
-              ),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  color: Theme.of(context).colorScheme.background,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        blurRadius: 8,
+                        blurStyle: BlurStyle.outer)
+                  ]),
               child: Stack(children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,7 +149,7 @@ class TrandingCourses extends StatelessWidget {
                           child: Text(
                             course['price'] == '0.00'
                                 ? 'Free'
-                                : "${course['price']} SPY",
+                                : "${course['price']} SYP",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!

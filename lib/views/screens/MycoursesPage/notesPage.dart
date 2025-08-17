@@ -6,6 +6,7 @@ import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
+import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/validinput.dart';
 import 'package:learn_nova/views/widgets/TextFormGen.dart';
 
@@ -35,7 +36,7 @@ class AllNotesPage extends StatelessWidget {
               onPressed: () {
                 overlayEntry?.remove();
                 overlayEntry = null;
-                controller.deleteNote(context, noteid);
+                controller.deleteNote(noteid);
               },
             ),
           ),
@@ -67,7 +68,23 @@ class AllNotesPage extends StatelessWidget {
         }
 
         if (controller.allNotes.isEmpty) {
-          return const Center(child: Text("لا توجد ملاحظات حاليًا"));
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Appimages.notebook,
+                width: 280,
+              ),
+              Center(
+                  child: Text(
+                "no notes currently available",
+                style: Theme.of(context).textTheme.titleMedium,
+              )),
+              SizedBox(
+                height: 80,
+              )
+            ],
+          );
         }
 
         return GestureDetector(
@@ -94,6 +111,10 @@ class AllNotesPage extends StatelessWidget {
                 onLongPressStart: (details) {
                   showNoteMenu(context, details.globalPosition, note);
                 },
+                onTap: () {
+                  Get.toNamed(AppRoutes.editnotepage,
+                      arguments: {'noteId': note['id']});
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: notescolor,
@@ -105,11 +126,11 @@ class AllNotesPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          note['title'] ?? 'No title',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
+                          note['title'] ?? '',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 15, color: Colors.black),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -117,7 +138,10 @@ class AllNotesPage extends StatelessWidget {
                         Expanded(
                           child: Text(
                             note['content'] ?? '',
-                            style: const TextStyle(fontSize: 12),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(fontSize: 12, color: Colors.black),
                             maxLines: 4,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -133,72 +157,109 @@ class AllNotesPage extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.defaultDialog(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            title: '',
-            content: Container(
-              height: 400,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    Center(child: Image.asset(Appimages.addNotes, width: 100)),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Add note',
-                      style: Theme.of(context).textTheme.titleLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormGen(
-                      hint: 'content',
-                      lable: 'content',
-                      iconform: const Icon(Icons.text_fields_rounded,
-                          color: Colors.grey),
-                      mycontroller: controller.content,
-                      typekey: TextInputType.multiline,
-                      valid: (val) => validInput(val!, 5, 100, 'note'),
-                    ),
-                    const SizedBox(height: 20),
-                    InkWell(
-                      onTap: () => controller.addNote(context),
-                      child: Container(
-                        height: 40,
+          Get.bottomSheet(
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                ),
+                child: Form(
+                  key: controller.formstate,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // شريط صغير أعلى الـ BottomSheet
+                      Container(
+                        width: 40,
+                        height: 5,
                         decoration: BoxDecoration(
-                          color: Appcolor.base,
-                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Center(
-                          child: Text(
-                            'add note',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(color: Colors.white),
+                      ),
+                      const SizedBox(height: 20),
+
+                      Image.asset(Appimages.addNotes, width: 100),
+                      const SizedBox(height: 20),
+
+                      Text(
+                        'Add Note',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 20),
+
+                      // حقل العنوان
+                      TextFormGen(
+                        hint: 'Title',
+                        lable: 'Title',
+                        iconform: const Icon(Icons.text_fields_rounded,
+                            color: Colors.grey),
+                        mycontroller: controller.noteTitle,
+                        typekey: TextInputType.text,
+                      ),
+                      const SizedBox(height: 20),
+
+                      TextFormGen(
+                        hint: 'Content',
+                        lable: 'Content',
+                        iconform:
+                            const Icon(Icons.notes_rounded, color: Colors.grey),
+                        mycontroller: controller.content,
+                        typekey: TextInputType.multiline,
+                        valid: (val) =>
+                            val == null || val.isEmpty ? 'Enter content' : null,
+                      ),
+                      const SizedBox(height: 20),
+
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            if (controller.formstate.currentState!.validate()) {
+                              controller.addNote();
+                            }
+                          },
+                          icon: const Icon(Icons.add, color: Colors.white),
+                          label: const Text(
+                            'Add Note',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Appcolor.base,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(15),
-                      onTap: () => Get.back(),
-                      child: Text(
-                        'cancel',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: Appcolor.base,
-                              fontSize: 17,
-                            ),
+
+                      TextButton(
+                        onPressed: () => Get.back(),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(color: Appcolor.base),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
+            isScrollControlled: true,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

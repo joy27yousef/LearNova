@@ -8,7 +8,7 @@ class TextFormGen extends StatelessWidget {
   final Icon iconform;
   final TextEditingController mycontroller;
   final TextInputType typekey;
-  final String? Function(String?) valid;
+  final String? Function(String?)? valid;
   final bool? obscureText;
   final void Function()? onTapicon;
 
@@ -19,7 +19,7 @@ class TextFormGen extends StatelessWidget {
       required this.iconform,
       required this.mycontroller,
       required this.typekey,
-      required this.valid,
+      this.valid,
       this.obscureText,
       this.onTapicon});
 

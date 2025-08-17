@@ -121,6 +121,7 @@ class FavoriteCard extends StatelessWidget {
                       onTapFun: () {
                         Get.toNamed(AppRoutes.coursePage, arguments: {
                           'ID': controller.data[i]['id'],
+                          'needQuiz': false
                         });
                       },
                       withheight: true,

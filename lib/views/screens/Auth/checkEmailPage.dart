@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
 import 'package:learn_nova/controller/auth/verificationController.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
@@ -27,7 +28,11 @@ class Checkemail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(Appimages.verification, height: 250),
+                Image.asset(
+                    Get.find<ThemeController>().isDarkMode.value
+                        ? Appimages.verificationDark
+                        : Appimages.verification,
+                    height: 250),
                 const SizedBox(height: 30),
                 Text(
                   "Check your email",

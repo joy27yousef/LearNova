@@ -32,13 +32,11 @@ class CourseViewinMainCat extends StatelessWidget {
 
         if (filteredCourses.isEmpty) {
           return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 50,
-              ),
               Image.asset(
                 Appimages.noData,
-                width: 300,
+                width: 200,
               ),
               Center(
                 child: Text(
@@ -46,6 +44,9 @@ class CourseViewinMainCat extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           );
         }
@@ -186,7 +187,10 @@ class CourseViewinMainCat extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Text("${course['price']} SYP",
+                                  child: Text(
+                                      course['price'] == "0.00"
+                                          ? "Free"
+                                          : "${course['price']} SYP",
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge!

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:learn_nova/controller/ThemeModeController.dart';
+
 class Circle extends StatelessWidget {
   const Circle({super.key});
 
@@ -11,7 +15,9 @@ class Circle extends StatelessWidget {
         width: 250,
         height: 250,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 242, 239, 255),
+          color: Get.find<ThemeController>().isDarkMode.value
+              ? Theme.of(context).colorScheme.background
+              : const Color.fromARGB(255, 242, 239, 255),
           shape: BoxShape.circle,
         ),
       ),

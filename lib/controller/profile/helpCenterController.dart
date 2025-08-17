@@ -34,7 +34,7 @@ class HelpCenterController extends GetxController {
   sendMessage(BuildContext context) async {
     if (formstate.currentState!.validate()) {
       print('valid');
-      showLoadingDialog(context, "Sending Message..".tr);
+      showLoadingDialog("Sending Message..".tr);
       var response = await helpCenterMessage.getData(first.text, last.text,
           email.text, phone.text, subject.text, message.text);
       statusrequest = handilingData(response);

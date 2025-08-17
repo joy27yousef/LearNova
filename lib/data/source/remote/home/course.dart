@@ -16,15 +16,10 @@ class CourseEnrollData {
   Crud? crud;
   CourseEnrollData({this.crud});
   getData(String courseID) async {
-    final box = GetStorage();
-    String? token = box.read('token');
-    print(token);
     var response = await crud!.postRequest(
       "${Applinks.courseEnroll}/$courseID/enroll",
       {},
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
+      withToken: true,
     );
 
     return response.fold((l) => l, (r) => r);
@@ -35,9 +30,6 @@ class CourseUnEnrollData {
   Crud? crud;
   CourseUnEnrollData({this.crud});
   getData(String courseID) async {
-    final box = GetStorage();
-    String? token = box.read('token');
-    print(token);
     var response = await crud!
         .deleteRequest("${Applinks.courseEnroll}/$courseID/unenroll");
     return response.fold((l) => l, (r) => r);
@@ -48,11 +40,19 @@ class UserEnrollmentsData {
   Crud? crud;
   UserEnrollmentsData({this.crud});
   getData(int userId) async {
-    final box = GetStorage();
-    String? token = box.read('token');
-    print(token);
     var response = await crud!.getRequest(
         "${Applinks.userCourseEnrollment}/$userId/enrollments",
+        withToken: true);
+    return response.fold((l) => l, (r) => r);
+  }
+}
+
+class PaymentStatusData {
+  Crud? crud;
+  PaymentStatusData({this.crud});
+  getData(int courseid) async {
+    var response = await crud!.getRequest(
+        "${Applinks.progress}/$courseid/payment-status",
         withToken: true);
     return response.fold((l) => l, (r) => r);
   }

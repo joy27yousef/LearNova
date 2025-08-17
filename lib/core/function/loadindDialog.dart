@@ -3,42 +3,50 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:lottie/lottie.dart';
 
-void showLoadingDialog(BuildContext context, String text) {
-  FocusScope.of(context).unfocus();
+void showLoadingDialog(String text) {
+  FocusScope.of(Get.context!).unfocus();
   FocusManager.instance.primaryFocus?.unfocus();
 
   Get.dialog(
     Center(
       child: Container(
-        height: 320,
-        padding: EdgeInsets.all(20),
-        margin: EdgeInsets.all(50),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+        margin: EdgeInsets.symmetric(horizontal: 40),
         decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(Get.context!).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 15,
+              offset: Offset(0, 8),
+            ),
+          ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min, // لتقليل المساحة الزائدة
           children: [
+            SizedBox(
+              height: 150, // ارتفاع محدد للـ Lottie
+              child: Lottie.asset(
+                Appimages.loading2,
+                fit: BoxFit.contain,
+              ),
+            ),
+            SizedBox(height: 20),
             Text(
               text,
-              softWrap: true,
-              overflow: TextOverflow.clip,
-              style: Theme.of(context)
+              textAlign: TextAlign.center,
+              style: Theme.of(Get.context!)
                   .textTheme
-                  .titleLarge!
-                  .copyWith(fontWeight: FontWeight.normal),
-            ),
-            Lottie.asset(
-              Appimages.loading2,
-              fit: BoxFit.contain,
+                  .titleMedium!
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
           ],
         ),
       ),
     ),
     barrierDismissible: false,
-    barrierColor: Colors.black.withOpacity(0.3),
+    barrierColor: Colors.black.withOpacity(0.4), // خلفية نصف شفافة
   );
 }

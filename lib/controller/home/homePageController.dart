@@ -24,7 +24,10 @@ class HomepagecontrollerIMP extends Homepagecontroller {
       ExternalCourseData(crud: Get.find<Crud>());
   TrendingCourseData trendingCourseData =
       TrendingCourseData(crud: Get.find<Crud>());
-  late Statusrequest statusrequest;
+
+  late Statusrequest categoryStatusrequest;
+  late Statusrequest trendingStatusrequest;
+  late Statusrequest coursesStatusrequest;
   List maincategories = []; // parent Categories
   List dataCategory = []; //all data in cateory
   List dataCourse = []; //all data in cateory
@@ -66,13 +69,21 @@ class HomepagecontrollerIMP extends Homepagecontroller {
     super.onClose();
   }
 
+  Future<void> refreshHomeData() async {
+    await Future.wait([
+      getCourseData(),
+      getCategoryData(),
+      getTreandingCourses(),
+    ]);
+  }
+
   @override
-  getCourseData() async {
-    statusrequest = Statusrequest.loading;
+  Future<void> getCourseData() async {
+    coursesStatusrequest = Statusrequest.loading;
     update();
     var response = await externalCourseData.getData();
-    statusrequest = handilingData(response);
-    if (Statusrequest.success == statusrequest) {
+    coursesStatusrequest = handilingData(response);
+    if (Statusrequest.success == coursesStatusrequest) {
       dataCourse.clear();
       dataCourse.addAll(response['data']);
 
@@ -88,8 +99,8 @@ class HomepagecontrollerIMP extends Homepagecontroller {
       newCourses.addAll(response['data']);
 
       newCourses.sort((a, b) {
-        DateTime dateA = DateTime.parse(a['updated_at']);
-        DateTime dateB = DateTime.parse(b['updated_at']);
+        DateTime dateA = DateTime.parse(a['created_at']);
+        DateTime dateB = DateTime.parse(b['created_at']);
         return dateB.compareTo(dateA);
       });
 
@@ -98,37 +109,37 @@ class HomepagecontrollerIMP extends Homepagecontroller {
       newCourses.addAll(newestCourses);
       print('✅success to get home course');
     } else {
-      statusrequest = Statusrequest.failure;
+      coursesStatusrequest = Statusrequest.failure;
     }
     update();
   }
 
   @override
-  getCategoryData() async {
-    statusrequest = Statusrequest.loading;
+  Future<void> getCategoryData() async {
+    categoryStatusrequest = Statusrequest.loading;
     update();
     var response = await categoriesData.getData();
-    statusrequest = handilingData(response);
-    if (Statusrequest.success == statusrequest) {
+    categoryStatusrequest = handilingData(response);
+    if (Statusrequest.success == categoryStatusrequest) {
       maincategories.clear();
       dataCategory.addAll(response['data']);
       maincategories.addAll(
           response['data'].where((element) => element['parent_id'] == null));
     } else {
-      statusrequest = Statusrequest.failure;
+      categoryStatusrequest = Statusrequest.failure;
     }
     update();
   }
 
 //treanding
-  getTreandingCourses() async {
-    statusrequest = Statusrequest.loading;
+  Future<void> getTreandingCourses() async {
+    trendingStatusrequest = Statusrequest.loading;
     update();
 
     var response = await trendingCourseData.getData();
-    statusrequest = handilingData(response);
+    trendingStatusrequest = handilingData(response);
 
-    if (Statusrequest.success == statusrequest) {
+    if (Statusrequest.success == trendingStatusrequest) {
       treanding.clear();
       treanding.addAll(response['data']);
       treanding.sort((a, b) => (b['ratings_avg_rating'] as double)
@@ -136,7 +147,7 @@ class HomepagecontrollerIMP extends Homepagecontroller {
 
       print('✅Success to get treanding');
     } else {
-      statusrequest = Statusrequest.failure;
+      trendingStatusrequest = Statusrequest.failure;
       print('❌error to get treanding');
     }
     update();

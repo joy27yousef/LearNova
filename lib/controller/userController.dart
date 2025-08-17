@@ -15,14 +15,23 @@ abstract class UserController extends GetxController {
 class UserControllerIMP extends UserController {
   File? imageFile;
   late Statusrequest statusrequest;
-
   UserData userData = UserData(crud: Get.find<Crud>());
   final RxMap<String, dynamic> user = <String, dynamic>{}.obs;
 
   @override
   void onInit() {
-    getUserData();
     super.onInit();
+    getUserData().then((_) {
+
+     
+
+    });
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
   }
 
   getUserData() async {

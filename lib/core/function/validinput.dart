@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
-String? validInput(String val, int min, int max, String type) {
+String? validInput(String val, int min, int max, String type,
+    {String? compareWith}) {
   if (val.isEmpty) {
-    return "v1".tr;
+    return "v1".tr; // الحقل فارغ
   }
 
   if (val.length < min) {
@@ -24,15 +25,16 @@ String? validInput(String val, int min, int max, String type) {
       return "v6".tr;
     }
   }
+
   if (type == "phone") {
     if (!GetUtils.isPhoneNumber(val)) {
       return "phone";
     }
   }
 
-  if (type == "password") {
-    if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$').hasMatch(val)) {
-      return 'v7'.tr;
+  if (type == "confirmPassword") {
+    if (compareWith != null && val != compareWith) {
+      return "Passwords do not match".tr;
     }
   }
 
