@@ -162,11 +162,10 @@ class CourseControllerIMP extends CourseController {
 
     var response = await courseEnroll.getData("$idCourse");
     statusrequest = handilingData(response);
-    if (Get.isDialogOpen ?? false) {
-      Get.back();
-    }
+
     if (statusrequest == Statusrequest.success) {
       checkEnrollment();
+
       showCustomSnackbar(
         title: "Registration has been successfully completed",
         message: "The course was added to My Courses.",
@@ -181,6 +180,9 @@ class CourseControllerIMP extends CourseController {
         // Get.find<MyCoursesControllerIMP>().getMyCourses(idCourse!);
         // Get.find<MyCoursesControllerIMP>().refreshCourses();
         await getData();
+        if (Get.isDialogOpen ?? false) {
+          Get.back();
+        }
         Get.find<MainpagecontrollerIMP>().changePage(1);
         Get.offAllNamed(AppRoutes.mainPage);
       } else {

@@ -50,7 +50,7 @@ class SearchForm extends StatelessWidget {
                 color: Colors.grey,
               ),
               filled: true,
-              fillColor: const Color.fromARGB(255, 250, 249, 255),
+              fillColor: Theme.of(context).colorScheme.background,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: Appcolor.baselight, width: 2),

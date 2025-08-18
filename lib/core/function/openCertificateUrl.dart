@@ -1,6 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> openCertificateUrl(String url) async {
+Future<void> openUrl(String url) async {
   final Uri uri = Uri.parse(url);
 
   if (!await launchUrl(

@@ -95,15 +95,6 @@ class HomePage extends StatelessWidget {
                       Get.toNamed(AppRoutes.benefits);
                     },
                   ),
-                  // Expanded(
-                  //   child: Container(
-                  //       padding: EdgeInsets.all(10),
-                  //       child: Benefitsgen(
-                  //         x: 3,
-                  //         physics: NeverScrollableScrollPhysics(),
-                  //         y: 8,
-                  //       )),
-                  // ),
                   Container(
                     padding: EdgeInsets.all(10),
                     child: Benefitsgen(

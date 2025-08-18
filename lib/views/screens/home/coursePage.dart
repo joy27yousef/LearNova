@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:learn_nova/controller/home/courseController.dart';
 import 'package:learn_nova/controller/mainPageController.dart';
 import 'package:learn_nova/controller/myCourses/myCoursesController.dart';
@@ -10,7 +12,9 @@ import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/confirmationAlert.dart';
+import 'package:learn_nova/core/function/customSnackBar.dart';
 import 'package:learn_nova/core/function/favoriteHeart.dart';
+import 'package:learn_nova/core/function/openCertificateUrl.dart';
 import 'package:learn_nova/core/function/translationData.dart';
 import 'package:learn_nova/views/screens/main_page.dart';
 import 'package:learn_nova/views/widgets/course/SomInfCours.dart';
@@ -66,6 +70,26 @@ class _CoursePageState extends State<CoursePage> {
                     SliverAppBar(
                       actions: [
                         FavoriteHeart(courseId: controller.data['id']),
+                        InkWell(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          onTap: () {
+                            if (controller.data['link'] == null) {
+                              showCustomSnackbar(
+                                  title: 'm3'.tr,
+                                  message: 'a3'.tr,
+                                  icon: Icons.done_rounded,
+                                  backgroundColor: Colors.grey);
+                            } else {
+                              openUrl(controller.data['link']);
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Icon(
+                              FontAwesomeIcons.link,
+                            ),
+                          ),
+                        ),
                       ],
                       scrolledUnderElevation: 0,
                       pinned: true,

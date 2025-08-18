@@ -11,9 +11,9 @@ class FavoriteHeart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Obx(() => LikeButton(
-              size: 35,
+              size: 32,
               animationDuration: Duration(milliseconds: 1100),
               isLiked: favcontroller.favoriteIds.contains(courseId),
               onTap: (isLiked) async {

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 
-Future<bool> alerExitApp(BuildContext context) {
+Future<bool> alerExitApp(BuildContext context) async {
   Get.defaultDialog(
     title: '',
     titlePadding: EdgeInsets.zero,
@@ -12,7 +12,6 @@ Future<bool> alerExitApp(BuildContext context) {
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     content: Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Image.asset(
           Appimages.exitApp,
@@ -29,43 +28,40 @@ Future<bool> alerExitApp(BuildContext context) {
         ),
         SizedBox(height: 30),
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InkWell(
-                  onTap: () {
-                    exit(0);
-                  },
-                  child: Flexible(
-                    child: Container(
-                      height: 40,
-                      margin: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          color: Appcolor.base,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: Center(
-                        child: Text('Yes, Exit',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(color: Colors.white)),
-                      ),
-                    ),
+            InkWell(
+              onTap: () {
+                exit(0); // اغلاق التطبيق
+              },
+              child: Container(
+                height: 40,
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Appcolor.base,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Center(
+                  child: Text(
+                    'Yes, Exit',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(color: Colors.white),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Text('cancel',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Appcolor.base, fontSize: 17)),
-                ),
-              ],
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Get.back(); // اغلاق الديالوج فقط
+              },
+              child: Text(
+                'cancel',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Appcolor.base, fontSize: 17),
+              ),
             ),
           ],
         ),
@@ -73,5 +69,5 @@ Future<bool> alerExitApp(BuildContext context) {
     ),
   );
 
-  return Future.value(true);
+  return Future.value(false); // 👈 امنع الرجوع الفوري
 }

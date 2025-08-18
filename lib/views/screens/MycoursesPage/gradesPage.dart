@@ -6,6 +6,8 @@ import 'package:learn_nova/core/constant/AppColor.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
 import 'package:learn_nova/core/function/customSnackBar.dart';
+import 'package:learn_nova/core/function/openCertificateUrl.dart';
+import 'package:learn_nova/views/widgets/mycourses/courseLearn/document.dart';
 import 'package:lottie/lottie.dart';
 
 class Grades extends StatelessWidget {
@@ -28,6 +30,13 @@ class Grades extends StatelessWidget {
 
       return ListView(
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            child: Text(
+              'Quizzes',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: InkWell(
@@ -165,12 +174,20 @@ class Grades extends StatelessWidget {
                           )
                         ],
                       ),
-                    ]
+                    ],
                   ], //
                 ),
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              'documents',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Documents()
         ],
       );
     });

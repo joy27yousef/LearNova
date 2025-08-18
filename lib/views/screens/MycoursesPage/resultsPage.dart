@@ -152,7 +152,7 @@ class ResultsPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    openCertificateUrl(controller.url);
+                    openUrl(controller.url);
                   },
                   child: Container(
                     height: 150,

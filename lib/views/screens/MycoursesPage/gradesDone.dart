@@ -7,6 +7,7 @@ import 'package:learn_nova/controller/myCourses/resultsController.dart';
 import 'package:learn_nova/core/class/statusRequest.dart';
 import 'package:learn_nova/core/constant/AppImages.dart';
 import 'package:learn_nova/core/constant/AppRoutes.dart';
+import 'package:learn_nova/views/widgets/mycourses/courseLearn/document.dart';
 import 'package:lottie/lottie.dart';
 
 class GradesDone extends StatelessWidget {
@@ -26,14 +27,19 @@ class GradesDone extends StatelessWidget {
       return ListView(
         children: [
           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            child: Text(
+              'Quizzes',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.all(20),
             child: InkWell(
               borderRadius: BorderRadius.all(Radius.circular(15)),
               onTap: () {
                 Get.put(ResultsController());
                 Get.toNamed(AppRoutes.resultsPage);
-
-          
               },
               child: Container(
                 padding: EdgeInsets.all(15),
@@ -113,7 +119,15 @@ class GradesDone extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              'documents',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Documents()
         ],
       );
     });

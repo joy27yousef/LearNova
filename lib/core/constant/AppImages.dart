@@ -8,6 +8,7 @@ class Appimages {
   static const String onboadring4 = "assets/images/Certification.gif";
   static const String onboadring4d = "assets/images/CertificationDark.gif";
   static const String logo = "assets/logo.png";
+  static const String error = "assets/images/error.png";
   static const String googleLogo = "assets/images/google.png";
   static const String forgotpassword = "assets/images/Forgot password.gif";
   static const String forgotpassworddark =
@@ -64,6 +65,7 @@ class Appimages {
   static const String mtn = "assets/images/mtn.jpg";
   static const String delete = "assets/images/delete-file.png";
   static const String notebook = "assets/images/Notebook-bro.png";
+  static const String doc = "assets/images/doc.png";
 
   // category
   static const String cat1 = "assets/images/app-development.png";

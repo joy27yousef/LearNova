@@ -162,6 +162,7 @@ flutter:
     - assets/images/log-out.png
     - assets/lottie/loading.json
     - assets/lottie/loading2.json
+    - assets/images/error.png
    # icons
     - assets/icons/notification.png
     - assets/icons/search.png
@@ -195,6 +196,7 @@ flutter:
     - assets/images/syriatel.jpg
     - assets/images/mtn.jpg
     - assets/images/Notebook-bro.png
+    - assets/images/doc.png
     # categorg
     - assets/images/languages.png
     - assets/images/mark.png
